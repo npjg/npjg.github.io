@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Nathanael Gentry</title>
+    <link>/</link>
+    <description>Recent content on Nathanael Gentry</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+    <lastBuildDate>Thu, 09 Jan 2020 00:10:00 -0500</lastBuildDate>
+    
+	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Macromedia mysteries</title>
+      <link>/scummvm/macromedia-mysteries/</link>
+      <pubDate>Thu, 07 May 2020 22:47:49 -0400</pubDate>
+      
+      <guid>/scummvm/macromedia-mysteries/</guid>
+      <description>This summer, I will be helping bring the Macromedia Director engine to maturity as my project for Google Summer of Code 2020. Tonight I found myself quite deep in a major rewrite of the core rendering pipeline, and when I got tired of that I decided to finally learn how to use Hugo. That&amp;rsquo;s why you are reading this now.</description>
+    </item>
+    
+    <item>
+      <title>Trivia</title>
+      <link>/trivia/</link>
+      <pubDate>Thu, 09 Jan 2020 00:10:00 -0500</pubDate>
+      
+      <guid>/trivia/</guid>
+      <description>Hello, fellow surfer! I&amp;rsquo;m a mathematics major at Liberty University. I also delude myself into thinking that I have time for my minors in philosophy, computer science, and piano performance.
+I was born and raised in Hawaii, and I now live in the eastern United States. When I was ten, I first started programming with QBasic. Quickly thereafter, I switched to Visual Basic and C. After a long hiatus for music and competitive forensics, I learned C++ at university and began the arduous trek toward Emacs mastery.</description>
+    </item>
+    
+  </channel>
+</rss>

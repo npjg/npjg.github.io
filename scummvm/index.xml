@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ScummVM on Nathanael Gentry</title>
+    <link>/scummvm/</link>
+    <description>Recent content in ScummVM on Nathanael Gentry</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+    <lastBuildDate>Thu, 07 May 2020 22:47:49 -0400</lastBuildDate>
+    
+	<atom:link href="/scummvm/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Macromedia mysteries</title>
+      <link>/scummvm/macromedia-mysteries/</link>
+      <pubDate>Thu, 07 May 2020 22:47:49 -0400</pubDate>
+      
+      <guid>/scummvm/macromedia-mysteries/</guid>
+      <description>This summer, I will be helping bring the Macromedia Director engine to maturity as my project for Google Summer of Code 2020. Tonight I found myself quite deep in a major rewrite of the core rendering pipeline, and when I got tired of that I decided to finally learn how to use Hugo. That&amp;rsquo;s why you are reading this now.</description>
+    </item>
+    
+  </channel>
+</rss>
