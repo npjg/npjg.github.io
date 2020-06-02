@@ -3,31 +3,165 @@
   <channel>
     <title>Nathanael Gentry</title>
     <link>/</link>
-    <description>Recent content on Nathanael Gentry</description>
+    <description>Nathanael Gentry</description>
     <generator>Hugo -- gohugo.io</generator>
+    <managingEditor>nathanael.gentrydb8@gmail.com (Nathanael Gentry)</managingEditor>
+    <webMaster>nathanael.gentrydb8@gmail.com (Nathanael Gentry)</webMaster>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
     <lastBuildDate>Thu, 09 Jan 2020 00:10:00 -0500</lastBuildDate>
     
-	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>In the widget weeds</title>
+      <link>/scummvm/widget-weeds/</link>
+      <pubDate>Mon, 08 Jun 2020 07:52:00 -0400</pubDate>
+      <author>nathanael.gentrydb8@gmail.com (Nathanael Gentry)</author>
+      <guid>/scummvm/widget-weeds/</guid>
+      <description>&lt;p&gt;Last time, I promised I would give an update on QuickDraw and the Macintosh GUI
+emulator. This second major part of reworking the rendering pipeline, which i
+thought I could finish in the first week of coding, has taken more time and gone
+deeper than I expected. When I am coding I am well aware of wasting time in
+&lt;a href=&#34;https://en.wiktionary.org/wiki/yak%5Fshaving&#34;&gt;shaving the yak&lt;/a&gt;. I mentioned in our Discord the other day that I might have
+experienced mission creep. Let me explain.&lt;/p&gt;
+&lt;p&gt;MY initial goal was to move over Director&amp;rsquo;s text rendering to the &lt;a href=&#34;https://github.com/scummvm/scummvm/blob/master/graphics/macgui/maceditabletext.cpp&#34;&gt;enhanced Mac
+text class&lt;/a&gt; that sev wrote for us earlier this year. I spent the early part of
+that week implementing the different kinds of text properties that Director
+permits putting on text &amp;ndash; straightforward effects like shadows, framing, and
+proper text alignment. (I now realize what complex work goes into graphics
+management for even a simple text editor.) Then, I created a new class (widget)
+specifically for buttons and did the similar work for the classic Mac&amp;rsquo;s three
+button styles. This took me to about Wednesday last week, and this part of my
+work went fairly quickly. I even got several movies mostly working, including
+the &lt;code&gt;stageColor&lt;/code&gt; movie (a simple one that flashed the emulator background color
+very quickly &amp;ndash; I won&amp;rsquo;t show it because I myself am photosensitive). This showed
+off saveral pieces of the work I had done: Drawing text with transparency and
+extra features, as well as reading button states properly.&lt;/p&gt;
+&lt;p&gt;I then realized that in order for the window manager to process widget events in
+the proper order, it needed to have some concept of priority &amp;ndash; a mirror of
+channels in Director. So then, I thought, we have only four major visual cast
+types in our Director engine: text, buttons, shapes, and bitmaps. Why not have
+all those be known to the window manager as widgets? This would accomplish
+another of the refactoring tasks I had been given, reducing the bloat of the
+Stage class by moving drawing methods away from there.&lt;/p&gt;
+&lt;p&gt;Then, I got rather bogged down later in the week in understanding the minutiae
+of the window manager, and I realized that much of the outward-facing code
+in our Director events manager could be handled better in the MacGUI manager
+instead; this was added to my list of items to finish. (You see what I mean
+about shaving yaks.) There were a few other version-specific irritations that I
+also tried to figure out; this took me into the weekend.&lt;/p&gt;
+&lt;p&gt;I soon had a lot of deeply connected tasks that seemed rather overwhelming as
+the first week ended; I realized that I had expanded the range of my next PR far
+beyond where I initially started. Until the weekend, I thought I was making good
+time. After I did not do much over the weekend to catch up with mechatronics
+research lab at where I work at university, I realized that trying to change
+everything at once is an excellent way to get behind. I do not want this to
+happen, so I talked to sev yesterday to help get me back on track.&lt;/p&gt;
+&lt;p&gt;I will post some screenshots later this week, once my improvements are complete
+enough to merge at least some of them. I believe our prime test move, The
+Apartment, will soon yield some good results in previously broken movies. I have
+known for a while my tendency toward over-engineering and trying to &amp;ldquo;go solo,&amp;rdquo;
+so confronting such mission creep in the very first week of coding was quite
+helpful for me.&lt;/p&gt;
+&lt;p&gt;Don&amp;rsquo;t worry, you&amp;rsquo;ll hear from me again soon!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Settling the score</title>
+      <link>/scummvm/settling-the-score/</link>
+      <pubDate>Mon, 01 Jun 2020 21:10:00 -0400</pubDate>
+      <author>nathanael.gentrydb8@gmail.com (Nathanael Gentry)</author>
+      <guid>/scummvm/settling-the-score/</guid>
+      <description>&lt;p&gt;Google Summer of Code 2020 officially started today, although throughout May I
+worked regularly on the Macromedia Director engine&amp;rsquo;s rendering pipeline. In the
+middle of May I replaced the long-standing frame-based renderer &amp;ndash; which redrew
+the entire screen every frame &amp;ndash; with a channel-based approach. This first part
+of the project brought me in touch with most of the other ScummVM Director devs,
+which was a nice touch for GSoC&amp;rsquo;s Community Bonding Period.&lt;/p&gt;
+&lt;p&gt;Modern operating systems use a desktop metaphor, with folders and notepads and
+option drawers. Director uses a cinematic metaphor, which works like this: Each
+movie has some cast members (shapes, bitmaps, text, etc.) which can be
+instantiated as sprites to appear on the stage (user viewing area). Each sprite
+inhabits a channel in the score. Rather confusingly, in fact, the terms &lt;em&gt;sprite&lt;/em&gt;
+and &lt;em&gt;channel&lt;/em&gt; are almost used interchangeably. One channel can display many
+different cast members throughout a movie. As you can see, this jargon (I dare
+not say lingo) departs from the usual understanding of &lt;em&gt;sprite&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;Just as its musical connotation implies, the
+score compactly describes the activity of each sprite and provides ready
+access to Lingo scripts and other customizations.&lt;/p&gt;
+&lt;figure&gt;
+    &lt;img src=&#34;/ox-hugo/settling-the-score-1.png&#34;/&gt; 
+&lt;/figure&gt;
+
+&lt;p&gt;As you might imagine from this screenshot of a Director 4 (1994) score, scores can be
+viewed as large matrices indexed by frames on the vertical and channels on the
+horizontal. Each entry (cell) of this matrix thus describes one item on
+stage at one point in time. On each frame, Director draws the sprites in
+ascending channel order.&lt;/p&gt;
+&lt;p&gt;At first, I naively thought that like Photoshop I could just toggle &amp;ldquo;layers&amp;rdquo;
+and be on my way. I quickly discovered, however, that in Director this
+convenience was exactly the functionality that we lacked. The score needed keep
+track of exactly what sprites were on stage at any given moment. It would no
+longer be enough to blindly draw whatever the current frame said its sprites
+were. Our engine needed to think more horizontally, rather than vertically.&lt;/p&gt;
+&lt;p&gt;After creating numerous test movies to understand Director&amp;rsquo;s rendering rules, I
+devised a simple mask-based approach. I took stock of all the dirty areas of the
+screen and just iterated over the channels to redraw the parts of sprites that
+intersected there. Nothing could be simpler, but it took me quite a while to
+understand all the eccentricities of the code and complete the refactoring
+required to get the engine alive again.&lt;/p&gt;
+&lt;p&gt;My approach gives fairly complete consistency with the original. Many difficult
+commands, like &lt;code&gt;zoomBox&lt;/code&gt;, can now work properly. Moreover, my work enabled
+puppeted sprites &amp;ndash; sprites controlled by Lingo, and not by the instructions in
+the score &amp;ndash; to work properly. If a sprite is puppeted, its channel in the score
+is simply not updated with sprites from new frames. The same sprite stays on
+stage until its puppet is disabled. This was not possible when every frame
+brought a new set of sprites to draw. But it was trivial when the
+score kept track of channels and sprites and chose when to update and redraw them.&lt;/p&gt;
+&lt;p&gt;My changes did not enhance much visually &amp;ndash; in fact, there was a regression that
+drew hideous white boxes instead of transparent hotspots. However,
+this morning I got to the bottom of those issues, and now Captain Hammer looks
+as fearsome as ever.&lt;/p&gt;
+&lt;figure&gt;
+    &lt;img src=&#34;/ox-hugo/settling-the-score-2.png&#34;/&gt; 
+&lt;/figure&gt;
+
+&lt;p&gt;Stay tuned for my adventures with QuickDraw and our Macintosh GUI emulator!&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Macromedia mysteries</title>
       <link>/scummvm/macromedia-mysteries/</link>
-      <pubDate>Thu, 07 May 2020 22:47:49 -0400</pubDate>
-      
+      <pubDate>Sun, 10 May 2020 21:10:00 -0400</pubDate>
+      <author>nathanael.gentrydb8@gmail.com (Nathanael Gentry)</author>
       <guid>/scummvm/macromedia-mysteries/</guid>
-      <description>This summer, I will be helping bring the Macromedia Director engine to maturity as my project for Google Summer of Code 2020. Tonight I found myself quite deep in a major rewrite of the core rendering pipeline, and when I got tired of that I decided to finally learn how to use Hugo. That&amp;rsquo;s why you are reading this now.</description>
+      <description>&lt;p&gt;This summer, I will be helping bring the Macromedia Director engine to maturity
+as my project for Google Summer of Code 2020. Tonight I found myself quite deep
+in a major rewrite of the core rendering pipeline, and when I got tired of that
+I decided to finally learn how to use Hugo. That&amp;rsquo;s why you are reading this now.&lt;/p&gt;
+</description>
     </item>
     
     <item>
       <title>Trivia</title>
       <link>/trivia/</link>
       <pubDate>Thu, 09 Jan 2020 00:10:00 -0500</pubDate>
-      
+      <author>nathanael.gentrydb8@gmail.com (Nathanael Gentry)</author>
       <guid>/trivia/</guid>
-      <description>Hello, fellow surfer! I&amp;rsquo;m a mathematics major at Liberty University. I also delude myself into thinking that I have time for my minors in philosophy, computer science, and piano performance.
-I was born and raised in Hawaii, and I now live in the eastern United States. When I was ten, I first started programming with QBasic. Quickly thereafter, I switched to Visual Basic and C. After a long hiatus for music and competitive forensics, I learned C++ at university and began the arduous trek toward Emacs mastery.</description>
+      <description>&lt;p&gt;Hello, fellow surfer! I&amp;rsquo;m a mathematics major at &lt;a href=&#34;https://www.liberty.edu/arts-sciences/mathematics/&#34;&gt;Liberty University&lt;/a&gt;. I also
+delude myself into thinking that I have time for my minors in philosophy,
+computer science, and piano performance.&lt;/p&gt;
+&lt;p&gt;I was born and raised in Hawaii, and I now live in the eastern United States.
+When I was ten, I first started programming with QBasic. Quickly thereafter, I
+switched to Visual Basic and C. After a long hiatus for music and competitive
+forensics, I learned C++ at university and began the arduous trek toward Emacs
+mastery.&lt;/p&gt;
+&lt;p&gt;When I&amp;rsquo;m not hacking away on my beloved ThinkPad 450s, I can probably be found
+engrossed in &lt;a href=&#34;https://www.youtube.com/watch?v=kHXxWfSAxik&#34;&gt;Chopin&lt;/a&gt; or studying a &lt;a href=&#34;https://www.youtube.com/watch?v=7R9RA%5FBR%5Fp0&#34;&gt;Vaughan Williams&lt;/a&gt; score.&lt;/p&gt;
+</description>
     </item>
     
   </channel>

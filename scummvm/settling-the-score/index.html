@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    
+        
+<meta charset="utf-8">
+<meta name="HandheldFriendly" content="True">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer-when-downgrade">
+
+<title>Settling the score  - Nathanael Gentry</title>
+<meta name="description" content="A simple student">
+
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="apple-touch-icon-precomposed" href="/favicon.png">
+
+<link rel="stylesheet" href="/css/style.css?rnd=1591617139" />
+
+
+
+<meta property="og:title" content="Settling the score" />
+<meta property="og:description" content="Google Summer of Code 2020 officially started today, although throughout May I worked regularly on the Macromedia Director engine&rsquo;s rendering pipeline. In the middle of May I replaced the long-standing frame-based renderer &ndash; which redrew the entire screen every frame &ndash; with a channel-based approach. This first part of the project brought me in touch with most of the other ScummVM Director devs, which was a nice touch for GSoC&rsquo;s Community Bonding Period." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/scummvm/settling-the-score/" />
+<meta property="og:image" content="/"/>
+<meta property="article:published_time" content="2020-06-01T21:10:00-04:00" />
+<meta property="article:modified_time" content="2020-06-08T07:52:16-04:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/"/>
+
+<meta name="twitter:title" content="Settling the score"/>
+<meta name="twitter:description" content="Google Summer of Code 2020 officially started today, although throughout May I worked regularly on the Macromedia Director engine&rsquo;s rendering pipeline. In the middle of May I replaced the long-standing frame-based renderer &ndash; which redrew the entire screen every frame &ndash; with a channel-based approach. This first part of the project brought me in touch with most of the other ScummVM Director devs, which was a nice touch for GSoC&rsquo;s Community Bonding Period."/>
+
+
+
+
+
+
+    
+</head>
+<body>
+    <a class="skip-main" href="#main">Skip to main content</a>
+    <div class="container">
+        <header> 
+            
+                <h1 class="site-header">
+    <a href="/">Nathanael Gentry</a>
+</h1>
+<nav>
+    
+    
+    <a class="" href="/trivia/" title="Trivia">Trivia</a>
+    
+    <a class="" href="/scummvm/" title="ScummVM">ScummVM</a>
+    
+    <a class="" href="/thoughts/" title="Thoughts">Thoughts</a>
+    
+</nav>
+
+            
+        </header>
+        <main id="main" tabindex="-1"> 
+            
+
+    <article class="post">
+        <header>
+            <h1>Settling the score</h1>
+        </header>
+        <div class="content">
+            <p>Google Summer of Code 2020 officially started today, although throughout May I
+worked regularly on the Macromedia Director engine&rsquo;s rendering pipeline. In the
+middle of May I replaced the long-standing frame-based renderer &ndash; which redrew
+the entire screen every frame &ndash; with a channel-based approach. This first part
+of the project brought me in touch with most of the other ScummVM Director devs,
+which was a nice touch for GSoC&rsquo;s Community Bonding Period.</p>
+<p>Modern operating systems use a desktop metaphor, with folders and notepads and
+option drawers. Director uses a cinematic metaphor, which works like this: Each
+movie has some cast members (shapes, bitmaps, text, etc.) which can be
+instantiated as sprites to appear on the stage (user viewing area). Each sprite
+inhabits a channel in the score. Rather confusingly, in fact, the terms <em>sprite</em>
+and <em>channel</em> are almost used interchangeably. One channel can display many
+different cast members throughout a movie. As you can see, this jargon (I dare
+not say lingo) departs from the usual understanding of <em>sprite</em>.</p>
+<p>Just as its musical connotation implies, the
+score compactly describes the activity of each sprite and provides ready
+access to Lingo scripts and other customizations.</p>
+<figure>
+    <img src="/ox-hugo/settling-the-score-1.png"/> 
+</figure>
+
+<p>As you might imagine from this screenshot of a Director 4 (1994) score, scores can be
+viewed as large matrices indexed by frames on the vertical and channels on the
+horizontal. Each entry (cell) of this matrix thus describes one item on
+stage at one point in time. On each frame, Director draws the sprites in
+ascending channel order.</p>
+<p>At first, I naively thought that like Photoshop I could just toggle &ldquo;layers&rdquo;
+and be on my way. I quickly discovered, however, that in Director this
+convenience was exactly the functionality that we lacked. The score needed keep
+track of exactly what sprites were on stage at any given moment. It would no
+longer be enough to blindly draw whatever the current frame said its sprites
+were. Our engine needed to think more horizontally, rather than vertically.</p>
+<p>After creating numerous test movies to understand Director&rsquo;s rendering rules, I
+devised a simple mask-based approach. I took stock of all the dirty areas of the
+screen and just iterated over the channels to redraw the parts of sprites that
+intersected there. Nothing could be simpler, but it took me quite a while to
+understand all the eccentricities of the code and complete the refactoring
+required to get the engine alive again.</p>
+<p>My approach gives fairly complete consistency with the original. Many difficult
+commands, like <code>zoomBox</code>, can now work properly. Moreover, my work enabled
+puppeted sprites &ndash; sprites controlled by Lingo, and not by the instructions in
+the score &ndash; to work properly. If a sprite is puppeted, its channel in the score
+is simply not updated with sprites from new frames. The same sprite stays on
+stage until its puppet is disabled. This was not possible when every frame
+brought a new set of sprites to draw. But it was trivial when the
+score kept track of channels and sprites and chose when to update and redraw them.</p>
+<p>My changes did not enhance much visually &ndash; in fact, there was a regression that
+drew hideous white boxes instead of transparent hotspots. However,
+this morning I got to the bottom of those issues, and now Captain Hammer looks
+as fearsome as ever.</p>
+<figure>
+    <img src="/ox-hugo/settling-the-score-2.png"/> 
+</figure>
+
+<p>Stay tuned for my adventures with QuickDraw and our Macintosh GUI emulator!</p>
+
+        </div>
+        
+
+
+<div class="article-info">
+    
+        <div class="article-date">2020-06-01</div>
+    
+    <div class="article-taxonomies">
+        
+            
+    </div>
+</div>
+
+    </article>
+    
+
+
+        </main>
+        <footer>
+            
+                
+                
+
+                <p>© 2020<br>
+Powered by <a target="_blank" href="https://gohugo.io/">Hugo</a>, theme <a target="_blank" href="https://github.com/mitrichius/hugo-theme-anubis">Anubis</a>.
+</p>
+            
+        </footer>
+    </div>
+</body>
+</html>

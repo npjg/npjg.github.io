@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    
+        
+<meta charset="utf-8">
+<meta name="HandheldFriendly" content="True">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer-when-downgrade">
+
+<title>In the widget weeds  - Nathanael Gentry</title>
+<meta name="description" content="A simple student">
+
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="apple-touch-icon-precomposed" href="/favicon.png">
+
+<link rel="stylesheet" href="/css/style.css?rnd=1591617139" />
+
+
+
+<meta property="og:title" content="In the widget weeds" />
+<meta property="og:description" content="Last time, I promised I would give an update on QuickDraw and the Macintosh GUI emulator. This second major part of reworking the rendering pipeline, which i thought I could finish in the first week of coding, has taken more time and gone deeper than I expected. When I am coding I am well aware of wasting time in shaving the yak. I mentioned in our Discord the other day that I might have experienced mission creep." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/scummvm/widget-weeds/" />
+<meta property="og:image" content="/"/>
+<meta property="article:published_time" content="2020-06-08T07:52:00-04:00" />
+<meta property="article:modified_time" content="2020-06-08T07:52:16-04:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/"/>
+
+<meta name="twitter:title" content="In the widget weeds"/>
+<meta name="twitter:description" content="Last time, I promised I would give an update on QuickDraw and the Macintosh GUI emulator. This second major part of reworking the rendering pipeline, which i thought I could finish in the first week of coding, has taken more time and gone deeper than I expected. When I am coding I am well aware of wasting time in shaving the yak. I mentioned in our Discord the other day that I might have experienced mission creep."/>
+
+
+
+
+
+
+    
+</head>
+<body>
+    <a class="skip-main" href="#main">Skip to main content</a>
+    <div class="container">
+        <header> 
+            
+                <h1 class="site-header">
+    <a href="/">Nathanael Gentry</a>
+</h1>
+<nav>
+    
+    
+    <a class="" href="/trivia/" title="Trivia">Trivia</a>
+    
+    <a class="" href="/scummvm/" title="ScummVM">ScummVM</a>
+    
+    <a class="" href="/thoughts/" title="Thoughts">Thoughts</a>
+    
+</nav>
+
+            
+        </header>
+        <main id="main" tabindex="-1"> 
+            
+
+    <article class="post">
+        <header>
+            <h1>In the widget weeds</h1>
+        </header>
+        <div class="content">
+            <p>Last time, I promised I would give an update on QuickDraw and the Macintosh GUI
+emulator. This second major part of reworking the rendering pipeline, which i
+thought I could finish in the first week of coding, has taken more time and gone
+deeper than I expected. When I am coding I am well aware of wasting time in
+<a href="https://en.wiktionary.org/wiki/yak%5Fshaving">shaving the yak</a>. I mentioned in our Discord the other day that I might have
+experienced mission creep. Let me explain.</p>
+<p>MY initial goal was to move over Director&rsquo;s text rendering to the <a href="https://github.com/scummvm/scummvm/blob/master/graphics/macgui/maceditabletext.cpp">enhanced Mac
+text class</a> that sev wrote for us earlier this year. I spent the early part of
+that week implementing the different kinds of text properties that Director
+permits putting on text &ndash; straightforward effects like shadows, framing, and
+proper text alignment. (I now realize what complex work goes into graphics
+management for even a simple text editor.) Then, I created a new class (widget)
+specifically for buttons and did the similar work for the classic Mac&rsquo;s three
+button styles. This took me to about Wednesday last week, and this part of my
+work went fairly quickly. I even got several movies mostly working, including
+the <code>stageColor</code> movie (a simple one that flashed the emulator background color
+very quickly &ndash; I won&rsquo;t show it because I myself am photosensitive). This showed
+off saveral pieces of the work I had done: Drawing text with transparency and
+extra features, as well as reading button states properly.</p>
+<p>I then realized that in order for the window manager to process widget events in
+the proper order, it needed to have some concept of priority &ndash; a mirror of
+channels in Director. So then, I thought, we have only four major visual cast
+types in our Director engine: text, buttons, shapes, and bitmaps. Why not have
+all those be known to the window manager as widgets? This would accomplish
+another of the refactoring tasks I had been given, reducing the bloat of the
+Stage class by moving drawing methods away from there.</p>
+<p>Then, I got rather bogged down later in the week in understanding the minutiae
+of the window manager, and I realized that much of the outward-facing code
+in our Director events manager could be handled better in the MacGUI manager
+instead; this was added to my list of items to finish. (You see what I mean
+about shaving yaks.) There were a few other version-specific irritations that I
+also tried to figure out; this took me into the weekend.</p>
+<p>I soon had a lot of deeply connected tasks that seemed rather overwhelming as
+the first week ended; I realized that I had expanded the range of my next PR far
+beyond where I initially started. Until the weekend, I thought I was making good
+time. After I did not do much over the weekend to catch up with mechatronics
+research lab at where I work at university, I realized that trying to change
+everything at once is an excellent way to get behind. I do not want this to
+happen, so I talked to sev yesterday to help get me back on track.</p>
+<p>I will post some screenshots later this week, once my improvements are complete
+enough to merge at least some of them. I believe our prime test move, The
+Apartment, will soon yield some good results in previously broken movies. I have
+known for a while my tendency toward over-engineering and trying to &ldquo;go solo,&rdquo;
+so confronting such mission creep in the very first week of coding was quite
+helpful for me.</p>
+<p>Don&rsquo;t worry, you&rsquo;ll hear from me again soon!</p>
+
+        </div>
+        
+
+
+<div class="article-info">
+    
+        <div class="article-date">2020-06-08</div>
+    
+    <div class="article-taxonomies">
+        
+            
+    </div>
+</div>
+
+    </article>
+    
+
+
+        </main>
+        <footer>
+            
+                
+                
+
+                <p>© 2020<br>
+Powered by <a target="_blank" href="https://gohugo.io/">Hugo</a>, theme <a target="_blank" href="https://github.com/mitrichius/hugo-theme-anubis">Anubis</a>.
+</p>
+            
+        </footer>
+    </div>
+</body>
+</html>
