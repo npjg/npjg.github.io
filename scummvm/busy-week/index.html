@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    
+        
+<meta charset="utf-8">
+<meta name="HandheldFriendly" content="True">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer-when-downgrade">
+
+<title>A busy week  - Nathanael Gentry</title>
+<meta name="description" content="A simple student">
+
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="apple-touch-icon-precomposed" href="/favicon.png">
+
+<link rel="stylesheet" href="/css/style.css?rnd=1592856409" />
+
+
+
+<meta property="og:title" content="A busy week" />
+<meta property="og:description" content="Last week, I finished up the tasks that had dragged me down, and then I moved on to sundry other topics. Now our Director engine renders The Apartment, a demo movie that MacroMind and later Macromedia developed for the early Directors, in greater fidelity. One of the issues that took a while to figure out was that, in the Director 3 version of The Apartment, GUI buttons had a special type that were not stored in the usual place." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/scummvm/busy-week/" />
+<meta property="og:image" content="/"/>
+<meta property="article:published_time" content="2020-06-15T06:58:00-04:00" />
+<meta property="article:modified_time" content="2020-06-22T16:06:47-04:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/"/>
+
+<meta name="twitter:title" content="A busy week"/>
+<meta name="twitter:description" content="Last week, I finished up the tasks that had dragged me down, and then I moved on to sundry other topics. Now our Director engine renders The Apartment, a demo movie that MacroMind and later Macromedia developed for the early Directors, in greater fidelity. One of the issues that took a while to figure out was that, in the Director 3 version of The Apartment, GUI buttons had a special type that were not stored in the usual place."/>
+
+
+
+
+
+
+    
+</head>
+<body>
+    <a class="skip-main" href="#main">Skip to main content</a>
+    <div class="container">
+        <header> 
+            
+                <h1 class="site-header">
+    <a href="/">Nathanael Gentry</a>
+</h1>
+<nav>
+    
+    
+    <a class="" href="/trivia/" title="Trivia">Trivia</a>
+    
+    <a class="" href="/scummvm/" title="ScummVM">ScummVM</a>
+    
+    <a class="" href="/thoughts/" title="Thoughts">Thoughts</a>
+    
+</nav>
+
+            
+        </header>
+        <main id="main" tabindex="-1"> 
+            
+
+    <article class="post">
+        <header>
+            <h1>A busy week</h1>
+        </header>
+        <div class="content">
+            <p>Last week, I finished up the tasks that had dragged me down, and then I moved on
+to sundry other topics. Now our Director engine renders The Apartment, a demo
+movie that MacroMind and later Macromedia developed for the early Directors, in
+greater fidelity. One of the issues that took a while to figure out was that, in
+the Director 3 version of The Apartment, GUI buttons had a special type that
+were not stored in the usual place. To our engine, they just looked like regular
+texts, but they were not. I also realized how tedious it is to fiddle with a few
+magic numbers until the GUI elements came out looking right. I still need to get QuickDraw
+shapes fully transported over to widget-based rendering, which I plan to do
+later this week.</p>
+<p>After my PR was merged, sev granted me write access to the repository, so I
+could commit fixes on-the-fly. This was very helpful because, <a href="https://github.com/scummvm/scummvm/commits?author=npjg">as you can see</a>, I
+have fixed many little bugs in my code since then. Over the latter half of last
+week, I grew well acquainted with the technical methods in the Mac
+text-rendering class that sev wrote, and I did some major refactoring to merge
+the two editable- and non-editable variants. Then, with this, I began
+implementing some Lingo entities that permit some Director-based customization
+of text fields. Some of this, such as changing fonts and line widths and such as
+a movie plays, I have not yet pushed.</p>
+<p>An issue that I spent several hours investigating last week involved text
+background colours in Spaceship Warlock. Ultimately, with sev&rsquo;s help, it turned
+out that our loading code was not reading the palette information for text cast
+members correctly. Thus, the hack had been to give all texts the background
+colour of the whole Director stage. This worked well <em>sometimes</em> &ndash; but
+sometimes individual movies in Warlock had a white stage covered by the black
+rectangles, and sometimes they had a black stage. So, I confronted strange
+inconsistencies like this:</p>
+<figure>
+    <img src="/ox-hugo/a-busy-week-1.png"/> 
+</figure>
+
+<p>Once we got to the root of the issue, texts rendered correctly, no matter the
+underlying stage colour:</p>
+<figure>
+    <img src="/ox-hugo/a-busy-week-2.png"/> 
+</figure>
+
+<p>(I was confronted by those cops so many times one day, I had a dream about them.)</p>
+<p>Tracking down strange rendering bugs like these has been the majority of my work
+over the past few days, and I will get back to it again today in tracking down
+some long-standing issues in The Apartment. Debugging is often frustrating,
+especially when I judge myself for going too slowly, but it is quite pleasant to
+see my fix for an issue pushed &ndash; and often the solution was far away from where
+I thought it would be. Well, I&rsquo;d better get to it for this week.</p>
+
+        </div>
+        
+
+
+<div class="article-info">
+    
+        <div class="article-date">2020-06-15</div>
+    
+    <div class="article-taxonomies">
+        
+            
+    </div>
+</div>
+
+    </article>
+    
+
+
+        </main>
+        <footer>
+            
+                
+                
+
+                <p>© 2020<br>
+Powered by <a target="_blank" href="https://gohugo.io/">Hugo</a>, theme <a target="_blank" href="https://github.com/mitrichius/hugo-theme-anubis">Anubis</a>.
+</p>
+            
+        </footer>
+    </div>
+</body>
+</html>
