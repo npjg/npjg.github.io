@@ -14,6 +14,65 @@
     
     
     <item>
+      <title>A third of the way done!</title>
+      <link>/scummvm/third-way-done/</link>
+      <pubDate>Mon, 29 Jun 2020 19:10:00 -0400</pubDate>
+      <author>nathanael.gentrydb8@gmail.com (Nathanael Gentry)</author>
+      <guid>/scummvm/third-way-done/</guid>
+      <description>&lt;p&gt;Hello again!&lt;/p&gt;
+&lt;p&gt;This week wrapped up the fourth week of coding, which means that there are about
+8 weeks left until GSoC finishes and it&amp;rsquo;s time for me to go back to school. This
+week, I spent the early part of the week fixing up our rendering pipeline. It is
+fun to work on, since it&amp;rsquo;s so fundamental to the engine, but many bugs are quite
+difficult to track down. A big part of this was more closely integrating
+Director&amp;rsquo;s internal state memory, now kept in the Channel class that I wrote,
+with the &amp;ldquo;widgets&amp;rdquo; that the window manager knows about. A tight interface with
+the window manager will become essential quite soon, when we implement MIAWs
+(movies in a window).&lt;/p&gt;
+&lt;p&gt;When I got tired of tracking down obscure artifacts and bugs near the middle of
+the week, I revamped the interface that we use to draw Director transitions.
+There are about 50 different transition types, which sev had implemented before,
+but rather than having to keep a copy of the old frame and then draw the new
+frame back over it &amp;ndash; as we had to do before &amp;ndash; I put in a more natural approach
+of rendering the next frame over the current one, in accordance with the
+transition. This cut out some unnecessary surface blitting that was happening
+every frame. Working with the transitions took way longer than I expected, and
+I&amp;rsquo;m still not quite sure why.&lt;/p&gt;
+&lt;p&gt;I also spent some time reviewing our Trello board and picking out easy tasks for
+a break or marking complete those reports of broken movies, etc. that some side
+effect had fixed along the way. A nice 5-minute fix was enabling our text
+renderer to use different colours in each chunk (font run). Now, Warlock is
+looking even more realistic, and just that little bit of white text helps so
+much.&lt;/p&gt;
+&lt;figure&gt;
+    &lt;img src=&#34;/ox-hugo/third-way-done-1.png&#34;/&gt; 
+&lt;/figure&gt;
+
+&lt;p&gt;I hear that later this week sev, djsrv, and I will do a catch-up meeting with
+John Henry Thompson, the inventor of Lingo. In this meeting I plan to show off
+some of the work I have done with Director&amp;rsquo;s ink types. That was the other major
+project I worked on last week. The inks are all the different ways that Director
+can draw and composit sprites on the screen. They range from a simple copy of
+the whole bounding rectangle area to mattes to an inversion and composition with
+what&amp;rsquo;s underneath. Many of them have poorly documented behaviour, at least in
+edge cases, and when transforming colours the depth must always be kept in mind.
+Director itself had different render loops depending upon the colour depth. I
+don&amp;rsquo;t think we will quite need that, but the bitwise operations I put in will
+require much more testing and fine-tuning across the spectrum. I&amp;rsquo;ll be working
+on this more in the next few days. Here&amp;rsquo;s a little demo of the ink types in
+action. There are still some bugs in here.&lt;/p&gt;
+
+&lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;
+  &lt;iframe src=&#34;https://www.youtube.com/embed/xqIcTcYKWd0&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; allowfullscreen title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+
+&lt;p&gt;I&amp;rsquo;d better get back to work now, because I am preparing another update to the
+renderer that should deal with many of the issues that have lurked in the
+background in the last few weeks. Stay tuned for some news on that!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Making progress</title>
       <link>/scummvm/making-progress/</link>
       <pubDate>Mon, 22 Jun 2020 16:03:00 -0400</pubDate>
