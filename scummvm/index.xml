@@ -8,10 +8,51 @@
     <managingEditor>nathanael.gentrydb8@gmail.com (Nathanael Gentry)</managingEditor>
     <webMaster>nathanael.gentrydb8@gmail.com (Nathanael Gentry)</webMaster>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Mon, 29 Jun 2020 19:10:10 -0400</lastBuildDate>
+    <lastBuildDate>Mon, 06 Jul 2020 19:57:38 -0400</lastBuildDate>
     
     <atom:link href="/scummvm/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>That was fast!</title>
+      <link>/scummvm/that-was-fast/</link>
+      <pubDate>Mon, 06 Jul 2020 19:57:39 -0400</pubDate>
+      <author>nathanael.gentrydb8@gmail.com (Nathanael Gentry)</author>
+      <guid>/scummvm/that-was-fast/</guid>
+      <description>&lt;p&gt;CLOSED: &lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;[2020-07-06 Mon 19:56]&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;Another week has gone by quite quickly. After taking some time off for
+Independence Day here in the US, I can&amp;rsquo;t believe that another Monday has passed.
+Last week I talked about a major update to our renderer, and I finished that
+pretty early last week. There was some major refactoring involved, but my work
+&amp;ndash; splitting out our renderer into a Stage class and moving to traditional
+dirty-rects handling &amp;ndash; worked well with some of the major refactoring that
+djsrv had been wanting to do for a while. Going into this week, our engine&amp;rsquo;s
+code is far more modular (thanks primarily to djsrv), and the graphics are
+looking good. All this we showed off to John Henry Thompson last Thursday.&lt;/p&gt;
+&lt;p&gt;First, I finished implementing the puppetTransition command, which allows you to
+call transitions from Lingo. As part of this, I reworked the transitions
+pipeline to support only drawing a transition on the changed area of the screen.
+This took a lot more work (and many paper sketches) more than I was expecting,
+as some of the transition algorithms had interesting behaviour when I tried to
+clip them.&lt;/p&gt;
+&lt;p&gt;I also did some more work on the ink types, including making an efficient
+interface for the ink types that use implicit mattes or masks. Over the weekend
+I worked on what was for a long time a big irritation of mine &amp;ndash; sprites with
+scripts did not highlight (or, in Director parlance, hilite) on click. When I
+tried to work on this before, I found that simply testing for a script on the
+sprite was far too broad; there were many erroneous inversions. It turns out
+that for bitmaps there was a special flag, and for shapes (as far as I could
+discern) only one ink type where this effect showed. I hadn&amp;rsquo;t looked much at the
+Director file format before, but I found where that flag was and also uncovered
+some other unknown fields in bitmap casts (primarily palette information).
+Working there led me to some nice condensing of our sprite code, which I pushed
+this morning. That&amp;rsquo;s one more step to making The Apartment realistic!&lt;/p&gt;
+&lt;p&gt;Overall, though, last week felt like mostly under-the-hood changes and small
+optimizations to individual movies. Right now I&amp;rsquo;m working on the graphics code
+for efficiently setting the foreground and background colour of puppeted bitmap
+sprites, and rendering this on-the-fly.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>A third of the way done!</title>

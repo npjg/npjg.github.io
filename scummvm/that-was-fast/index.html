@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    
+        
+<meta charset="utf-8">
+<meta name="HandheldFriendly" content="True">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer-when-downgrade">
+
+<title>That was fast!  - Nathanael Gentry</title>
+<meta name="description" content="A simple student">
+
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="apple-touch-icon-precomposed" href="/favicon.png">
+
+<link rel="stylesheet" href="/css/style.css?rnd=1594079876" />
+
+
+
+<meta property="og:title" content="That was fast!" />
+<meta property="og:description" content="CLOSED: [2020-07-06 Mon 19:56]Another week has gone by quite quickly. After taking some time off for Independence Day here in the US, I can&rsquo;t believe that another Monday has passed. Last week I talked about a major update to our renderer, and I finished that pretty early last week. There was some major refactoring involved, but my work &ndash; splitting out our renderer into a Stage class and moving to traditional dirty-rects handling &ndash; worked well with some of the major refactoring that djsrv had been wanting to do for a while." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/scummvm/that-was-fast/" />
+<meta property="og:image" content="/"/>
+<meta property="article:published_time" content="2020-07-06T19:57:39-04:00" />
+<meta property="article:modified_time" content="2020-07-06T19:57:39-04:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/"/>
+
+<meta name="twitter:title" content="That was fast!"/>
+<meta name="twitter:description" content="CLOSED: [2020-07-06 Mon 19:56]Another week has gone by quite quickly. After taking some time off for Independence Day here in the US, I can&rsquo;t believe that another Monday has passed. Last week I talked about a major update to our renderer, and I finished that pretty early last week. There was some major refactoring involved, but my work &ndash; splitting out our renderer into a Stage class and moving to traditional dirty-rects handling &ndash; worked well with some of the major refactoring that djsrv had been wanting to do for a while."/>
+
+
+
+
+
+
+    
+</head>
+<body>
+    <a class="skip-main" href="#main">Skip to main content</a>
+    <div class="container">
+        <header> 
+            
+                <h1 class="site-header">
+    <a href="/">Nathanael Gentry</a>
+</h1>
+<nav>
+    
+    
+    <a class="" href="/trivia/" title="Trivia">Trivia</a>
+    
+    <a class="" href="/scummvm/" title="ScummVM">ScummVM</a>
+    
+    <a class="" href="/thoughts/" title="Thoughts">Thoughts</a>
+    
+</nav>
+
+            
+        </header>
+        <main id="main" tabindex="-1"> 
+            
+
+    <article class="post">
+        <header>
+            <h1>That was fast!</h1>
+        </header>
+        <div class="content">
+            <p>CLOSED: <!-- raw HTML omitted --><!-- raw HTML omitted -->[2020-07-06 Mon 19:56]<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<p>Another week has gone by quite quickly. After taking some time off for
+Independence Day here in the US, I can&rsquo;t believe that another Monday has passed.
+Last week I talked about a major update to our renderer, and I finished that
+pretty early last week. There was some major refactoring involved, but my work
+&ndash; splitting out our renderer into a Stage class and moving to traditional
+dirty-rects handling &ndash; worked well with some of the major refactoring that
+djsrv had been wanting to do for a while. Going into this week, our engine&rsquo;s
+code is far more modular (thanks primarily to djsrv), and the graphics are
+looking good. All this we showed off to John Henry Thompson last Thursday.</p>
+<p>First, I finished implementing the puppetTransition command, which allows you to
+call transitions from Lingo. As part of this, I reworked the transitions
+pipeline to support only drawing a transition on the changed area of the screen.
+This took a lot more work (and many paper sketches) more than I was expecting,
+as some of the transition algorithms had interesting behaviour when I tried to
+clip them.</p>
+<p>I also did some more work on the ink types, including making an efficient
+interface for the ink types that use implicit mattes or masks. Over the weekend
+I worked on what was for a long time a big irritation of mine &ndash; sprites with
+scripts did not highlight (or, in Director parlance, hilite) on click. When I
+tried to work on this before, I found that simply testing for a script on the
+sprite was far too broad; there were many erroneous inversions. It turns out
+that for bitmaps there was a special flag, and for shapes (as far as I could
+discern) only one ink type where this effect showed. I hadn&rsquo;t looked much at the
+Director file format before, but I found where that flag was and also uncovered
+some other unknown fields in bitmap casts (primarily palette information).
+Working there led me to some nice condensing of our sprite code, which I pushed
+this morning. That&rsquo;s one more step to making The Apartment realistic!</p>
+<p>Overall, though, last week felt like mostly under-the-hood changes and small
+optimizations to individual movies. Right now I&rsquo;m working on the graphics code
+for efficiently setting the foreground and background colour of puppeted bitmap
+sprites, and rendering this on-the-fly.</p>
+
+        </div>
+        
+
+
+<div class="article-info">
+    
+        <div class="article-date">2020-07-06</div>
+    
+    <div class="article-taxonomies">
+        
+            
+    </div>
+</div>
+
+    </article>
+    
+
+
+        </main>
+        <footer>
+            
+                
+                
+
+                <p>© 2020<br>
+Powered by <a target="_blank" href="https://gohugo.io/">Hugo</a>, theme <a target="_blank" href="https://github.com/mitrichius/hugo-theme-anubis">Anubis</a>.
+</p>
+            
+        </footer>
+    </div>
+</body>
+</html>
