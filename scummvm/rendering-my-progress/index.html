@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    
+        
+<meta charset="utf-8">
+<meta name="HandheldFriendly" content="True">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer-when-downgrade">
+
+<title>Rendering my progress  - Nathanael Gentry</title>
+<meta name="description" content="A simple student">
+
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="apple-touch-icon-precomposed" href="/favicon.png">
+
+<link rel="stylesheet" href="/css/style.css?rnd=1594730546" />
+
+
+
+<meta property="og:title" content="Rendering my progress" />
+<meta property="og:description" content="Hey there!
+After last week&rsquo;s post, I nearly finished with the last major piece of the ink types &ndash; applying foreground and background colours on the fly. We had some idea of when this colour-application process took effect, but deducing the rules and working out the patterns took a while. I have gained a new appreciation for the power of bitwise operations through this process. My next step will be extending all this logic to other colour depths, but I probably won&rsquo;t get to that this week." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/scummvm/rendering-my-progress/" />
+<meta property="og:image" content="/"/>
+<meta property="article:published_time" content="2020-07-14T08:42:22-04:00" />
+<meta property="article:modified_time" content="2020-07-14T08:42:22-04:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/"/>
+
+<meta name="twitter:title" content="Rendering my progress"/>
+<meta name="twitter:description" content="Hey there!
+After last week&rsquo;s post, I nearly finished with the last major piece of the ink types &ndash; applying foreground and background colours on the fly. We had some idea of when this colour-application process took effect, but deducing the rules and working out the patterns took a while. I have gained a new appreciation for the power of bitwise operations through this process. My next step will be extending all this logic to other colour depths, but I probably won&rsquo;t get to that this week."/>
+
+
+
+
+
+
+    
+</head>
+<body>
+    <a class="skip-main" href="#main">Skip to main content</a>
+    <div class="container">
+        <header> 
+            
+                <h1 class="site-header">
+    <a href="/">Nathanael Gentry</a>
+</h1>
+<nav>
+    
+    
+    <a class="" href="/trivia/" title="Trivia">Trivia</a>
+    
+    <a class="" href="/scummvm/" title="ScummVM">ScummVM</a>
+    
+    <a class="" href="/thoughts/" title="Thoughts">Thoughts</a>
+    
+</nav>
+
+            
+        </header>
+        <main id="main" tabindex="-1"> 
+            
+
+    <article class="post">
+        <header>
+            <h1>Rendering my progress</h1>
+        </header>
+        <div class="content">
+            <p>Hey there!</p>
+<p>After last week&rsquo;s post, I nearly finished with the last major piece of the ink
+types &ndash; applying foreground and background colours on the fly. We had some idea
+of when this colour-application process took effect, but deducing the rules and
+working out the patterns took a while. I have gained a new appreciation for the
+power of bitwise operations through this process. My next step will be extending
+all this logic to other colour depths, but I probably won&rsquo;t get to that this
+week.</p>
+<p>It&rsquo;s getting late now and I can&rsquo;t find the test movie I had made to demonstrate
+this work. I&rsquo;ll look at it tomorrow and post a video demonstration of my work
+then.</p>
+<p>There is still some optimization that must be done, including eliminating my
+reliance upon the window manager&rsquo;s slow colour finder and implementing some sort
+of colour caching. (The inked operations are often not applied directly to the
+colour value; it must first be split into its components and then recombined in
+the palette space.)</p>
+<p>I also performed some fine-tuning on the data structures used for rendering, to
+ensure that our pixel-based callback is quite fast. Lots more refactoring went
+into that. Finally, last week I implemented some obscure features, like the
+constraint and stretch of sprite. The latter allows a sprite to be arbitrary
+scaled to another bounding box, and implementing that feature largely finished
+my goal of having self-contained blitting routines for our engine.</p>
+<p>Many of the tasks currently in my Trello channel are concerns with MacGUI
+elements that don&rsquo;t impact most real games. These bugs will still take some
+work, but as I am working on those I also want to get the graphics in Chop Suey
+(and other Lingo-heavy titles) running smoothly and efficiently. Today I chased
+bugs and inefficiencies in the rendering pipeline. This is a hefty task, as Chop
+Suey often uses about 70-75% of my system&rsquo;s CPU when it is running in ScummVM. With the
+discoveries I made today, however, taking the slack out of the renderer should
+be eminently doable.</p>
+
+        </div>
+        
+
+
+<div class="article-info">
+    
+        <div class="article-date">2020-07-14</div>
+    
+    <div class="article-taxonomies">
+        
+            
+    </div>
+</div>
+
+    </article>
+    
+
+
+        </main>
+        <footer>
+            
+                
+                
+
+                <p>© 2020<br>
+Powered by <a target="_blank" href="https://gohugo.io/">Hugo</a>, theme <a target="_blank" href="https://github.com/mitrichius/hugo-theme-anubis">Anubis</a>.
+</p>
+            
+        </footer>
+    </div>
+</body>
+</html>
