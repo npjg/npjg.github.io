@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    
+        
+<meta charset="utf-8">
+<meta name="HandheldFriendly" content="True">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer-when-downgrade">
+
+<title>Lots of chop suey  - Nathanael Gentry</title>
+<meta name="description" content="A simple student">
+
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="apple-touch-icon-precomposed" href="/favicon.png">
+
+<link rel="stylesheet" href="/css/style.css?rnd=1595303002" />
+
+
+
+<meta property="og:title" content="Lots of chop suey" />
+<meta property="og:description" content="Hey there!
+My big showcase for the week&rsquo;s work is a few scenes from the kids&rsquo; game Chop Suey, one of our primary Director 4 test cases:
+  Just a few weeks ago, Chop Suey ran at an almost unplayable crawl in ScummVM. Part of this was its reliance on Matte inks, for which I implemented a simple surface caching scheme and shaved about 20% off our buildbot&rsquo;s target test time for Spaceship Warlock." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/scummvm/lots-of-chop-suey/" />
+<meta property="og:image" content="/"/>
+<meta property="article:published_time" content="2020-07-20T22:54:38-04:00" />
+<meta property="article:modified_time" content="2020-07-20T22:54:38-04:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/"/>
+
+<meta name="twitter:title" content="Lots of chop suey"/>
+<meta name="twitter:description" content="Hey there!
+My big showcase for the week&rsquo;s work is a few scenes from the kids&rsquo; game Chop Suey, one of our primary Director 4 test cases:
+  Just a few weeks ago, Chop Suey ran at an almost unplayable crawl in ScummVM. Part of this was its reliance on Matte inks, for which I implemented a simple surface caching scheme and shaved about 20% off our buildbot&rsquo;s target test time for Spaceship Warlock."/>
+
+
+
+
+
+
+    
+</head>
+<body>
+    <a class="skip-main" href="#main">Skip to main content</a>
+    <div class="container">
+        <header> 
+            
+                <h1 class="site-header">
+    <a href="/">Nathanael Gentry</a>
+</h1>
+<nav>
+    
+    
+    <a class="" href="/trivia/" title="Trivia">Trivia</a>
+    
+    <a class="" href="/scummvm/" title="ScummVM">ScummVM</a>
+    
+    <a class="" href="/thoughts/" title="Thoughts">Thoughts</a>
+    
+</nav>
+
+            
+        </header>
+        <main id="main" tabindex="-1"> 
+            
+
+    <article class="post">
+        <header>
+            <h1>Lots of chop suey</h1>
+        </header>
+        <div class="content">
+            <p>Hey there!</p>
+<p>My big showcase for the week&rsquo;s work is a few scenes from the kids&rsquo; game Chop
+Suey, one of our primary Director 4 test cases:</p>
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/kGMHHfJx8AU" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+<p>Just a few weeks ago, Chop Suey ran at an almost unplayable crawl in ScummVM.
+Part of this was its reliance on Matte inks, for which I implemented a simple
+surface caching scheme and shaved about 20% off our buildbot&rsquo;s target test time
+for Spaceship Warlock. This also made Chop Suey run much faster, though it still
+consumed CPU</p>
+<p>Last week I called Chop Suey a Lingo-heavy game, and I was referring to how much
+it controls animation via puppets and the <code>updateStage</code> command. Because, as you
+saw, its cursors are bitmaps and certainly do not fit in the standard 16x16
+Macintosh cursor box, Chop Suey introduces its own mouse update code and calls
+for the stage to be updated several dozen times each frame. Most of the
+inefficiencies were here.</p>
+<p>I spent the early part of the week in much trial-and-error, working out the
+pieces of the renderer that were most inefficient under such repeated
+application. The idea is to do a little bit of work up front &ndash; checking flags
+and so forth &ndash; so the expense of redrawing a region of the screen is saved. (As
+I have realized, even when working on Chop Suey, very subtle bugs can arise from
+forgetting to check a rendering flag.) Even at usual framerates without much
+Lingo that doesn&rsquo;t matter very much, but Lingo-heavy games like Chop Suey have
+shown dramatic improvement.</p>
+<p>I also implemented another feature that is notable in Chop Suey by its absence.
+I said that Chop Suey does its own cursor handling. Well, the window manager was
+still drawing a regular cursor atop the bitmap, which looked pretty ugly. Near
+the end of the week, though, I added a flexible cursor class for the three
+cursor types Director can use: built-in cursors, cast (bitmap) cursors, and
+resource cursors. The last type is important for Majestic: Alien Encounter, but
+I haven&rsquo;t seen custom cursors used much elsewhere. It was fun to implement,
+though. As a nice byproduct in Chop Suey, the default cursor is now properly
+turned off.</p>
+<p>Oh, and I also spent most of a day trying to discover why some textboxes in
+Spaceship Warlock weren&rsquo;t rendering properly, along with some other nettling
+MacGUI issues. The issue actually lay in the cast loading code, which I hadn&rsquo;t
+touched much, but it&rsquo;s always satisfying to squash a bug and learn more about
+the codebase in the process &ndash; even if your &ldquo;fix&rdquo; breaks other stuff. :)</p>
+
+        </div>
+        
+
+
+<div class="article-info">
+    
+        <div class="article-date">2020-07-20</div>
+    
+    <div class="article-taxonomies">
+        
+            
+    </div>
+</div>
+
+    </article>
+    
+
+
+        </main>
+        <footer>
+            
+                
+                
+
+                <p>© 2020<br>
+Powered by <a target="_blank" href="https://gohugo.io/">Hugo</a>, theme <a target="_blank" href="https://github.com/mitrichius/hugo-theme-anubis">Anubis</a>.
+</p>
+            
+        </footer>
+    </div>
+</body>
+</html>

@@ -8,15 +8,65 @@
     <managingEditor>nathanael.gentrydb8@gmail.com (Nathanael Gentry)</managingEditor>
     <webMaster>nathanael.gentrydb8@gmail.com (Nathanael Gentry)</webMaster>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Tue, 14 Jul 2020 08:42:21 -0400</lastBuildDate>
+    <lastBuildDate>Mon, 20 Jul 2020 23:42:53 -0400</lastBuildDate>
     
     <atom:link href="/scummvm/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>Lots of chop suey</title>
+      <link>/scummvm/lots-of-chop-suey/</link>
+      <pubDate>Mon, 20 Jul 2020 22:54:38 -0400</pubDate>
+      <author>nathanael.gentrydb8@gmail.com (Nathanael Gentry)</author>
+      <guid>/scummvm/lots-of-chop-suey/</guid>
+      <description>&lt;p&gt;Hey there!&lt;/p&gt;
+&lt;p&gt;My big showcase for the week&amp;rsquo;s work is a few scenes from the kids&amp;rsquo; game Chop
+Suey, one of our primary Director 4 test cases:&lt;/p&gt;
+
+&lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;
+  &lt;iframe src=&#34;https://www.youtube.com/embed/kGMHHfJx8AU&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; allowfullscreen title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Just a few weeks ago, Chop Suey ran at an almost unplayable crawl in ScummVM.
+Part of this was its reliance on Matte inks, for which I implemented a simple
+surface caching scheme and shaved about 20% off our buildbot&amp;rsquo;s target test time
+for Spaceship Warlock. This also made Chop Suey run much faster, though it still
+consumed CPU&lt;/p&gt;
+&lt;p&gt;Last week I called Chop Suey a Lingo-heavy game, and I was referring to how much
+it controls animation via puppets and the &lt;code&gt;updateStage&lt;/code&gt; command. Because, as you
+saw, its cursors are bitmaps and certainly do not fit in the standard 16x16
+Macintosh cursor box, Chop Suey introduces its own mouse update code and calls
+for the stage to be updated several dozen times each frame. Most of the
+inefficiencies were here.&lt;/p&gt;
+&lt;p&gt;I spent the early part of the week in much trial-and-error, working out the
+pieces of the renderer that were most inefficient under such repeated
+application. The idea is to do a little bit of work up front &amp;ndash; checking flags
+and so forth &amp;ndash; so the expense of redrawing a region of the screen is saved. (As
+I have realized, even when working on Chop Suey, very subtle bugs can arise from
+forgetting to check a rendering flag.) Even at usual framerates without much
+Lingo that doesn&amp;rsquo;t matter very much, but Lingo-heavy games like Chop Suey have
+shown dramatic improvement.&lt;/p&gt;
+&lt;p&gt;I also implemented another feature that is notable in Chop Suey by its absence.
+I said that Chop Suey does its own cursor handling. Well, the window manager was
+still drawing a regular cursor atop the bitmap, which looked pretty ugly. Near
+the end of the week, though, I added a flexible cursor class for the three
+cursor types Director can use: built-in cursors, cast (bitmap) cursors, and
+resource cursors. The last type is important for Majestic: Alien Encounter, but
+I haven&amp;rsquo;t seen custom cursors used much elsewhere. It was fun to implement,
+though. As a nice byproduct in Chop Suey, the default cursor is now properly
+turned off.&lt;/p&gt;
+&lt;p&gt;Oh, and I also spent most of a day trying to discover why some textboxes in
+Spaceship Warlock weren&amp;rsquo;t rendering properly, along with some other nettling
+MacGUI issues. The issue actually lay in the cast loading code, which I hadn&amp;rsquo;t
+touched much, but it&amp;rsquo;s always satisfying to squash a bug and learn more about
+the codebase in the process &amp;ndash; even if your &amp;ldquo;fix&amp;rdquo; breaks other stuff. :)&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Rendering my progress</title>
       <link>/scummvm/rendering-my-progress/</link>
-      <pubDate>Tue, 14 Jul 2020 08:42:22 -0400</pubDate>
+      <pubDate>Mon, 13 Jul 2020 19:56:00 -0400</pubDate>
       <author>nathanael.gentrydb8@gmail.com (Nathanael Gentry)</author>
       <guid>/scummvm/rendering-my-progress/</guid>
       <description>&lt;p&gt;Hey there!&lt;/p&gt;
@@ -55,11 +105,10 @@ be eminently doable.&lt;/p&gt;
     <item>
       <title>That was fast!</title>
       <link>/scummvm/that-was-fast/</link>
-      <pubDate>Tue, 14 Jul 2020 08:42:22 -0400</pubDate>
+      <pubDate>Mon, 06 Jul 2020 19:56:00 -0400</pubDate>
       <author>nathanael.gentrydb8@gmail.com (Nathanael Gentry)</author>
       <guid>/scummvm/that-was-fast/</guid>
-      <description>&lt;p&gt;CLOSED: &lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;[2020-07-06 Mon 19:56]&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
-&lt;p&gt;Another week has gone by quite quickly. After taking some time off for
+      <description>&lt;p&gt;Another week has gone by quite quickly. After taking some time off for
 Independence Day here in the US, I can&amp;rsquo;t believe that another Monday has passed.
 Last week I talked about a major update to our renderer, and I finished that
 pretty early last week. There was some major refactoring involved, but my work
