@@ -14,6 +14,82 @@
     
     
     <item>
+      <title>Below the surface</title>
+      <link>/scummvm/below-the-surface/</link>
+      <pubDate>Tue, 28 Jul 2020 00:07:00 -0400</pubDate>
+      <author>nathanael.gentrydb8@gmail.com (Nathanael Gentry)</author>
+      <guid>/scummvm/below-the-surface/</guid>
+      <description>&lt;p&gt;This week, I worked on implementing a few Lingo commands that required some
+significant backend work, but not much in the rendering code where I have spent
+so much of my time. I mentioned that I had worked on a custom cursor
+implementation, and I spent the first part of the week fixing bugs there. Now
+cursor bitmaps like the starfish on the island are properly displayed at the
+proper position, whereas after my initial work just a black box showed.&lt;/p&gt;
+&lt;figure&gt;
+    &lt;img src=&#34;/ox-hugo/below-the-surface-2.png&#34;/&gt; 
+&lt;/figure&gt;
+
+&lt;p&gt;Early in the week, I fixed a subtle rendering bug that had plagued Spaceship
+Warlock for a while. You&amp;rsquo;ve seen how the Stambulian policemen in Warlock were
+bright green; well, this was about the same as the keying colour that the MacGUI
+was using for border transparency. Once I spotted this, the fix was easy &amp;ndash; and
+also prevented a redundant surface copy. (Yay for performance improvements!)
+Here you can see how the erroneously applied transparency actually gave a nice look to an
+otherwise bland wall in Stambul:&lt;/p&gt;
+&lt;figure&gt;
+    &lt;img src=&#34;/ox-hugo/below-the-surface-3.png&#34;/&gt; 
+&lt;/figure&gt;
+
+&lt;p&gt;I also finished the implementation of custom colour palettes. For a long while
+the opening to Chop Suey looked all psychedelic. It turns out that a recent
+refactoring swapped around the order of palette loading so ScummVM was given the
+wrong palette to use. My partial fix for this revealed that our recently-added
+target Majestic used a castmember palette, which had been loaded before &amp;ndash;
+albeit improperly. So over the weekend I expanded our Director palette manager
+to support custom palettes alongside the half-dozen default Mac ones. This also
+brought along basic support for the &lt;code&gt;puppetPalette&lt;/code&gt; command, which controls the
+palette from Lingo. Now, Chop Suey and Majestic are looking quite handsome:&lt;/p&gt;
+&lt;figure&gt;
+    &lt;img src=&#34;/ox-hugo/below-the-surface-1.png&#34;/&gt; 
+&lt;/figure&gt;
+
+&lt;p&gt;This project came later in the week, however. I first implemented sound fading,
+which more intense than I first knew. Since multiple movies can be running at
+once, my knee-jerk blocking fade loop didn&amp;rsquo;t work out. Instead, I needed to
+integrate the sound fade with the existing score stepping methods. I&amp;rsquo;m amused
+that that this was one of my largest commits for the week. (Thankfully, though,
+transitions do seem to block in the original &amp;ndash; &lt;em&gt;that&lt;/em&gt; would be a pain to
+refactor.)&lt;/p&gt;
+&lt;p&gt;Finally, I scratched my head for a while on an issue that @sev has since begun
+looking into. An interesting Director target is Macromedia&amp;rsquo;s own guided tour,
+which takes you &amp;ldquo;behind the scenes&amp;rdquo; at their studios to introduce new features
+of Director. Our renderer implicitly assumed that bitmap sprites had the same
+dimensions as the underlying castmembers, unless the dimensions had been
+modified from Lingo. Well, our smartly-dressed friend from
+the guided tour dismissed that theory:&lt;/p&gt;
+&lt;figure&gt;
+    &lt;img src=&#34;/ox-hugo/below-the-surface-4.png&#34;/&gt; 
+&lt;/figure&gt;
+
+&lt;p&gt;What&amp;rsquo;s on the left is the original sprite (plus arms), and on right is the
+original castmember. ScummVM draws them both the same size. I would never have
+noticed, except that the sprite for his moving mouth appears all out of place
+when he isn&amp;rsquo;t the right size. Director does indeed have an option to scale
+individual sprites in the score, and we were reading this information in for
+bitmaps&amp;hellip; but when I tried to use it there were puzzling discrepancies in the
+dimensions we expected and what the file clearly said. I still haven&amp;rsquo;t figured
+out why.&lt;/p&gt;
+&lt;p&gt;It&amp;rsquo;s been a good week over all, with interesting tasks both in and outside GSoC.
+You&amp;rsquo;ve perhaps seen on my bio that I like playing music. One of my friends
+recruited me to play piano for her upcoming violin competition, so when I need a
+break from coding I spend a few hours with the interesting sonorities of the
+great American composer Samuel Barber. And, at university on the weekends, I am
+working on using machine learning to control dielectric elastomers &amp;ndash; smart
+materials that show much promise for soft robotics.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Lots of chop suey</title>
       <link>/scummvm/lots-of-chop-suey/</link>
       <pubDate>Mon, 20 Jul 2020 22:54:38 -0400</pubDate>
@@ -445,25 +521,6 @@ as fearsome as ever.&lt;/p&gt;
 as my project for Google Summer of Code 2020. Tonight I found myself quite deep
 in a major rewrite of the core rendering pipeline, and when I got tired of that
 I decided to finally learn how to use Hugo. That&amp;rsquo;s why you are reading this now.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Trivia</title>
-      <link>/trivia/</link>
-      <pubDate>Thu, 09 Jan 2020 00:10:00 -0500</pubDate>
-      <author>nathanael.gentrydb8@gmail.com (Nathanael Gentry)</author>
-      <guid>/trivia/</guid>
-      <description>&lt;p&gt;Hello, fellow surfer! I&amp;rsquo;m a mathematics major at &lt;a href=&#34;https://www.liberty.edu/arts-sciences/mathematics/&#34;&gt;Liberty University&lt;/a&gt;. I also
-delude myself into thinking that I have time for my minors in philosophy,
-computer science, and piano performance.&lt;/p&gt;
-&lt;p&gt;I was born and raised in Hawaii, and I now live in the eastern United States.
-When I was ten, I first started programming with QBasic. Quickly thereafter, I
-switched to Visual Basic and C. After a long hiatus for music and competitive
-forensics, I learned C++ at university and began the arduous trek toward Emacs
-mastery.&lt;/p&gt;
-&lt;p&gt;When I&amp;rsquo;m not hacking away on my beloved ThinkPad 450s, I can probably be found
-engrossed in &lt;a href=&#34;https://www.youtube.com/watch?v=kHXxWfSAxik&#34;&gt;Chopin&lt;/a&gt; or studying a &lt;a href=&#34;https://www.youtube.com/watch?v=7R9RA%5FBR%5Fp0&#34;&gt;Vaughan Williams&lt;/a&gt; score.&lt;/p&gt;
 </description>
     </item>
     

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    
+        
+<meta charset="utf-8">
+<meta name="HandheldFriendly" content="True">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer-when-downgrade">
+
+<title>Below the surface  - Nathanael Gentry</title>
+<meta name="description" content="A simple student">
+
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="apple-touch-icon-precomposed" href="/favicon.png">
+
+<link rel="stylesheet" href="/css/style.css?rnd=1595909455" />
+
+
+
+<meta property="og:title" content="Below the surface" />
+<meta property="og:description" content="This week, I worked on implementing a few Lingo commands that required some significant backend work, but not much in the rendering code where I have spent so much of my time. I mentioned that I had worked on a custom cursor implementation, and I spent the first part of the week fixing bugs there. Now cursor bitmaps like the starfish on the island are properly displayed at the proper position, whereas after my initial work just a black box showed." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/scummvm/below-the-surface/" />
+<meta property="og:image" content="/"/>
+<meta property="article:published_time" content="2020-07-28T00:07:00-04:00" />
+<meta property="article:modified_time" content="2020-07-28T00:10:50-04:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/"/>
+
+<meta name="twitter:title" content="Below the surface"/>
+<meta name="twitter:description" content="This week, I worked on implementing a few Lingo commands that required some significant backend work, but not much in the rendering code where I have spent so much of my time. I mentioned that I had worked on a custom cursor implementation, and I spent the first part of the week fixing bugs there. Now cursor bitmaps like the starfish on the island are properly displayed at the proper position, whereas after my initial work just a black box showed."/>
+
+
+
+
+
+
+    
+</head>
+<body>
+    <a class="skip-main" href="#main">Skip to main content</a>
+    <div class="container">
+        <header> 
+            
+                <h1 class="site-header">
+    <a href="/">Nathanael Gentry</a>
+</h1>
+<nav>
+    
+    
+    <a class="" href="/trivia/" title="Trivia">Trivia</a>
+    
+    <a class="" href="/scummvm/" title="ScummVM">ScummVM</a>
+    
+    <a class="" href="/thoughts/" title="Thoughts">Thoughts</a>
+    
+</nav>
+
+            
+        </header>
+        <main id="main" tabindex="-1"> 
+            
+
+    <article class="post">
+        <header>
+            <h1>Below the surface</h1>
+        </header>
+        <div class="content">
+            <p>This week, I worked on implementing a few Lingo commands that required some
+significant backend work, but not much in the rendering code where I have spent
+so much of my time. I mentioned that I had worked on a custom cursor
+implementation, and I spent the first part of the week fixing bugs there. Now
+cursor bitmaps like the starfish on the island are properly displayed at the
+proper position, whereas after my initial work just a black box showed.</p>
+<figure>
+    <img src="/ox-hugo/below-the-surface-2.png"/> 
+</figure>
+
+<p>Early in the week, I fixed a subtle rendering bug that had plagued Spaceship
+Warlock for a while. You&rsquo;ve seen how the Stambulian policemen in Warlock were
+bright green; well, this was about the same as the keying colour that the MacGUI
+was using for border transparency. Once I spotted this, the fix was easy &ndash; and
+also prevented a redundant surface copy. (Yay for performance improvements!)
+Here you can see how the erroneously applied transparency actually gave a nice look to an
+otherwise bland wall in Stambul:</p>
+<figure>
+    <img src="/ox-hugo/below-the-surface-3.png"/> 
+</figure>
+
+<p>I also finished the implementation of custom colour palettes. For a long while
+the opening to Chop Suey looked all psychedelic. It turns out that a recent
+refactoring swapped around the order of palette loading so ScummVM was given the
+wrong palette to use. My partial fix for this revealed that our recently-added
+target Majestic used a castmember palette, which had been loaded before &ndash;
+albeit improperly. So over the weekend I expanded our Director palette manager
+to support custom palettes alongside the half-dozen default Mac ones. This also
+brought along basic support for the <code>puppetPalette</code> command, which controls the
+palette from Lingo. Now, Chop Suey and Majestic are looking quite handsome:</p>
+<figure>
+    <img src="/ox-hugo/below-the-surface-1.png"/> 
+</figure>
+
+<p>This project came later in the week, however. I first implemented sound fading,
+which more intense than I first knew. Since multiple movies can be running at
+once, my knee-jerk blocking fade loop didn&rsquo;t work out. Instead, I needed to
+integrate the sound fade with the existing score stepping methods. I&rsquo;m amused
+that that this was one of my largest commits for the week. (Thankfully, though,
+transitions do seem to block in the original &ndash; <em>that</em> would be a pain to
+refactor.)</p>
+<p>Finally, I scratched my head for a while on an issue that @sev has since begun
+looking into. An interesting Director target is Macromedia&rsquo;s own guided tour,
+which takes you &ldquo;behind the scenes&rdquo; at their studios to introduce new features
+of Director. Our renderer implicitly assumed that bitmap sprites had the same
+dimensions as the underlying castmembers, unless the dimensions had been
+modified from Lingo. Well, our smartly-dressed friend from
+the guided tour dismissed that theory:</p>
+<figure>
+    <img src="/ox-hugo/below-the-surface-4.png"/> 
+</figure>
+
+<p>What&rsquo;s on the left is the original sprite (plus arms), and on right is the
+original castmember. ScummVM draws them both the same size. I would never have
+noticed, except that the sprite for his moving mouth appears all out of place
+when he isn&rsquo;t the right size. Director does indeed have an option to scale
+individual sprites in the score, and we were reading this information in for
+bitmaps&hellip; but when I tried to use it there were puzzling discrepancies in the
+dimensions we expected and what the file clearly said. I still haven&rsquo;t figured
+out why.</p>
+<p>It&rsquo;s been a good week over all, with interesting tasks both in and outside GSoC.
+You&rsquo;ve perhaps seen on my bio that I like playing music. One of my friends
+recruited me to play piano for her upcoming violin competition, so when I need a
+break from coding I spend a few hours with the interesting sonorities of the
+great American composer Samuel Barber. And, at university on the weekends, I am
+working on using machine learning to control dielectric elastomers &ndash; smart
+materials that show much promise for soft robotics.</p>
+
+        </div>
+        
+
+
+<div class="article-info">
+    
+        <div class="article-date">2020-07-28</div>
+    
+    <div class="article-taxonomies">
+        
+            
+    </div>
+</div>
+
+    </article>
+    
+
+
+        </main>
+        <footer>
+            
+                
+                
+
+                <p>© 2020<br>
+Powered by <a target="_blank" href="https://gohugo.io/">Hugo</a>, theme <a target="_blank" href="https://github.com/mitrichius/hugo-theme-anubis">Anubis</a>.
+</p>
+            
+        </footer>
+    </div>
+</body>
+</html>
