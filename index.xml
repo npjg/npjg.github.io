@@ -14,6 +14,54 @@
     
     
     <item>
+      <title>Fresh air</title>
+      <link>/scummvm/fresh-air/</link>
+      <pubDate>Mon, 03 Aug 2020 23:07:00 -0400</pubDate>
+      <author>nathanael.gentrydb8@gmail.com (Nathanael Gentry)</author>
+      <guid>/scummvm/fresh-air/</guid>
+      <description>&lt;p&gt;Hello!&lt;/p&gt;
+&lt;p&gt;This will be short, as last week was rather slow. I mostly finished shoring up
+all the areas where Director palettes can be tested and set &amp;ndash; in the frame
+palette channel, with the puppetPalette command, with the movie-wide default
+palette, and also with the &lt;code&gt;palette of cast&lt;/code&gt; Lingo. As I look back at my
+commit log, I realize that this took me many more commits than I expected. There
+are still some issues that some of our new test targets, including the 1991
+title &lt;em&gt;The Riddle of the Maze&lt;/em&gt;, recently revealed. As of this morning, though,
+this game&amp;rsquo;s elegant artwork has been restored:&lt;/p&gt;
+&lt;figure&gt;
+    &lt;img src=&#34;/ox-hugo/fresh-air-1.png&#34;/&gt; 
+&lt;/figure&gt;
+
+&lt;p&gt;Apparently, before Director 4, palette castmembers were forced into the same
+order that they are stored. If you reorganize them in the cast window, they will
+actually revert to a default position on save &amp;ndash; and this position seems to be
+in the order of palette creation. Also, Director 3 Macintosh format has a
+slightly different way of storing palette channel information in the frame. (I
+have still to push the patches for titles that have this variation.)&lt;/p&gt;
+&lt;p&gt;I also finally got some of the titles that @trembyle had mentioned on the
+&lt;a href=&#34;https://wiki.scummvm.org/index.php/Director/Games&#34;&gt;Director wiki&lt;/a&gt;, including the aforementioned &lt;em&gt;Maze&lt;/em&gt;. @trembyle has done some
+immense work testing many new titles for us, and today I enjoyed investigatinCEg
+some new bugs in new titles. Playing with these new games was a nice breath of
+fresh air from the targets that we had been testing since the beginning &amp;ndash; like
+&lt;em&gt;Spaceship Warlock&lt;/em&gt; and &lt;em&gt;Chop Suey&lt;/em&gt; and &lt;em&gt;The Apartment&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;My other big task last week was working on the text selection interface. When I
+think back, I believe my first experience with Director happened when I was
+pretty young; it was a typing game that also depended heavily on text selection.
+I remember this game as Director because it crashed once and I distinctly recall
+the Director projector icon. @sev had done most of the algo work in the MacGUI
+side, but I needed to write a bit more interface and do lots of testing to
+discover what was behind a selection offset offset bug.&lt;/p&gt;
+&lt;p&gt;Once I finish up the palettes and add a few new targets that I found, I will be
+working on supporting movies that have &amp;gt;8-bit colour. If you look in the
+graphics code, there are tons of &lt;code&gt;const byte *&lt;/code&gt; declarations everywhere, so those
+will be changed out for a more general implementation. There are also bitmap
+decoding issues with greater colour depths that I need to look into. This task,
+a fairly big one, will be a nice way to round out my GSoC work on our Director
+engine.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Below the surface</title>
       <link>/scummvm/below-the-surface/</link>
       <pubDate>Tue, 28 Jul 2020 00:07:00 -0400</pubDate>
@@ -508,19 +556,6 @@ as fearsome as ever.&lt;/p&gt;
 &lt;/figure&gt;
 
 &lt;p&gt;Stay tuned for my adventures with QuickDraw and our Macintosh GUI emulator!&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Macromedia mysteries</title>
-      <link>/scummvm/macromedia-mysteries/</link>
-      <pubDate>Sun, 10 May 2020 21:10:00 -0400</pubDate>
-      <author>nathanael.gentrydb8@gmail.com (Nathanael Gentry)</author>
-      <guid>/scummvm/macromedia-mysteries/</guid>
-      <description>&lt;p&gt;This summer, I will be helping bring the Macromedia Director engine to maturity
-as my project for Google Summer of Code 2020. Tonight I found myself quite deep
-in a major rewrite of the core rendering pipeline, and when I got tired of that
-I decided to finally learn how to use Hugo. That&amp;rsquo;s why you are reading this now.&lt;/p&gt;
 </description>
     </item>
     

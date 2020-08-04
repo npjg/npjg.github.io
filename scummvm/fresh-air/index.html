@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    
+        
+<meta charset="utf-8">
+<meta name="HandheldFriendly" content="True">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer-when-downgrade">
+
+<title>Fresh air  - Nathanael Gentry</title>
+<meta name="description" content="A simple student">
+
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="apple-touch-icon-precomposed" href="/favicon.png">
+
+<link rel="stylesheet" href="/css/style.css?rnd=1596512866" />
+
+
+
+<meta property="og:title" content="Fresh air" />
+<meta property="og:description" content="Hello!
+This will be short, as last week was rather slow. I mostly finished shoring up all the areas where Director palettes can be tested and set &ndash; in the frame palette channel, with the puppetPalette command, with the movie-wide default palette, and also with the palette of cast Lingo. As I look back at my commit log, I realize that this took me many more commits than I expected. There are still some issues that some of our new test targets, including the 1991 title The Riddle of the Maze, recently revealed." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/scummvm/fresh-air/" />
+<meta property="og:image" content="/"/>
+<meta property="article:published_time" content="2020-08-03T23:07:00-04:00" />
+<meta property="article:modified_time" content="2020-08-03T23:47:43-04:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/"/>
+
+<meta name="twitter:title" content="Fresh air"/>
+<meta name="twitter:description" content="Hello!
+This will be short, as last week was rather slow. I mostly finished shoring up all the areas where Director palettes can be tested and set &ndash; in the frame palette channel, with the puppetPalette command, with the movie-wide default palette, and also with the palette of cast Lingo. As I look back at my commit log, I realize that this took me many more commits than I expected. There are still some issues that some of our new test targets, including the 1991 title The Riddle of the Maze, recently revealed."/>
+
+
+
+
+
+
+    
+</head>
+<body>
+    <a class="skip-main" href="#main">Skip to main content</a>
+    <div class="container">
+        <header> 
+            
+                <h1 class="site-header">
+    <a href="/">Nathanael Gentry</a>
+</h1>
+<nav>
+    
+    
+    <a class="" href="/trivia/" title="Trivia">Trivia</a>
+    
+    <a class="" href="/scummvm/" title="ScummVM">ScummVM</a>
+    
+    <a class="" href="/thoughts/" title="Thoughts">Thoughts</a>
+    
+</nav>
+
+            
+        </header>
+        <main id="main" tabindex="-1"> 
+            
+
+    <article class="post">
+        <header>
+            <h1>Fresh air</h1>
+        </header>
+        <div class="content">
+            <p>Hello!</p>
+<p>This will be short, as last week was rather slow. I mostly finished shoring up
+all the areas where Director palettes can be tested and set &ndash; in the frame
+palette channel, with the puppetPalette command, with the movie-wide default
+palette, and also with the <code>palette of cast</code> Lingo. As I look back at my
+commit log, I realize that this took me many more commits than I expected. There
+are still some issues that some of our new test targets, including the 1991
+title <em>The Riddle of the Maze</em>, recently revealed. As of this morning, though,
+this game&rsquo;s elegant artwork has been restored:</p>
+<figure>
+    <img src="/ox-hugo/fresh-air-1.png"/> 
+</figure>
+
+<p>Apparently, before Director 4, palette castmembers were forced into the same
+order that they are stored. If you reorganize them in the cast window, they will
+actually revert to a default position on save &ndash; and this position seems to be
+in the order of palette creation. Also, Director 3 Macintosh format has a
+slightly different way of storing palette channel information in the frame. (I
+have still to push the patches for titles that have this variation.)</p>
+<p>I also finally got some of the titles that @trembyle had mentioned on the
+<a href="https://wiki.scummvm.org/index.php/Director/Games">Director wiki</a>, including the aforementioned <em>Maze</em>. @trembyle has done some
+immense work testing many new titles for us, and today I enjoyed investigatinCEg
+some new bugs in new titles. Playing with these new games was a nice breath of
+fresh air from the targets that we had been testing since the beginning &ndash; like
+<em>Spaceship Warlock</em> and <em>Chop Suey</em> and <em>The Apartment</em>.</p>
+<p>My other big task last week was working on the text selection interface. When I
+think back, I believe my first experience with Director happened when I was
+pretty young; it was a typing game that also depended heavily on text selection.
+I remember this game as Director because it crashed once and I distinctly recall
+the Director projector icon. @sev had done most of the algo work in the MacGUI
+side, but I needed to write a bit more interface and do lots of testing to
+discover what was behind a selection offset offset bug.</p>
+<p>Once I finish up the palettes and add a few new targets that I found, I will be
+working on supporting movies that have &gt;8-bit colour. If you look in the
+graphics code, there are tons of <code>const byte *</code> declarations everywhere, so those
+will be changed out for a more general implementation. There are also bitmap
+decoding issues with greater colour depths that I need to look into. This task,
+a fairly big one, will be a nice way to round out my GSoC work on our Director
+engine.</p>
+
+        </div>
+        
+
+
+<div class="article-info">
+    
+        <div class="article-date">2020-08-03</div>
+    
+    <div class="article-taxonomies">
+        
+            
+    </div>
+</div>
+
+    </article>
+    
+
+
+        </main>
+        <footer>
+            
+                
+                
+
+                <p>© 2020<br>
+Powered by <a target="_blank" href="https://gohugo.io/">Hugo</a>, theme <a target="_blank" href="https://github.com/mitrichius/hugo-theme-anubis">Anubis</a>.
+</p>
+            
+        </footer>
+    </div>
+</body>
+</html>
