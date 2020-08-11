@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    
+        
+<meta charset="utf-8">
+<meta name="HandheldFriendly" content="True">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer-when-downgrade">
+
+<title>On the right path  - Nathanael Gentry</title>
+<meta name="description" content="A simple student">
+
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="apple-touch-icon-precomposed" href="/favicon.png">
+
+<link rel="stylesheet" href="/css/style.css?rnd=1597161573" />
+
+
+
+<meta property="og:title" content="On the right path" />
+<meta property="og:description" content="Hey there!
+Last week, I added palette support for Director 3 movies, so several more games had their colouring issues on their opening movies resolved. Then, I spent much of Tuesday and Wednesday fixing issues with our path-loading code that prevented several of @trembyle&rsquo;s testing titles from running &ndash; no less than 7 when you account for Windows and Mac versions. Lingo provides several ways to interact with the filesystem. Some games asked you for a drive letter and would just loop endlessly if they would not find the file they wanted." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/scummvm/on-the-right-path/" />
+<meta property="og:image" content="/"/>
+<meta property="article:published_time" content="2020-08-11T11:59:00-04:00" />
+<meta property="article:modified_time" content="2020-08-11T11:59:26-04:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/"/>
+
+<meta name="twitter:title" content="On the right path"/>
+<meta name="twitter:description" content="Hey there!
+Last week, I added palette support for Director 3 movies, so several more games had their colouring issues on their opening movies resolved. Then, I spent much of Tuesday and Wednesday fixing issues with our path-loading code that prevented several of @trembyle&rsquo;s testing titles from running &ndash; no less than 7 when you account for Windows and Mac versions. Lingo provides several ways to interact with the filesystem. Some games asked you for a drive letter and would just loop endlessly if they would not find the file they wanted."/>
+
+
+
+
+
+
+    
+</head>
+<body>
+    <a class="skip-main" href="#main">Skip to main content</a>
+    <div class="container">
+        <header> 
+            
+                <h1 class="site-header">
+    <a href="/">Nathanael Gentry</a>
+</h1>
+<nav>
+    
+    
+    <a class="" href="/trivia/" title="Trivia">Trivia</a>
+    
+    <a class="" href="/scummvm/" title="ScummVM">ScummVM</a>
+    
+    <a class="" href="/thoughts/" title="Thoughts">Thoughts</a>
+    
+</nav>
+
+            
+        </header>
+        <main id="main" tabindex="-1"> 
+            
+
+    <article class="post">
+        <header>
+            <h1>On the right path</h1>
+        </header>
+        <div class="content">
+            <p>Hey there!</p>
+<p>Last week, I added palette support for Director 3 movies, so several more games
+had their colouring issues on their opening movies resolved. Then, I spent much
+of Tuesday and Wednesday fixing issues with our path-loading code that prevented
+several of @trembyle&rsquo;s testing titles from running &ndash; no less than 7 when you account for
+Windows and Mac versions. Lingo provides several ways to interact with the
+filesystem. Some games asked you for a drive letter and would just loop
+endlessly if they would not find the file they wanted. Others were a bit smarter
+&ndash; on Windows, for instance, they would look for a hardcoded file name on all
+the drive letters and crash if there was no match.</p>
+<p>In some cases, our file finder was not trying all the possible Director movie
+extensions on Macintosh, and others had filenames improperly converted from
+Macintosh long file names to the FAT 8.3 format. I actually just now saw that
+@trembyle notated several new titles with path/file errors, so I will probably
+look at those once I finish my current set of tasks:</p>
+<p>Before @djsrv implemented the desktop mode, the Director transition drawing code
+was taking direct control of the screen (via <code>copyRectToScreen</code>). In the desktop
+mode, however, this would pay no respect to window layering or positioning. So I
+am working on improving screen access through the window manager. Currently the
+WM keep a copy of the screen as a surface, but I am exploring how to avoid this
+extra copying. This can cause performance issues, even in non-desktop mode,
+since the surfaces must be copied twice &ndash; from the Director sprite, onto the
+<code>_screen</code>, and from <code>_screen</code> onto the display device. Fixing this duplication
+will help the effort to support QuickTime video from Director movies.</p>
+<p>In the last part of the week, I got distracted by my starting in earnest my
+first from-scratch RE of another engine. This is not for GSoC, just to satisfy
+my own curiosity. It&rsquo;s the engine used by the one title in the Living Books
+series (<em>D. W. the Picky Eater</em>) that doesn&rsquo;t use Mohawk. I understand the file
+format fairly well, and so the next task is extracting resources and then
+working toward the script bytecode. See my <a href="https://github.com/npjg/context">repo</a> for more information.</p>
+<p>Have a great week!</p>
+
+        </div>
+        
+
+
+<div class="article-info">
+    
+        <div class="article-date">2020-08-11</div>
+    
+    <div class="article-taxonomies">
+        
+            
+    </div>
+</div>
+
+    </article>
+    
+
+
+        </main>
+        <footer>
+            
+                
+                
+
+                <p>© 2020<br>
+Powered by <a target="_blank" href="https://gohugo.io/">Hugo</a>, theme <a target="_blank" href="https://github.com/mitrichius/hugo-theme-anubis">Anubis</a>.
+</p>
+            
+        </footer>
+    </div>
+</body>
+</html>

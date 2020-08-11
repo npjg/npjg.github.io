@@ -14,6 +14,46 @@
     
     
     <item>
+      <title>On the right path</title>
+      <link>/scummvm/on-the-right-path/</link>
+      <pubDate>Tue, 11 Aug 2020 11:59:00 -0400</pubDate>
+      <author>nathanael.gentrydb8@gmail.com (Nathanael Gentry)</author>
+      <guid>/scummvm/on-the-right-path/</guid>
+      <description>&lt;p&gt;Hey there!&lt;/p&gt;
+&lt;p&gt;Last week, I added palette support for Director 3 movies, so several more games
+had their colouring issues on their opening movies resolved. Then, I spent much
+of Tuesday and Wednesday fixing issues with our path-loading code that prevented
+several of @trembyle&amp;rsquo;s testing titles from running &amp;ndash; no less than 7 when you account for
+Windows and Mac versions. Lingo provides several ways to interact with the
+filesystem. Some games asked you for a drive letter and would just loop
+endlessly if they would not find the file they wanted. Others were a bit smarter
+&amp;ndash; on Windows, for instance, they would look for a hardcoded file name on all
+the drive letters and crash if there was no match.&lt;/p&gt;
+&lt;p&gt;In some cases, our file finder was not trying all the possible Director movie
+extensions on Macintosh, and others had filenames improperly converted from
+Macintosh long file names to the FAT 8.3 format. I actually just now saw that
+@trembyle notated several new titles with path/file errors, so I will probably
+look at those once I finish my current set of tasks:&lt;/p&gt;
+&lt;p&gt;Before @djsrv implemented the desktop mode, the Director transition drawing code
+was taking direct control of the screen (via &lt;code&gt;copyRectToScreen&lt;/code&gt;). In the desktop
+mode, however, this would pay no respect to window layering or positioning. So I
+am working on improving screen access through the window manager. Currently the
+WM keep a copy of the screen as a surface, but I am exploring how to avoid this
+extra copying. This can cause performance issues, even in non-desktop mode,
+since the surfaces must be copied twice &amp;ndash; from the Director sprite, onto the
+&lt;code&gt;_screen&lt;/code&gt;, and from &lt;code&gt;_screen&lt;/code&gt; onto the display device. Fixing this duplication
+will help the effort to support QuickTime video from Director movies.&lt;/p&gt;
+&lt;p&gt;In the last part of the week, I got distracted by my starting in earnest my
+first from-scratch RE of another engine. This is not for GSoC, just to satisfy
+my own curiosity. It&amp;rsquo;s the engine used by the one title in the Living Books
+series (&lt;em&gt;D. W. the Picky Eater&lt;/em&gt;) that doesn&amp;rsquo;t use Mohawk. I understand the file
+format fairly well, and so the next task is extracting resources and then
+working toward the script bytecode. See my &lt;a href=&#34;https://github.com/npjg/context&#34;&gt;repo&lt;/a&gt; for more information.&lt;/p&gt;
+&lt;p&gt;Have a great week!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Fresh air</title>
       <link>/scummvm/fresh-air/</link>
       <pubDate>Mon, 03 Aug 2020 23:07:00 -0400</pubDate>
@@ -492,70 +532,6 @@ known for a while my tendency toward over-engineering and trying to &amp;ldquo;g
 so confronting such mission creep in the very first week of coding was quite
 helpful for me.&lt;/p&gt;
 &lt;p&gt;Don&amp;rsquo;t worry, you&amp;rsquo;ll hear from me again soon!&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Settling the score</title>
-      <link>/scummvm/settling-the-score/</link>
-      <pubDate>Mon, 01 Jun 2020 21:10:00 -0400</pubDate>
-      <author>nathanael.gentrydb8@gmail.com (Nathanael Gentry)</author>
-      <guid>/scummvm/settling-the-score/</guid>
-      <description>&lt;p&gt;Google Summer of Code 2020 officially started today, although throughout May I
-worked regularly on the Macromedia Director engine&amp;rsquo;s rendering pipeline. In the
-middle of May I replaced the long-standing frame-based renderer &amp;ndash; which redrew
-the entire screen every frame &amp;ndash; with a channel-based approach. This first part
-of the project brought me in touch with most of the other ScummVM Director devs,
-which was a nice touch for GSoC&amp;rsquo;s Community Bonding Period.&lt;/p&gt;
-&lt;p&gt;Modern operating systems use a desktop metaphor, with folders and notepads and
-option drawers. Director uses a cinematic metaphor, which works like this: Each
-movie has some cast members (shapes, bitmaps, text, etc.) which can be
-instantiated as sprites to appear on the stage (user viewing area). Each sprite
-inhabits a channel in the score. Rather confusingly, in fact, the terms &lt;em&gt;sprite&lt;/em&gt;
-and &lt;em&gt;channel&lt;/em&gt; are almost used interchangeably. One channel can display many
-different cast members throughout a movie. As you can see, this jargon (I dare
-not say lingo) departs from the usual understanding of &lt;em&gt;sprite&lt;/em&gt;.&lt;/p&gt;
-&lt;p&gt;Just as its musical connotation implies, the
-score compactly describes the activity of each sprite and provides ready
-access to Lingo scripts and other customizations.&lt;/p&gt;
-&lt;figure&gt;
-    &lt;img src=&#34;/ox-hugo/settling-the-score-1.png&#34;/&gt; 
-&lt;/figure&gt;
-
-&lt;p&gt;As you might imagine from this screenshot of a Director 4 (1994) score, scores can be
-viewed as large matrices indexed by frames on the vertical and channels on the
-horizontal. Each entry (cell) of this matrix thus describes one item on
-stage at one point in time. On each frame, Director draws the sprites in
-ascending channel order.&lt;/p&gt;
-&lt;p&gt;At first, I naively thought that like Photoshop I could just toggle &amp;ldquo;layers&amp;rdquo;
-and be on my way. I quickly discovered, however, that in Director this
-convenience was exactly the functionality that we lacked. The score needed keep
-track of exactly what sprites were on stage at any given moment. It would no
-longer be enough to blindly draw whatever the current frame said its sprites
-were. Our engine needed to think more horizontally, rather than vertically.&lt;/p&gt;
-&lt;p&gt;After creating numerous test movies to understand Director&amp;rsquo;s rendering rules, I
-devised a simple mask-based approach. I took stock of all the dirty areas of the
-screen and just iterated over the channels to redraw the parts of sprites that
-intersected there. Nothing could be simpler, but it took me quite a while to
-understand all the eccentricities of the code and complete the refactoring
-required to get the engine alive again.&lt;/p&gt;
-&lt;p&gt;My approach gives fairly complete consistency with the original. Many difficult
-commands, like &lt;code&gt;zoomBox&lt;/code&gt;, can now work properly. Moreover, my work enabled
-puppeted sprites &amp;ndash; sprites controlled by Lingo, and not by the instructions in
-the score &amp;ndash; to work properly. If a sprite is puppeted, its channel in the score
-is simply not updated with sprites from new frames. The same sprite stays on
-stage until its puppet is disabled. This was not possible when every frame
-brought a new set of sprites to draw. But it was trivial when the
-score kept track of channels and sprites and chose when to update and redraw them.&lt;/p&gt;
-&lt;p&gt;My changes did not enhance much visually &amp;ndash; in fact, there was a regression that
-drew hideous white boxes instead of transparent hotspots. However,
-this morning I got to the bottom of those issues, and now Captain Hammer looks
-as fearsome as ever.&lt;/p&gt;
-&lt;figure&gt;
-    &lt;img src=&#34;/ox-hugo/settling-the-score-2.png&#34;/&gt; 
-&lt;/figure&gt;
-
-&lt;p&gt;Stay tuned for my adventures with QuickDraw and our Macintosh GUI emulator!&lt;/p&gt;
 </description>
     </item>
     
