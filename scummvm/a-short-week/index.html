@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    
+        
+<meta charset="utf-8">
+<meta name="HandheldFriendly" content="True">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer-when-downgrade">
+
+<title>A short week  - Nathanael Gentry</title>
+<meta name="description" content="A simple student">
+
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="apple-touch-icon-precomposed" href="/favicon.png">
+
+<link rel="stylesheet" href="/css/style.css?rnd=1597807525" />
+
+
+
+<meta property="og:title" content="A short week" />
+<meta property="og:description" content="Last week, I finished implementing the direct-copy mode for our Macintosh window manager. Now, with the Director engine, there is no intermediate blitting onto a screen surface that is then copied to the physical screen. This restored transition speed and avoided duplicate work on every frame. Here&rsquo;s the opening of Spaceship Warlock with the new interface and transitions:
+  For a while I was stuck on implementing border transparency without an intermediate surface, but @sev helpfully reminded me of g_system-&gt;lockScreen(), which no longer has performance issues on some systems." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/scummvm/a-short-week/" />
+<meta property="og:image" content="/"/>
+<meta property="article:published_time" content="2020-08-18T23:25:00-04:00" />
+<meta property="article:modified_time" content="2020-08-18T23:25:23-04:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="/"/>
+
+<meta name="twitter:title" content="A short week"/>
+<meta name="twitter:description" content="Last week, I finished implementing the direct-copy mode for our Macintosh window manager. Now, with the Director engine, there is no intermediate blitting onto a screen surface that is then copied to the physical screen. This restored transition speed and avoided duplicate work on every frame. Here&rsquo;s the opening of Spaceship Warlock with the new interface and transitions:
+  For a while I was stuck on implementing border transparency without an intermediate surface, but @sev helpfully reminded me of g_system-&gt;lockScreen(), which no longer has performance issues on some systems."/>
+
+
+
+
+
+
+    
+</head>
+<body>
+    <a class="skip-main" href="#main">Skip to main content</a>
+    <div class="container">
+        <header> 
+            
+                <h1 class="site-header">
+    <a href="/">Nathanael Gentry</a>
+</h1>
+<nav>
+    
+    
+    <a class="" href="/trivia/" title="Trivia">Trivia</a>
+    
+    <a class="" href="/scummvm/" title="ScummVM">ScummVM</a>
+    
+    <a class="" href="/thoughts/" title="Thoughts">Thoughts</a>
+    
+</nav>
+
+            
+        </header>
+        <main id="main" tabindex="-1"> 
+            
+
+    <article class="post">
+        <header>
+            <h1>A short week</h1>
+        </header>
+        <div class="content">
+            <p>Last week, I finished implementing the direct-copy mode for our Macintosh window
+manager. Now, with the Director engine, there is no intermediate blitting onto a
+<code>screen</code> surface that is then copied to the physical screen. This restored
+transition speed and avoided duplicate work on every frame. Here&rsquo;s the opening
+of Spaceship Warlock with the new interface and transitions:</p>
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/7S03CkwXK08" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+<p>For a while I was stuck on implementing border transparency without an
+intermediate surface, but @sev helpfully reminded me of
+<code>g_system-&gt;lockScreen()</code>, which no longer has performance issues on some
+systems.</p>
+<p>I also looked at several long-standing bugs this week. As @djsrv probably noted,
+in investigating one we discovered that the <code>goto</code> Lingo should not run the
+<code>exitFrame</code> event. In the opening scene of <em>Majestic</em>, the two middle bitmap
+text channels previously held the mouse-over highlighting for &ldquo;Restore Old Game&rdquo;
+and &ldquo;Exit&rdquo; in the main menu. Clicking &ldquo;Start New Game&rdquo; went to the correct
+place, but not before the main menu&rsquo;s <code>exitFrame</code> event disabled visibility of
+those channels again. Now, though, everything looks right:</p>
+<figure>
+    <img src="/ox-hugo/a-short-week-1.png"/> 
+</figure>
+
+<p>Tomorrow, it will be time to figure out why the cursor implementation I made
+doesn&rsquo;t work with Majestic&hellip; and also why the bitmap cursor in Chop Suey still
+has a strange flashing behaviour.</p>
+
+        </div>
+        
+
+
+<div class="article-info">
+    
+        <div class="article-date">2020-08-18</div>
+    
+    <div class="article-taxonomies">
+        
+            
+    </div>
+</div>
+
+    </article>
+    
+
+
+        </main>
+        <footer>
+            
+                
+                
+
+                <p>© 2020<br>
+Powered by <a target="_blank" href="https://gohugo.io/">Hugo</a>, theme <a target="_blank" href="https://github.com/mitrichius/hugo-theme-anubis">Anubis</a>.
+</p>
+            
+        </footer>
+    </div>
+</body>
+</html>

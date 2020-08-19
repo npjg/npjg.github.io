@@ -16,7 +16,7 @@
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
 <link rel="apple-touch-icon-precomposed" href="/favicon.png">
 
-<link rel="stylesheet" href="/css/style.css?rnd=1597161573" />
+<link rel="stylesheet" href="/css/style.css?rnd=1597807525" />
 
 
 
@@ -68,6 +68,34 @@
     </div>
 
     
+    
+    <article class="post-list">
+        <header> 
+            <h1>
+                <a href="/scummvm/a-short-week/">A short week</a>
+            </h1>
+        </header>
+
+        <div class="content">
+            Last week, I finished implementing the direct-copy mode for our Macintosh window manager. Now, with the Director engine, there is no intermediate blitting onto a screen surface that is then copied to the physical screen. This restored transition speed and avoided duplicate work on every frame. Here&rsquo;s the opening of Spaceship Warlock with the new interface and transitions:
+  For a while I was stuck on implementing border transparency without an intermediate surface, but @sev helpfully reminded me of g_system-&gt;lockScreen(), which no longer has performance issues on some systems.
+        </div>
+
+        
+        
+
+
+<div class="article-info">
+    
+        <div class="article-date">2020-08-18</div>
+    
+    <div class="article-taxonomies">
+        
+            
+    </div>
+</div>
+
+    </article>
     
     <article class="post-list">
         <header> 
@@ -310,33 +338,6 @@ I started off last week attempting to get the infamous zoomBox working with the 
 <div class="article-info">
     
         <div class="article-date">2020-06-15</div>
-    
-    <div class="article-taxonomies">
-        
-            
-    </div>
-</div>
-
-    </article>
-    
-    <article class="post-list">
-        <header> 
-            <h1>
-                <a href="/scummvm/widget-weeds/">In the widget weeds</a>
-            </h1>
-        </header>
-
-        <div class="content">
-            Last time, I promised I would give an update on QuickDraw and the Macintosh GUI emulator. This second major part of reworking the rendering pipeline, which i thought I could finish in the first week of coding, has taken more time and gone deeper than I expected. When I am coding I am well aware of wasting time in shaving the yak. I mentioned in our Discord the other day that I might have experienced mission creep.
-        </div>
-
-        
-        
-
-
-<div class="article-info">
-    
-        <div class="article-date">2020-06-08</div>
     
     <div class="article-taxonomies">
         

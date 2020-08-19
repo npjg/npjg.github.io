@@ -8,10 +8,47 @@
     <managingEditor>nathanael.gentrydb8@gmail.com (Nathanael Gentry)</managingEditor>
     <webMaster>nathanael.gentrydb8@gmail.com (Nathanael Gentry)</webMaster>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Tue, 11 Aug 2020 11:59:25 -0400</lastBuildDate>
+    <lastBuildDate>Tue, 18 Aug 2020 23:25:22 -0400</lastBuildDate>
     
     <atom:link href="/scummvm/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>A short week</title>
+      <link>/scummvm/a-short-week/</link>
+      <pubDate>Tue, 18 Aug 2020 23:25:00 -0400</pubDate>
+      <author>nathanael.gentrydb8@gmail.com (Nathanael Gentry)</author>
+      <guid>/scummvm/a-short-week/</guid>
+      <description>&lt;p&gt;Last week, I finished implementing the direct-copy mode for our Macintosh window
+manager. Now, with the Director engine, there is no intermediate blitting onto a
+&lt;code&gt;screen&lt;/code&gt; surface that is then copied to the physical screen. This restored
+transition speed and avoided duplicate work on every frame. Here&amp;rsquo;s the opening
+of Spaceship Warlock with the new interface and transitions:&lt;/p&gt;
+
+&lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;
+  &lt;iframe src=&#34;https://www.youtube.com/embed/7S03CkwXK08&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; allowfullscreen title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+
+&lt;p&gt;For a while I was stuck on implementing border transparency without an
+intermediate surface, but @sev helpfully reminded me of
+&lt;code&gt;g_system-&amp;gt;lockScreen()&lt;/code&gt;, which no longer has performance issues on some
+systems.&lt;/p&gt;
+&lt;p&gt;I also looked at several long-standing bugs this week. As @djsrv probably noted,
+in investigating one we discovered that the &lt;code&gt;goto&lt;/code&gt; Lingo should not run the
+&lt;code&gt;exitFrame&lt;/code&gt; event. In the opening scene of &lt;em&gt;Majestic&lt;/em&gt;, the two middle bitmap
+text channels previously held the mouse-over highlighting for &amp;ldquo;Restore Old Game&amp;rdquo;
+and &amp;ldquo;Exit&amp;rdquo; in the main menu. Clicking &amp;ldquo;Start New Game&amp;rdquo; went to the correct
+place, but not before the main menu&amp;rsquo;s &lt;code&gt;exitFrame&lt;/code&gt; event disabled visibility of
+those channels again. Now, though, everything looks right:&lt;/p&gt;
+&lt;figure&gt;
+    &lt;img src=&#34;/ox-hugo/a-short-week-1.png&#34;/&gt; 
+&lt;/figure&gt;
+
+&lt;p&gt;Tomorrow, it will be time to figure out why the cursor implementation I made
+doesn&amp;rsquo;t work with Majestic&amp;hellip; and also why the bitmap cursor in Chop Suey still
+has a strange flashing behaviour.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>On the right path</title>
@@ -477,61 +514,6 @@ some long-standing issues in The Apartment. Debugging is often frustrating,
 especially when I judge myself for going too slowly, but it is quite pleasant to
 see my fix for an issue pushed &amp;ndash; and often the solution was far away from where
 I thought it would be. Well, I&amp;rsquo;d better get to it for this week.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>In the widget weeds</title>
-      <link>/scummvm/widget-weeds/</link>
-      <pubDate>Mon, 08 Jun 2020 07:52:00 -0400</pubDate>
-      <author>nathanael.gentrydb8@gmail.com (Nathanael Gentry)</author>
-      <guid>/scummvm/widget-weeds/</guid>
-      <description>&lt;p&gt;Last time, I promised I would give an update on QuickDraw and the Macintosh GUI
-emulator. This second major part of reworking the rendering pipeline, which i
-thought I could finish in the first week of coding, has taken more time and gone
-deeper than I expected. When I am coding I am well aware of wasting time in
-&lt;a href=&#34;https://en.wiktionary.org/wiki/yak%5Fshaving&#34;&gt;shaving the yak&lt;/a&gt;. I mentioned in our Discord the other day that I might have
-experienced mission creep. Let me explain.&lt;/p&gt;
-&lt;p&gt;MY initial goal was to move over Director&amp;rsquo;s text rendering to the &lt;a href=&#34;https://github.com/scummvm/scummvm/blob/master/graphics/macgui/maceditabletext.cpp&#34;&gt;enhanced Mac
-text class&lt;/a&gt; that sev wrote for us earlier this year. I spent the early part of
-that week implementing the different kinds of text properties that Director
-permits putting on text &amp;ndash; straightforward effects like shadows, framing, and
-proper text alignment. (I now realize what complex work goes into graphics
-management for even a simple text editor.) Then, I created a new class (widget)
-specifically for buttons and did the similar work for the classic Mac&amp;rsquo;s three
-button styles. This took me to about Wednesday last week, and this part of my
-work went fairly quickly. I even got several movies mostly working, including
-the &lt;code&gt;stageColor&lt;/code&gt; movie (a simple one that flashed the emulator background color
-very quickly &amp;ndash; I won&amp;rsquo;t show it because I myself am photosensitive). This showed
-off saveral pieces of the work I had done: Drawing text with transparency and
-extra features, as well as reading button states properly.&lt;/p&gt;
-&lt;p&gt;I then realized that in order for the window manager to process widget events in
-the proper order, it needed to have some concept of priority &amp;ndash; a mirror of
-channels in Director. So then, I thought, we have only four major visual cast
-types in our Director engine: text, buttons, shapes, and bitmaps. Why not have
-all those be known to the window manager as widgets? This would accomplish
-another of the refactoring tasks I had been given, reducing the bloat of the
-Stage class by moving drawing methods away from there.&lt;/p&gt;
-&lt;p&gt;Then, I got rather bogged down later in the week in understanding the minutiae
-of the window manager, and I realized that much of the outward-facing code
-in our Director events manager could be handled better in the MacGUI manager
-instead; this was added to my list of items to finish. (You see what I mean
-about shaving yaks.) There were a few other version-specific irritations that I
-also tried to figure out; this took me into the weekend.&lt;/p&gt;
-&lt;p&gt;I soon had a lot of deeply connected tasks that seemed rather overwhelming as
-the first week ended; I realized that I had expanded the range of my next PR far
-beyond where I initially started. Until the weekend, I thought I was making good
-time. After I did not do much over the weekend to catch up with mechatronics
-research lab at where I work at university, I realized that trying to change
-everything at once is an excellent way to get behind. I do not want this to
-happen, so I talked to sev yesterday to help get me back on track.&lt;/p&gt;
-&lt;p&gt;I will post some screenshots later this week, once my improvements are complete
-enough to merge at least some of them. I believe our prime test move, The
-Apartment, will soon yield some good results in previously broken movies. I have
-known for a while my tendency toward over-engineering and trying to &amp;ldquo;go solo,&amp;rdquo;
-so confronting such mission creep in the very first week of coding was quite
-helpful for me.&lt;/p&gt;
-&lt;p&gt;Don&amp;rsquo;t worry, you&amp;rsquo;ll hear from me again soon!&lt;/p&gt;
 </description>
     </item>
     
