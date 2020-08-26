@@ -8,10 +8,44 @@
     <managingEditor>nathanael.gentrydb8@gmail.com (Nathanael Gentry)</managingEditor>
     <webMaster>nathanael.gentrydb8@gmail.com (Nathanael Gentry)</webMaster>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Tue, 18 Aug 2020 23:25:22 -0400</lastBuildDate>
+    <lastBuildDate>Tue, 25 Aug 2020 22:33:33 -0400</lastBuildDate>
     
     <atom:link href="/scummvm/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Finishing up</title>
+      <link>/scummvm/finishing-up/</link>
+      <pubDate>Tue, 25 Aug 2020 22:32:00 -0400</pubDate>
+      <author>nathanael.gentrydb8@gmail.com (Nathanael Gentry)</author>
+      <guid>/scummvm/finishing-up/</guid>
+      <description>&lt;p&gt;Last week was the last official week in the GSoC work period. I plan to submit
+my final evaluation after I post this. There you will be able to see some of the
+highlights from my time with ScummVM this summer.&lt;/p&gt;
+&lt;p&gt;In the past week, though, I didn&amp;rsquo;t start work on any new features. I spent a
+while understanding the data path location mechanism that the Mac version of
+&lt;em&gt;Journeyman Project 2: Buried in Time&lt;/em&gt; used, and I ultimately discovered some
+buried XFCNs. (As @djsrv helpfully explained, XFCNs are external functions from
+(HyperCard)[&lt;a href=&#34;https://en.wikipedia.org/wiki/HyperCard&#34;&gt;https://en.wikipedia.org/wiki/HyperCard&lt;/a&gt;] that can often be called as
+regular Lingo.) One of these just looped through all the volume names on the
+system, looking for the proper CD name. This &lt;em&gt;Journeyman Project&lt;/em&gt; is split
+across three CDs, so some more additions will be needed.&lt;/p&gt;
+&lt;p&gt;I also fixed an obscure issue decoding the hex format strings for our Macintosh
+text implementation. Now, the main screen of &lt;em&gt;Majestic&lt;/em&gt; looks almost perfect &amp;ndash;
+with proper cursors, which I also patched to load properly &amp;ndash; and consistent
+text formatting.&lt;/p&gt;
+&lt;p&gt;[&lt;img src=&#34;/ox-hugo/finishing-up-1.png&#34; alt=&#34;&#34;&gt;]&lt;/p&gt;
+&lt;p&gt;Additionally, I investigated and fixed several bugs with my good old friends the
+widgets. Now Chop Suey also looks very accurate, and there is no more flashing
+cursor or cut-off text boxes. Text borders are now (almost) working properly
+again, which makes the Lingo Dictionary movies more pleasant to look at.&lt;/p&gt;
+&lt;p&gt;[&lt;img src=&#34;/ox-hugo/finishing-up-2.png&#34; alt=&#34;&#34;&gt;]&lt;/p&gt;
+&lt;p&gt;For being the rendering guy this summer I haven&amp;rsquo;t posted nearly enough pictures,
+so I put those two here for you to enjoy. I&amp;rsquo;ve enjoyed working with ScummVM, and
+I plan to start contributing again once I get comfortable in my university
+schedule.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>A short week</title>
@@ -461,59 +495,6 @@ engine &amp;ndash; plus Director, of course.&lt;/p&gt;
 &lt;p&gt;Anyway, I&amp;rsquo;d better get back to Director. I&amp;rsquo;m now working on getting all of the
 inks (blitting modes) playing nicely together. Graphics programming has proven
 pretty neat, even if it often goes slowly.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>A busy week</title>
-      <link>/scummvm/busy-week/</link>
-      <pubDate>Mon, 15 Jun 2020 06:58:00 -0400</pubDate>
-      <author>nathanael.gentrydb8@gmail.com (Nathanael Gentry)</author>
-      <guid>/scummvm/busy-week/</guid>
-      <description>&lt;p&gt;Last week, I finished up the tasks that had dragged me down, and then I moved on
-to sundry other topics. Now our Director engine renders The Apartment, a demo
-movie that MacroMind and later Macromedia developed for the early Directors, in
-greater fidelity. One of the issues that took a while to figure out was that, in
-the Director 3 version of The Apartment, GUI buttons had a special type that
-were not stored in the usual place. To our engine, they just looked like regular
-texts, but they were not. I also realized how tedious it is to fiddle with a few
-magic numbers until the GUI elements came out looking right. I still need to get QuickDraw
-shapes fully transported over to widget-based rendering, which I plan to do
-later this week.&lt;/p&gt;
-&lt;p&gt;After my PR was merged, sev granted me write access to the repository, so I
-could commit fixes on-the-fly. This was very helpful because, &lt;a href=&#34;https://github.com/scummvm/scummvm/commits?author=npjg&#34;&gt;as you can see&lt;/a&gt;, I
-have fixed many little bugs in my code since then. Over the latter half of last
-week, I grew well acquainted with the technical methods in the Mac
-text-rendering class that sev wrote, and I did some major refactoring to merge
-the two editable- and non-editable variants. Then, with this, I began
-implementing some Lingo entities that permit some Director-based customization
-of text fields. Some of this, such as changing fonts and line widths and such as
-a movie plays, I have not yet pushed.&lt;/p&gt;
-&lt;p&gt;An issue that I spent several hours investigating last week involved text
-background colours in Spaceship Warlock. Ultimately, with sev&amp;rsquo;s help, it turned
-out that our loading code was not reading the palette information for text cast
-members correctly. Thus, the hack had been to give all texts the background
-colour of the whole Director stage. This worked well &lt;em&gt;sometimes&lt;/em&gt; &amp;ndash; but
-sometimes individual movies in Warlock had a white stage covered by the black
-rectangles, and sometimes they had a black stage. So, I confronted strange
-inconsistencies like this:&lt;/p&gt;
-&lt;figure&gt;
-    &lt;img src=&#34;/ox-hugo/a-busy-week-1.png&#34;/&gt; 
-&lt;/figure&gt;
-
-&lt;p&gt;Once we got to the root of the issue, texts rendered correctly, no matter the
-underlying stage colour:&lt;/p&gt;
-&lt;figure&gt;
-    &lt;img src=&#34;/ox-hugo/a-busy-week-2.png&#34;/&gt; 
-&lt;/figure&gt;
-
-&lt;p&gt;(I was confronted by those cops so many times one day, I had a dream about them.)&lt;/p&gt;
-&lt;p&gt;Tracking down strange rendering bugs like these has been the majority of my work
-over the past few days, and I will get back to it again today in tracking down
-some long-standing issues in The Apartment. Debugging is often frustrating,
-especially when I judge myself for going too slowly, but it is quite pleasant to
-see my fix for an issue pushed &amp;ndash; and often the solution was far away from where
-I thought it would be. Well, I&amp;rsquo;d better get to it for this week.&lt;/p&gt;
 </description>
     </item>
     
