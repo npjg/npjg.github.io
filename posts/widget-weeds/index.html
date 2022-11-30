@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="[Nathanael Gentry]">
+<meta name="description" content="Last time, I promised I would give an update on QuickDraw and the Macintosh GUI emulator. This second major part of reworking the rendering pipeline, which i thought I could finish in the first week of coding, has taken more time and gone deeper than I expected. When I am coding I am well aware of wasting time in shaving the yak. I mentioned in our Discord the other day that I might have experienced mission creep." />
+<meta name="keywords" content="" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="/posts/widget-weeds/" />
+
+
+    <title>
+        
+            In the widget weeds :: Nathanael Gentry  — Focusing.
+        
+    </title>
+
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.1/css/flag-icon.min.css" rel="stylesheet"
+    type="text/css">
+
+
+
+<link rel="stylesheet" href="/main.min.01710bb66eae7f22dfce673f5d03773a71e52d8e273581b97701e62d8db59cb3.css">
+
+
+
+
+
+
+<meta itemprop="name" content="In the widget weeds">
+<meta itemprop="description" content="Last time, I promised I would give an update on QuickDraw and the Macintosh GUI emulator. This second major part of reworking the rendering pipeline, which i thought I could finish in the first week of coding, has taken more time and gone deeper than I expected. When I am coding I am well aware of wasting time in shaving the yak. I mentioned in our Discord the other day that I might have experienced mission creep."><meta itemprop="datePublished" content="2020-06-08T07:52:00-04:00" />
+<meta itemprop="dateModified" content="2020-08-25T22:33:33-04:00" />
+<meta itemprop="wordCount" content="602">
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="In the widget weeds"/>
+<meta name="twitter:description" content="Last time, I promised I would give an update on QuickDraw and the Macintosh GUI emulator. This second major part of reworking the rendering pipeline, which i thought I could finish in the first week of coding, has taken more time and gone deeper than I expected. When I am coding I am well aware of wasting time in shaving the yak. I mentioned in our Discord the other day that I might have experienced mission creep."/>
+
+
+
+
+
+    <meta property="article:section" content="Macromedia Director" />
+
+    <meta property="article:section" content="Google Summer of Code 2020" />
+
+    <meta property="article:section" content="ScummVM" />
+
+
+
+    <meta property="article:published_time" content="2020-06-08 07:52:00 -0400 EDT" />
+
+
+
+
+
+
+
+
+    </head>
+
+    <body class="dark-theme">
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark">></span>
+            <span class="logo__text">Nat</span>
+            <span class="logo__cursor" style=
+                  "
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="/trivia/">Trivia</a></li><li><a href="/posts">Posts</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+
+            <span class="theme-toggle unselectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+</span>
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+    <main class="post">
+
+        <div class="post-info">
+            <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>3 minutes
+
+            
+
+            </p>
+        </div>
+
+        <article>
+            <h1 class="post-title">
+                <a href="/posts/widget-weeds/">In the widget weeds</a>
+            </h1>
+
+            
+
+            <div class="post-content">
+                <p>Last time, I promised I would give an update on QuickDraw and the Macintosh GUI
+emulator. This second major part of reworking the rendering pipeline, which i
+thought I could finish in the first week of coding, has taken more time and gone
+deeper than I expected. When I am coding I am well aware of wasting time in
+<a href="https://en.wiktionary.org/wiki/yak%5Fshaving">shaving the yak</a>. I mentioned in our Discord the other day that I might have
+experienced mission creep. Let me explain.</p>
+<p>MY initial goal was to move over Director&rsquo;s text rendering to the <a href="https://github.com/scummvm/scummvm/blob/master/graphics/macgui/maceditabletext.cpp">enhanced Mac
+text class</a> that sev wrote for us earlier this year. I spent the early part of
+that week implementing the different kinds of text properties that Director
+permits putting on text &ndash; straightforward effects like shadows, framing, and
+proper text alignment. (I now realize what complex work goes into graphics
+management for even a simple text editor.) Then, I created a new class (widget)
+specifically for buttons and did the similar work for the classic Mac&rsquo;s three
+button styles. This took me to about Wednesday last week, and this part of my
+work went fairly quickly. I even got several movies mostly working, including
+the <code>stageColor</code> movie (a simple one that flashed the emulator background color
+very quickly &ndash; I won&rsquo;t show it because I myself am photosensitive). This showed
+off saveral pieces of the work I had done: Drawing text with transparency and
+extra features, as well as reading button states properly.</p>
+<p>I then realized that in order for the window manager to process widget events in
+the proper order, it needed to have some concept of priority &ndash; a mirror of
+channels in Director. So then, I thought, we have only four major visual cast
+types in our Director engine: text, buttons, shapes, and bitmaps. Why not have
+all those be known to the window manager as widgets? This would accomplish
+another of the refactoring tasks I had been given, reducing the bloat of the
+Stage class by moving drawing methods away from there.</p>
+<p>Then, I got rather bogged down later in the week in understanding the minutiae
+of the window manager, and I realized that much of the outward-facing code
+in our Director events manager could be handled better in the MacGUI manager
+instead; this was added to my list of items to finish. (You see what I mean
+about shaving yaks.) There were a few other version-specific irritations that I
+also tried to figure out; this took me into the weekend.</p>
+<p>I soon had a lot of deeply connected tasks that seemed rather overwhelming as
+the first week ended; I realized that I had expanded the range of my next PR far
+beyond where I initially started. Until the weekend, I thought I was making good
+time. After I did not do much over the weekend to catch up with mechatronics
+research lab at where I work at university, I realized that trying to change
+everything at once is an excellent way to get behind. I do not want this to
+happen, so I talked to sev yesterday to help get me back on track.</p>
+<p>I will post some screenshots later this week, once my improvements are complete
+enough to merge at least some of them. I believe our prime test move, The
+Apartment, will soon yield some good results in previously broken movies. I have
+known for a while my tendency toward over-engineering and trying to &ldquo;go solo,&rdquo;
+so confronting such mission creep in the very first week of coding was quite
+helpful for me.</p>
+<p>Don&rsquo;t worry, you&rsquo;ll hear from me again soon!</p>
+
+            </div>
+        </article>
+
+        <hr />
+
+        <div class="post-info">
+
+            <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>602 Words</p>
+
+            <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2020-06-08 07:52 -0400</p>
+        </div>
+
+        
+            <div class="pagination">
+                <div class="pagination__title">
+                    <span class="pagination__title-h">Read other posts</span>
+                    <hr />
+                </div>
+
+                <div class="pagination__buttons">
+                    
+                        <span class="button previous">
+                            <a href="/posts/busy-week/">
+                                <span class="button__icon">←</span>
+                                <span class="button__text">A busy week</span>
+                            </a>
+                        </span>
+                    
+
+                    
+                        <span class="button next">
+                            <a href="/posts/settling-the-score/">
+                                <span class="button__text">Settling the score</span>
+                                <span class="button__icon">→</span>
+                            </a>
+                        </span>
+                    
+                </div>
+            </div>
+        
+    </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>&copy; 2022</span>
+            
+            <span></span>
+            <span> <a href="/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a></span>
+        </div>
+    </div>
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>Powered by <a href="http://gohugo.io">Hugo</a></span>
+            <span>Made with &#10084; by <a href="https://github.com/rhazdon">Djordje Atlialp</a></span>
+        </div>
+    </div>
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+
+<script type="text/javascript" src="/bundle.min.25e7450041457077dff0c3ed632fa0f249fed68835b94ed32e34667d8782a640dc1bcf2eb900a6a72e1d6455f7e02d7368bbb9b1045317d705aa9008f6f20b9e.js" integrity="sha512-JedFAEFFcHff8MPtYy&#43;g8kn&#43;1og1uU7TLjRmfYeCpkDcG88uuQCmpy4dZFX34C1zaLu5sQRTF9cFqpAI9vILng=="></script>
+
+
+
+    </body>
+</html>

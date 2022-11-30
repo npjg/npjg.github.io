@@ -1,103 +1,75 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
-  <url>
-    <loc>/scummvm/</loc>
-    <lastmod>2020-08-25T22:33:33-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/thoughts/</loc>
-    <lastmod>2020-08-25T22:33:33-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/scummvm/finishing-up/</loc>
-    <lastmod>2020-08-25T22:33:34-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/scummvm/a-short-week/</loc>
-    <lastmod>2020-08-25T22:33:34-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/scummvm/on-the-right-path/</loc>
-    <lastmod>2020-08-25T22:33:34-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/scummvm/fresh-air/</loc>
-    <lastmod>2020-08-25T22:33:34-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/scummvm/below-the-surface/</loc>
-    <lastmod>2020-08-25T22:33:34-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/scummvm/lots-of-chop-suey/</loc>
-    <lastmod>2020-07-20T22:54:38-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/scummvm/rendering-my-progress/</loc>
-    <lastmod>2020-08-25T22:33:34-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/scummvm/that-was-fast/</loc>
-    <lastmod>2020-08-25T22:33:34-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/scummvm/third-way-done/</loc>
-    <lastmod>2020-08-25T22:33:34-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/scummvm/making-progress/</loc>
-    <lastmod>2020-08-25T22:33:34-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/scummvm/busy-week/</loc>
-    <lastmod>2020-08-25T22:33:34-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/scummvm/widget-weeds/</loc>
-    <lastmod>2020-08-25T22:33:33-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/scummvm/settling-the-score/</loc>
-    <lastmod>2020-08-25T22:33:33-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/scummvm/macromedia-mysteries/</loc>
-    <lastmod>2020-08-25T22:33:33-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/</loc>
-    <lastmod>2020-08-25T22:33:33-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/trivia/</loc>
-    <lastmod>2020-08-25T22:33:33-04:00</lastmod>
-  </url>
-  
   <url>
     <loc>/categories/</loc>
-  </url>
-  
-  <url>
+    <lastmod>2020-08-25T22:33:34-04:00</lastmod>
+  </url><url>
+    <loc>/posts/finishing-up/</loc>
+    <lastmod>2020-08-25T22:33:34-04:00</lastmod>
+  </url><url>
+    <loc>/categories/google-summer-of-code-2020/</loc>
+    <lastmod>2020-08-25T22:33:34-04:00</lastmod>
+  </url><url>
+    <loc>/categories/macromedia-director/</loc>
+    <lastmod>2020-08-25T22:33:34-04:00</lastmod>
+  </url><url>
+    <loc>/</loc>
+    <lastmod>2020-08-25T22:33:34-04:00</lastmod>
+  </url><url>
+    <loc>/posts/</loc>
+    <lastmod>2020-08-25T22:33:34-04:00</lastmod>
+  </url><url>
+    <loc>/categories/scummvm/</loc>
+    <lastmod>2020-08-25T22:33:34-04:00</lastmod>
+  </url><url>
+    <loc>/posts/a-short-week/</loc>
+    <lastmod>2020-08-25T22:33:34-04:00</lastmod>
+  </url><url>
+    <loc>/posts/on-the-right-path/</loc>
+    <lastmod>2020-08-25T22:33:34-04:00</lastmod>
+  </url><url>
+    <loc>/posts/fresh-air/</loc>
+    <lastmod>2020-08-25T22:33:34-04:00</lastmod>
+  </url><url>
+    <loc>/posts/below-the-surface/</loc>
+    <lastmod>2020-08-25T22:33:34-04:00</lastmod>
+  </url><url>
+    <loc>/lots-of-chop-suey/</loc>
+    <lastmod>2020-07-20T22:54:38-04:00</lastmod>
+  </url><url>
+    <loc>/posts/lots-of-chop-suey/</loc>
+    <lastmod>2020-07-20T22:54:38-04:00</lastmod>
+  </url><url>
+    <loc>/posts/rendering-my-progress/</loc>
+    <lastmod>2020-08-25T22:33:34-04:00</lastmod>
+  </url><url>
+    <loc>/posts/that-was-fast/</loc>
+    <lastmod>2020-08-25T22:33:34-04:00</lastmod>
+  </url><url>
+    <loc>/posts/third-way-done/</loc>
+    <lastmod>2020-08-25T22:33:34-04:00</lastmod>
+  </url><url>
+    <loc>/posts/making-progress/</loc>
+    <lastmod>2020-08-25T22:33:34-04:00</lastmod>
+  </url><url>
+    <loc>/posts/busy-week/</loc>
+    <lastmod>2020-08-25T22:33:34-04:00</lastmod>
+  </url><url>
+    <loc>/posts/widget-weeds/</loc>
+    <lastmod>2020-08-25T22:33:33-04:00</lastmod>
+  </url><url>
+    <loc>/posts/settling-the-score/</loc>
+    <lastmod>2020-08-25T22:33:33-04:00</lastmod>
+  </url><url>
+    <loc>/posts/macromedia-mysteries/</loc>
+    <lastmod>2020-08-25T22:33:33-04:00</lastmod>
+  </url><url>
+    <loc>/trivia/</loc>
+    <lastmod>2020-08-25T22:33:33-04:00</lastmod>
+  </url><url>
+    <loc>/examples/</loc>
+  </url><url>
     <loc>/tags/</loc>
   </url>
-  
 </urlset>

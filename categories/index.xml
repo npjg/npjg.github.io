@@ -3,14 +3,36 @@
   <channel>
     <title>Categories on Nathanael Gentry</title>
     <link>/categories/</link>
-    <description>Nathanael Gentry (Categories)</description>
+    <description>Recent content in Categories on Nathanael Gentry</description>
     <generator>Hugo -- gohugo.io</generator>
-    <managingEditor>nathanael.gentrydb8@gmail.com (Nathanael Gentry)</managingEditor>
-    <webMaster>nathanael.gentrydb8@gmail.com (Nathanael Gentry)</webMaster>
-    <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 25 Aug 2020 22:32:00 -0400</lastBuildDate><atom:link href="/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Google Summer of Code 2020</title>
+      <link>/categories/google-summer-of-code-2020/</link>
+      <pubDate>Tue, 25 Aug 2020 22:32:00 -0400</pubDate>
+      
+      <guid>/categories/google-summer-of-code-2020/</guid>
+      <description></description>
+    </item>
     
-    <atom:link href="/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Macromedia Director</title>
+      <link>/categories/macromedia-director/</link>
+      <pubDate>Tue, 25 Aug 2020 22:32:00 -0400</pubDate>
+      
+      <guid>/categories/macromedia-director/</guid>
+      <description></description>
+    </item>
     
+    <item>
+      <title>ScummVM</title>
+      <link>/categories/scummvm/</link>
+      <pubDate>Tue, 25 Aug 2020 22:32:00 -0400</pubDate>
+      
+      <guid>/categories/scummvm/</guid>
+      <description></description>
+    </item>
     
   </channel>
 </rss>

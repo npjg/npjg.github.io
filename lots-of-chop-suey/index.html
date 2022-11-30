@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="[Nathanael Gentry]">
+<meta name="description" content="Hey there!
+My big showcase for the week&amp;rsquo;s work is a few scenes from the kids&amp;rsquo; game Chop Suey, one of our primary Director 4 test cases:
+Just a few weeks ago, Chop Suey ran at an almost unplayable crawl in ScummVM. Part of this was its reliance on Matte inks, for which I implemented a simple surface caching scheme and shaved about 20% off our buildbot&amp;rsquo;s target test time for Spaceship Warlock." />
+<meta name="keywords" content="" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="/lots-of-chop-suey/" />
+
+
+    <title>
+        
+            Lots of chop suey :: Nathanael Gentry  — Focusing.
+        
+    </title>
+
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.1/css/flag-icon.min.css" rel="stylesheet"
+    type="text/css">
+
+
+
+<link rel="stylesheet" href="/main.min.01710bb66eae7f22dfce673f5d03773a71e52d8e273581b97701e62d8db59cb3.css">
+
+
+
+
+
+
+<meta itemprop="name" content="Lots of chop suey">
+<meta itemprop="description" content="Hey there!
+My big showcase for the week&rsquo;s work is a few scenes from the kids&rsquo; game Chop Suey, one of our primary Director 4 test cases:
+Just a few weeks ago, Chop Suey ran at an almost unplayable crawl in ScummVM. Part of this was its reliance on Matte inks, for which I implemented a simple surface caching scheme and shaved about 20% off our buildbot&rsquo;s target test time for Spaceship Warlock.">
+<meta itemprop="dateModified" content="2020-07-20T22:54:38-04:00" />
+<meta itemprop="wordCount" content="436">
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Lots of chop suey"/>
+<meta name="twitter:description" content="Hey there!
+My big showcase for the week&rsquo;s work is a few scenes from the kids&rsquo; game Chop Suey, one of our primary Director 4 test cases:
+Just a few weeks ago, Chop Suey ran at an almost unplayable crawl in ScummVM. Part of this was its reliance on Matte inks, for which I implemented a simple surface caching scheme and shaved about 20% off our buildbot&rsquo;s target test time for Spaceship Warlock."/>
+
+
+
+
+
+    <meta property="article:section" content="Macromedia Director" />
+
+    <meta property="article:section" content="Google Summer of Code 2020" />
+
+    <meta property="article:section" content="ScummVM" />
+
+
+
+    <meta property="article:published_time" content="2020-07-20 22:54:38 -0400 EDT" />
+
+
+
+
+
+
+
+
+    </head>
+
+    <body class="dark-theme">
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark">></span>
+            <span class="logo__text">Nat</span>
+            <span class="logo__cursor" style=
+                  "
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="/trivia/">Trivia</a></li><li><a href="/posts">Posts</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+
+            <span class="theme-toggle unselectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+</span>
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+    <main class="post">
+
+        <div class="post-info">
+            
+            </p>
+        </div>
+
+        <article>
+            <h2 class="post-title"><a href="/lots-of-chop-suey/">Lots of chop suey</a></h2>
+
+            
+
+            <div class="post-content">
+                <p>Hey there!</p>
+<p>My big showcase for the week&rsquo;s work is a few scenes from the kids&rsquo; game Chop
+Suey, one of our primary Director 4 test cases:</p>
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/kGMHHfJx8AU" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+<p>Just a few weeks ago, Chop Suey ran at an almost unplayable crawl in ScummVM.
+Part of this was its reliance on Matte inks, for which I implemented a simple
+surface caching scheme and shaved about 20% off our buildbot&rsquo;s target test time
+for Spaceship Warlock. This also made Chop Suey run much faster, though it still
+consumed CPU</p>
+<p>Last week I called Chop Suey a Lingo-heavy game, and I was referring to how much
+it controls animation via puppets and the <code>updateStage</code> command. Because, as you
+saw, its cursors are bitmaps and certainly do not fit in the standard 16x16
+Macintosh cursor box, Chop Suey introduces its own mouse update code and calls
+for the stage to be updated several dozen times each frame. Most of the
+inefficiencies were here.</p>
+<p>I spent the early part of the week in much trial-and-error, working out the
+pieces of the renderer that were most inefficient under such repeated
+application. The idea is to do a little bit of work up front &ndash; checking flags
+and so forth &ndash; so the expense of redrawing a region of the screen is saved. (As
+I have realized, even when working on Chop Suey, very subtle bugs can arise from
+forgetting to check a rendering flag.) Even at usual framerates without much
+Lingo that doesn&rsquo;t matter very much, but Lingo-heavy games like Chop Suey have
+shown dramatic improvement.</p>
+<p>I also implemented another feature that is notable in Chop Suey by its absence.
+I said that Chop Suey does its own cursor handling. Well, the window manager was
+still drawing a regular cursor atop the bitmap, which looked pretty ugly. Near
+the end of the week, though, I added a flexible cursor class for the three
+cursor types Director can use: built-in cursors, cast (bitmap) cursors, and
+resource cursors. The last type is important for Majestic: Alien Encounter, but
+I haven&rsquo;t seen custom cursors used much elsewhere. It was fun to implement,
+though. As a nice byproduct in Chop Suey, the default cursor is now properly
+turned off.</p>
+<p>Oh, and I also spent most of a day trying to discover why some textboxes in
+Spaceship Warlock weren&rsquo;t rendering properly, along with some other nettling
+MacGUI issues. The issue actually lay in the cast loading code, which I hadn&rsquo;t
+touched much, but it&rsquo;s always satisfying to squash a bug and learn more about
+the codebase in the process &ndash; even if your &ldquo;fix&rdquo; breaks other stuff. :)</p>
+
+            </div>
+        </article>
+
+        <hr />
+
+        <div class="post-info">
+  		</div>
+    </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>&copy; 2022</span>
+            
+            <span></span>
+            <span> <a href="/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a></span>
+        </div>
+    </div>
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>Powered by <a href="http://gohugo.io">Hugo</a></span>
+            <span>Made with &#10084; by <a href="https://github.com/rhazdon">Djordje Atlialp</a></span>
+        </div>
+    </div>
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+
+<script type="text/javascript" src="/bundle.min.25e7450041457077dff0c3ed632fa0f249fed68835b94ed32e34667d8782a640dc1bcf2eb900a6a72e1d6455f7e02d7368bbb9b1045317d705aa9008f6f20b9e.js" integrity="sha512-JedFAEFFcHff8MPtYy&#43;g8kn&#43;1og1uU7TLjRmfYeCpkDcG88uuQCmpy4dZFX34C1zaLu5sQRTF9cFqpAI9vILng=="></script>
+
+
+
+    </body>
+</html>

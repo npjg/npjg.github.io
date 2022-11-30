@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Nathanael Gentry</title>
-    <link>/</link>
-    <description>Recent content on Nathanael Gentry</description>
+    <title>Google Summer of Code 2020 on Nathanael Gentry</title>
+    <link>/categories/google-summer-of-code-2020/</link>
+    <description>Recent content in Google Summer of Code 2020 on Nathanael Gentry</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 25 Aug 2020 22:32:00 -0400</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 25 Aug 2020 22:32:00 -0400</lastBuildDate><atom:link href="/categories/google-summer-of-code-2020/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Finishing up</title>
       <link>/posts/finishing-up/</link>
@@ -151,16 +151,6 @@ I started off last week attempting to get the infamous zoomBox working with the 
       
       <guid>/posts/macromedia-mysteries/</guid>
       <description>This summer, I will be helping bring the Macromedia Director engine to maturity as my project for Google Summer of Code 2020. Tonight I found myself quite deep in a major rewrite of the core rendering pipeline, and when I got tired of that I decided to finally learn how to use Hugo. That&amp;rsquo;s why you are reading this now.</description>
-    </item>
-    
-    <item>
-      <title>Trivia</title>
-      <link>/trivia/</link>
-      <pubDate>Thu, 09 Jan 2020 00:10:00 -0500</pubDate>
-      
-      <guid>/trivia/</guid>
-      <description>When I was ten, I first started programming with QBasic. Quickly thereafter, I switched to Visual Basic and C.
-When I&amp;rsquo;m not hacking away on my beloved ThinkPad 450s, I can probably be found engrossed in Chopin or studying a Vaughan Williams score.</description>
     </item>
     
   </channel>
