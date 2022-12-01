@@ -2,19 +2,37 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>ScummVM on Nathanael Gentry</title>
+    
+    
+    
     <link>/categories/scummvm/</link>
     <description>Recent content in ScummVM on Nathanael Gentry</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 25 Aug 2020 22:32:00 -0400</lastBuildDate><atom:link href="/categories/scummvm/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 25 Aug 2020 22:32:00 -0400</lastBuildDate>
+    
+	<atom:link href="/categories/scummvm/index.xml" rel="self" type="application/rss+xml" />
+    
+    
     <item>
       <title>Finishing up</title>
       <link>/posts/finishing-up/</link>
       <pubDate>Tue, 25 Aug 2020 22:32:00 -0400</pubDate>
       
       <guid>/posts/finishing-up/</guid>
-      <description>Last week was the last official week in the GSoC work period. I plan to submit my final evaluation after I post this. There you will be able to see some of the highlights from my time with ScummVM this summer.
-In the past week, though, I didn&amp;rsquo;t start work on any new features. I spent a while understanding the data path location mechanism that the Mac version of Journeyman Project 2: Buried in Time used, and I ultimately discovered some buried XFCNs.</description>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          Last week was the last official week in the GSoC work period. I plan to submit my final evaluation after I post this. There you will be able to see some of the highlights from my time with ScummVM this summer.
+In the past week, though, I didn&amp;rsquo;t start work on any new features. I spent a while understanding the data path location mechanism that the Mac version of Journeyman Project 2: Buried in Time used, and I ultimately discovered some buried XFCNs.
+          
+        
+        </description>
     </item>
     
     <item>
@@ -23,8 +41,19 @@ In the past week, though, I didn&amp;rsquo;t start work on any new features. I s
       <pubDate>Tue, 18 Aug 2020 23:25:00 -0400</pubDate>
       
       <guid>/posts/a-short-week/</guid>
-      <description>Last week, I finished implementing the direct-copy mode for our Macintosh window manager. Now, with the Director engine, there is no intermediate blitting onto a screen surface that is then copied to the physical screen. This restored transition speed and avoided duplicate work on every frame. Here&amp;rsquo;s the opening of Spaceship Warlock with the new interface and transitions:
-For a while I was stuck on implementing border transparency without an intermediate surface, but @sev helpfully reminded me of g_system-&amp;gt;lockScreen(), which no longer has performance issues on some systems.</description>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          Last week, I finished implementing the direct-copy mode for our Macintosh window manager. Now, with the Director engine, there is no intermediate blitting onto a screen surface that is then copied to the physical screen. This restored transition speed and avoided duplicate work on every frame. Here&amp;rsquo;s the opening of Spaceship Warlock with the new interface and transitions:
+For a while I was stuck on implementing border transparency without an intermediate surface, but @sev helpfully reminded me of g_system-&amp;gt;lockScreen(), which no longer has performance issues on some systems.
+          
+        
+        </description>
     </item>
     
     <item>
@@ -33,8 +62,19 @@ For a while I was stuck on implementing border transparency without an intermedi
       <pubDate>Tue, 11 Aug 2020 11:59:00 -0400</pubDate>
       
       <guid>/posts/on-the-right-path/</guid>
-      <description>Hey there!
-Last week, I added palette support for Director 3 movies, so several more games had their colouring issues on their opening movies resolved. Then, I spent much of Tuesday and Wednesday fixing issues with our path-loading code that prevented several of @trembyle&amp;rsquo;s testing titles from running &amp;ndash; no less than 7 when you account for Windows and Mac versions. Lingo provides several ways to interact with the filesystem. Some games asked you for a drive letter and would just loop endlessly if they would not find the file they wanted.</description>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          Hey there!
+Last week, I added palette support for Director 3 movies, so several more games had their colouring issues on their opening movies resolved. Then, I spent much of Tuesday and Wednesday fixing issues with our path-loading code that prevented several of @trembyle&amp;rsquo;s testing titles from running &amp;ndash; no less than 7 when you account for Windows and Mac versions. Lingo provides several ways to interact with the filesystem. Some games asked you for a drive letter and would just loop endlessly if they would not find the file they wanted.
+          
+        
+        </description>
     </item>
     
     <item>
@@ -43,8 +83,19 @@ Last week, I added palette support for Director 3 movies, so several more games 
       <pubDate>Mon, 03 Aug 2020 23:07:00 -0400</pubDate>
       
       <guid>/posts/fresh-air/</guid>
-      <description>Hello!
-This will be short, as last week was rather slow. I mostly finished shoring up all the areas where Director palettes can be tested and set &amp;ndash; in the frame palette channel, with the puppetPalette command, with the movie-wide default palette, and also with the palette of cast Lingo. As I look back at my commit log, I realize that this took me many more commits than I expected. There are still some issues that some of our new test targets, including the 1991 title The Riddle of the Maze, recently revealed.</description>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          Hello!
+This will be short, as last week was rather slow. I mostly finished shoring up all the areas where Director palettes can be tested and set &amp;ndash; in the frame palette channel, with the puppetPalette command, with the movie-wide default palette, and also with the palette of cast Lingo. As I look back at my commit log, I realize that this took me many more commits than I expected. There are still some issues that some of our new test targets, including the 1991 title The Riddle of the Maze, recently revealed.
+          
+        
+        </description>
     </item>
     
     <item>
@@ -53,18 +104,18 @@ This will be short, as last week was rather slow. I mostly finished shoring up a
       <pubDate>Tue, 28 Jul 2020 00:07:00 -0400</pubDate>
       
       <guid>/posts/below-the-surface/</guid>
-      <description>This week, I worked on implementing a few Lingo commands that required some significant backend work, but not much in the rendering code where I have spent so much of my time. I mentioned that I had worked on a custom cursor implementation, and I spent the first part of the week fixing bugs there. Now cursor bitmaps like the starfish on the island are properly displayed at the proper position, whereas after my initial work just a black box showed.</description>
-    </item>
-    
-    <item>
-      <title>Lots of chop suey</title>
-      <link>/lots-of-chop-suey/</link>
-      <pubDate>Mon, 20 Jul 2020 22:54:38 -0400</pubDate>
-      
-      <guid>/lots-of-chop-suey/</guid>
-      <description>Hey there!
-My big showcase for the week&amp;rsquo;s work is a few scenes from the kids&amp;rsquo; game Chop Suey, one of our primary Director 4 test cases:
-Just a few weeks ago, Chop Suey ran at an almost unplayable crawl in ScummVM. Part of this was its reliance on Matte inks, for which I implemented a simple surface caching scheme and shaved about 20% off our buildbot&amp;rsquo;s target test time for Spaceship Warlock.</description>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          This week, I worked on implementing a few Lingo commands that required some significant backend work, but not much in the rendering code where I have spent so much of my time. I mentioned that I had worked on a custom cursor implementation, and I spent the first part of the week fixing bugs there. Now cursor bitmaps like the starfish on the island are properly displayed at the proper position, whereas after my initial work just a black box showed.
+          
+        
+        </description>
     </item>
     
     <item>
@@ -73,9 +124,20 @@ Just a few weeks ago, Chop Suey ran at an almost unplayable crawl in ScummVM. Pa
       <pubDate>Mon, 20 Jul 2020 22:54:38 -0400</pubDate>
       
       <guid>/posts/lots-of-chop-suey/</guid>
-      <description>Hey there!
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          Hey there!
 My big showcase for the week&amp;rsquo;s work is a few scenes from the kids&amp;rsquo; game Chop Suey, one of our primary Director 4 test cases:
-Just a few weeks ago, Chop Suey ran at an almost unplayable crawl in ScummVM. Part of this was its reliance on Matte inks, for which I implemented a simple surface caching scheme and shaved about 20% off our buildbot&amp;rsquo;s target test time for Spaceship Warlock.</description>
+Just a few weeks ago, Chop Suey ran at an almost unplayable crawl in ScummVM. Part of this was its reliance on Matte inks, for which I implemented a simple surface caching scheme and shaved about 20% off our buildbot&amp;rsquo;s target test time for Spaceship Warlock.
+          
+        
+        </description>
     </item>
     
     <item>
@@ -84,8 +146,19 @@ Just a few weeks ago, Chop Suey ran at an almost unplayable crawl in ScummVM. Pa
       <pubDate>Mon, 13 Jul 2020 19:56:00 -0400</pubDate>
       
       <guid>/posts/rendering-my-progress/</guid>
-      <description>Hey there!
-After last week&amp;rsquo;s post, I nearly finished with the last major piece of the ink types &amp;ndash; applying foreground and background colours on the fly. We had some idea of when this colour-application process took effect, but deducing the rules and working out the patterns took a while. I have gained a new appreciation for the power of bitwise operations through this process. My next step will be extending all this logic to other colour depths, but I probably won&amp;rsquo;t get to that this week.</description>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          Hey there!
+After last week&amp;rsquo;s post, I nearly finished with the last major piece of the ink types &amp;ndash; applying foreground and background colours on the fly. We had some idea of when this colour-application process took effect, but deducing the rules and working out the patterns took a while. I have gained a new appreciation for the power of bitwise operations through this process. My next step will be extending all this logic to other colour depths, but I probably won&amp;rsquo;t get to that this week.
+          
+        
+        </description>
     </item>
     
     <item>
@@ -94,7 +167,18 @@ After last week&amp;rsquo;s post, I nearly finished with the last major piece of
       <pubDate>Mon, 06 Jul 2020 19:56:00 -0400</pubDate>
       
       <guid>/posts/that-was-fast/</guid>
-      <description>Another week has gone by quite quickly. After taking some time off for Independence Day here in the US, I can&amp;rsquo;t believe that another Monday has passed. Last week I talked about a major update to our renderer, and I finished that pretty early last week. There was some major refactoring involved, but my work &amp;ndash; splitting out our renderer into a Stage class and moving to traditional dirty-rects handling &amp;ndash; worked well with some of the major refactoring that djsrv had been wanting to do for a while.</description>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          Another week has gone by quite quickly. After taking some time off for Independence Day here in the US, I can&amp;rsquo;t believe that another Monday has passed. Last week I talked about a major update to our renderer, and I finished that pretty early last week. There was some major refactoring involved, but my work &amp;ndash; splitting out our renderer into a Stage class and moving to traditional dirty-rects handling &amp;ndash; worked well with some of the major refactoring that djsrv had been wanting to do for a while.
+          
+        
+        </description>
     </item>
     
     <item>
@@ -103,8 +187,19 @@ After last week&amp;rsquo;s post, I nearly finished with the last major piece of
       <pubDate>Mon, 29 Jun 2020 19:10:00 -0400</pubDate>
       
       <guid>/posts/third-way-done/</guid>
-      <description>Hello again!
-This week wrapped up the fourth week of coding, which means that there are about 8 weeks left until GSoC finishes and it&amp;rsquo;s time for me to go back to school. This week, I spent the early part of the week fixing up our rendering pipeline. It is fun to work on, since it&amp;rsquo;s so fundamental to the engine, but many bugs are quite difficult to track down. A big part of this was more closely integrating Director&amp;rsquo;s internal state memory, now kept in the Channel class that I wrote, with the &amp;ldquo;widgets&amp;rdquo; that the window manager knows about.</description>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          Hello again!
+This week wrapped up the fourth week of coding, which means that there are about 8 weeks left until GSoC finishes and it&amp;rsquo;s time for me to go back to school. This week, I spent the early part of the week fixing up our rendering pipeline. It is fun to work on, since it&amp;rsquo;s so fundamental to the engine, but many bugs are quite difficult to track down. A big part of this was more closely integrating Director&amp;rsquo;s internal state memory, now kept in the Channel class that I wrote, with the &amp;ldquo;widgets&amp;rdquo; that the window manager knows about.
+          
+        
+        </description>
     </item>
     
     <item>
@@ -113,8 +208,19 @@ This week wrapped up the fourth week of coding, which means that there are about
       <pubDate>Mon, 22 Jun 2020 16:03:00 -0400</pubDate>
       
       <guid>/posts/making-progress/</guid>
-      <description>Hey guys!
-I started off last week attempting to get the infamous zoomBox working with the new rendering pipeline I wrote for our Director engine. A zoomBox effect is the classic window movement animation in classic Mac OS: When you open or close a window, you see many spectral rectangles in between the window&amp;rsquo;s origin and destination. Even though I haven&amp;rsquo;t seen any games actually use it, this function was the first motivation I was given reworking the rendering pipeline.</description>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          Hey guys!
+I started off last week attempting to get the infamous zoomBox working with the new rendering pipeline I wrote for our Director engine. A zoomBox effect is the classic window movement animation in classic Mac OS: When you open or close a window, you see many spectral rectangles in between the window&amp;rsquo;s origin and destination. Even though I haven&amp;rsquo;t seen any games actually use it, this function was the first motivation I was given reworking the rendering pipeline.
+          
+        
+        </description>
     </item>
     
     <item>
@@ -123,7 +229,18 @@ I started off last week attempting to get the infamous zoomBox working with the 
       <pubDate>Mon, 15 Jun 2020 06:58:00 -0400</pubDate>
       
       <guid>/posts/busy-week/</guid>
-      <description>Last week, I finished up the tasks that had dragged me down, and then I moved on to sundry other topics. Now our Director engine renders The Apartment, a demo movie that MacroMind and later Macromedia developed for the early Directors, in greater fidelity. One of the issues that took a while to figure out was that, in the Director 3 version of The Apartment, GUI buttons had a special type that were not stored in the usual place.</description>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          Last week, I finished up the tasks that had dragged me down, and then I moved on to sundry other topics. Now our Director engine renders The Apartment, a demo movie that MacroMind and later Macromedia developed for the early Directors, in greater fidelity. One of the issues that took a while to figure out was that, in the Director 3 version of The Apartment, GUI buttons had a special type that were not stored in the usual place.
+          
+        
+        </description>
     </item>
     
     <item>
@@ -132,7 +249,18 @@ I started off last week attempting to get the infamous zoomBox working with the 
       <pubDate>Mon, 08 Jun 2020 07:52:00 -0400</pubDate>
       
       <guid>/posts/widget-weeds/</guid>
-      <description>Last time, I promised I would give an update on QuickDraw and the Macintosh GUI emulator. This second major part of reworking the rendering pipeline, which i thought I could finish in the first week of coding, has taken more time and gone deeper than I expected. When I am coding I am well aware of wasting time in shaving the yak. I mentioned in our Discord the other day that I might have experienced mission creep.</description>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          Last time, I promised I would give an update on QuickDraw and the Macintosh GUI emulator. This second major part of reworking the rendering pipeline, which i thought I could finish in the first week of coding, has taken more time and gone deeper than I expected. When I am coding I am well aware of wasting time in shaving the yak. I mentioned in our Discord the other day that I might have experienced mission creep.
+          
+        
+        </description>
     </item>
     
     <item>
@@ -141,7 +269,18 @@ I started off last week attempting to get the infamous zoomBox working with the 
       <pubDate>Mon, 01 Jun 2020 21:10:00 -0400</pubDate>
       
       <guid>/posts/settling-the-score/</guid>
-      <description>Google Summer of Code 2020 officially started today, although throughout May I worked regularly on the Macromedia Director engine&amp;rsquo;s rendering pipeline. In the middle of May I replaced the long-standing frame-based renderer &amp;ndash; which redrew the entire screen every frame &amp;ndash; with a channel-based approach. This first part of the project brought me in touch with most of the other ScummVM Director devs, which was a nice touch for GSoC&amp;rsquo;s Community Bonding Period.</description>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          Google Summer of Code 2020 officially started today, although throughout May I worked regularly on the Macromedia Director engine&amp;rsquo;s rendering pipeline. In the middle of May I replaced the long-standing frame-based renderer &amp;ndash; which redrew the entire screen every frame &amp;ndash; with a channel-based approach. This first part of the project brought me in touch with most of the other ScummVM Director devs, which was a nice touch for GSoC&amp;rsquo;s Community Bonding Period.
+          
+        
+        </description>
     </item>
     
     <item>
@@ -150,7 +289,18 @@ I started off last week attempting to get the infamous zoomBox working with the 
       <pubDate>Sun, 10 May 2020 21:10:00 -0400</pubDate>
       
       <guid>/posts/macromedia-mysteries/</guid>
-      <description>This summer, I will be helping bring the Macromedia Director engine to maturity as my project for Google Summer of Code 2020. Tonight I found myself quite deep in a major rewrite of the core rendering pipeline, and when I got tired of that I decided to finally learn how to use Hugo. That&amp;rsquo;s why you are reading this now.</description>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          This summer, I will be helping bring the Macromedia Director engine to maturity as my project for Google Summer of Code 2020. Tonight I found myself quite deep in a major rewrite of the core rendering pipeline, and when I got tired of that I decided to finally learn how to use Hugo. That&amp;rsquo;s why you are reading this now.
+          
+        
+        </description>
     </item>
     
   </channel>
