@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <title>Lots of chop suey :: BitDust</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Hey there!
+My big showcase for the week&amp;rsquo;s work is a few scenes from the kids&amp;rsquo; game Chop Suey, one of our primary Director 4 test cases:
+Just a few weeks ago, Chop Suey ran at an almost unplayable crawl in ScummVM. Part of this was its reliance on Matte inks, for which I implemented a simple surface caching scheme and shaved about 20% off our buildbot&amp;rsquo;s target test time for Spaceship Warlock." />
+<meta name="keywords" content="" />
+
+  <meta name="robots" content="noodp" />
+
+<link rel="canonical" href="/posts/gsoc-2020/lots-of-chop-suey/" />
+
+
+
+
+
+  
+  <link rel="stylesheet" href="/css/buttons.min.2bc533403a27dfe0e93105a92502b42ce4587e2e4a87d9f7d349e51e16e09478.css">
+
+  
+  <link rel="stylesheet" href="/css/code.min.00125962708925857e7b66dbc58391d55be1191a3d0ce2034de8c9cd2c481c36.css">
+
+  
+  <link rel="stylesheet" href="/css/fonts.min.90c955c31dd7c0e05aae3d4f583d4d8a2af799d69c961337eaf2a825063a55dd.css">
+
+  
+  <link rel="stylesheet" href="/css/footer.min.2e3eb191baee58dd05a9f0104ac1fab0827bca7c64dafe0b2579f934c33a1d69.css">
+
+  
+  <link rel="stylesheet" href="/css/gist.min.a751e8b0abe1ba8bc53ced52a38b19d8950fe78ca29454ea8c2595cf26aad5c0.css">
+
+  
+  <link rel="stylesheet" href="/css/header.min.b6fb4423cf82a9f9d7abc9cd010223fa3d70a6526a3f28f8e17d814c06e18f9e.css">
+
+  
+  <link rel="stylesheet" href="/css/main.min.1d8be2dd1b5de9fdaed058c8c59fcf4485f36619574abfb47ed0cfda4812c16d.css">
+
+  
+  <link rel="stylesheet" href="/css/menu.min.83637a90d903026bc280d3f82f96ceb06c5fc72b7c1a8d686afb5bbf818a29f7.css">
+
+  
+  <link rel="stylesheet" href="/css/pagination.min.82f6400eae7c7c6dc3c866733c2ec0579e4089608fea69400ff85b3880aa0d3c.css">
+
+  
+  <link rel="stylesheet" href="/css/post.min.fc74ca360273c1d828da3c02b8174eba435607b369d98418ccc6f2243cd4e75d.css">
+
+  
+  <link rel="stylesheet" href="/css/prism.min.9023bbc24533d09e97a51a0a42a5a7bfe4c591ae167c5551fb1d2191d11977c0.css">
+
+  
+  <link rel="stylesheet" href="/css/syntax.min.cc789ed9377260d7949ea4c18781fc58959a89287210fe4edbff44ebfc1511b6.css">
+
+  
+  <link rel="stylesheet" href="/css/terminal.min.5f8d3abeb8d98606857840dd0698f3c9fd8ba2e4f84ede3e24ee66f68d74ccba.css">
+
+  
+  <link rel="stylesheet" href="/css/terms.min.b81791663c3790e738e571cdbf802312390d30e4b1d8dc9d814a5b5454d0ac11.css">
+
+
+<link rel="stylesheet" href="/terminal.css">
+
+
+
+
+<link rel="shortcut icon" href="/favicon.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+
+<meta name="twitter:card" content="summary" />
+
+  
+    <meta name="twitter:site" content="" />
+  
+    <meta name="twitter:creator" content="Nathanael Gentry" />
+
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Lots of chop suey">
+<meta property="og:description" content="Hey there!
+My big showcase for the week&amp;rsquo;s work is a few scenes from the kids&amp;rsquo; game Chop Suey, one of our primary Director 4 test cases:
+Just a few weeks ago, Chop Suey ran at an almost unplayable crawl in ScummVM. Part of this was its reliance on Matte inks, for which I implemented a simple surface caching scheme and shaved about 20% off our buildbot&amp;rsquo;s target test time for Spaceship Warlock." />
+<meta property="og:url" content="/posts/gsoc-2020/lots-of-chop-suey/" />
+<meta property="og:site_name" content="BitDust" />
+
+  <meta property="og:image" content="/og-image.png">
+
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+
+
+  <meta property="article:published_time" content="2020-07-20 22:54:38 -0400 EDT" />
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+<body>
+
+
+<div class="container full">
+
+  <header class="header">
+  <div class="header__inner">
+    <div class="header__logo">
+      <a href="/">
+  <div class="logo">
+    BitDust
+  </div>
+</a>
+
+    </div>
+    
+      <ul class="menu menu--mobile">
+  <li class="menu__trigger">Menu&nbsp;▾</li>
+  <li>
+    <ul class="menu__dropdown">
+      
+        
+          <li><a href="/about">About</a></li>
+        
+      
+        
+          <li><a href="https://www.youtube.com/@nathanaelgentrymusic">Music</a></li>
+        
+      
+        
+          <li><a href="/posts">Posts</a></li>
+        
+      
+        
+          <li><a href="https://www.youtube.com/@retrobitdust">YouTube</a></li>
+        
+      
+      
+    </ul>
+  </li>
+</ul>
+
+    
+    
+  </div>
+  
+    <nav class="navigation-menu">
+  <ul class="navigation-menu__inner menu--desktop">
+    
+      
+        
+          <li><a href="/about" >About</a></li>
+        
+      
+        
+          <li><a href="https://www.youtube.com/@nathanaelgentrymusic" >Music</a></li>
+        
+      
+        
+          <li><a href="/posts" >Posts</a></li>
+        
+      
+        
+          <li><a href="https://www.youtube.com/@retrobitdust" >YouTube</a></li>
+        
+      
+      
+    
+  </ul>
+</nav>
+
+  
+</header>
+
+
+  <div class="content">
+    
+<article class="post">
+  <h1 class="post-title">
+    <a href="/posts/gsoc-2020/lots-of-chop-suey/">Lots of chop suey</a>
+  </h1>
+  <div class="post-meta"><time class="post-date">2020-07-20[Updated::2020-07-20]</time><span class="post-author">Nathanael Gentry</span><span class="post-reading-time">3 min read (436 words)</span></div>
+
+  
+    <span class="post-tags">
+      
+      #<a href="/tags/macromedia-director/">Macromedia Director</a>&nbsp;
+      
+      #<a href="/tags/google-summer-of-code-2020/">Google Summer of Code 2020</a>&nbsp;
+      
+      #<a href="/tags/scummvm/">ScummVM</a>&nbsp;
+      
+    </span>
+  
+  
+
+
+  
+
+  <div class="post-content"><div>
+        <p>Hey there!</p>
+<p>My big showcase for the week&rsquo;s work is a few scenes from the kids&rsquo; game Chop
+Suey, one of our primary Director 4 test cases:</p>
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/kGMHHfJx8AU" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+<p>Just a few weeks ago, Chop Suey ran at an almost unplayable crawl in ScummVM.
+Part of this was its reliance on Matte inks, for which I implemented a simple
+surface caching scheme and shaved about 20% off our buildbot&rsquo;s target test time
+for Spaceship Warlock. This also made Chop Suey run much faster, though it still
+consumed CPU.</p>
+<p>Last week I called Chop Suey a Lingo-heavy game, and I was referring to how much
+it controls animation via puppets and the <code>updateStage</code> command. Because, as you
+saw, its cursors are bitmaps and certainly do not fit in the standard 16x16
+Macintosh cursor box, Chop Suey introduces its own mouse update code and calls
+for the stage to be updated several dozen times each frame. Most of the
+inefficiencies were here.</p>
+<p>I spent the early part of the week in much trial-and-error, working out the
+pieces of the renderer that were most inefficient under such repeated
+application. The idea is to do a little bit of work up front &ndash; checking flags
+and so forth &ndash; so the expense of redrawing a region of the screen is saved. (As
+I have realized, even when working on Chop Suey, very subtle bugs can arise from
+forgetting to check a rendering flag.) Even at usual framerates without much
+Lingo that doesn&rsquo;t matter very much, but Lingo-heavy games like Chop Suey have
+shown dramatic improvement.</p>
+<p>I also implemented another feature that is notable in Chop Suey by its absence.
+I said that Chop Suey does its own cursor handling. Well, the window manager was
+still drawing a regular cursor atop the bitmap, which looked pretty ugly. Near
+the end of the week, though, I added a flexible cursor class for the three
+cursor types Director can use: built-in cursors, cast (bitmap) cursors, and
+resource cursors. The last type is important for Majestic: Alien Encounter, but
+I haven&rsquo;t seen custom cursors used much elsewhere. It was fun to implement,
+though. As a nice byproduct in Chop Suey, the default cursor is now properly
+turned off.</p>
+<p>Oh, and I also spent most of a day trying to discover why some textboxes in
+Spaceship Warlock weren&rsquo;t rendering properly, along with some other nettling
+MacGUI issues. The issue actually lay in the cast loading code, which I hadn&rsquo;t
+touched much, but it&rsquo;s always satisfying to squash a bug and learn more about
+the codebase in the process &ndash; even if your &ldquo;fix&rdquo; breaks other stuff. :)</p>
+
+      </div></div>
+
+  
+    
+<div class="pagination">
+  <div class="pagination__title">
+    <span class="pagination__title-h">Read other posts</span>
+    <hr />
+  </div>
+  <div class="pagination__buttons">
+    
+      <a href="/posts/gsoc-2020/below-the-surface/" class="button inline prev">
+        Below the surface
+      </a>
+    
+    
+      ::
+    
+    
+      <a href="/posts/gsoc-2020/rendering-my-progress/" class="button inline next">
+        Rendering my progress
+      </a>
+    
+  </div>
+</div>
+
+
+  
+
+  
+    
+
+<div id="disqus_thread"></div>
+<script>
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "bitdust-1" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+  
+</article>
+
+  </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <div class="copyright">
+        <span>© 2024 Powered by <a href="https://gohugo.io">Hugo</a></span>
+    
+      <span>:: <a href="https://github.com/panr/hugo-theme-terminal" target="_blank">Theme</a> made by <a href="https://github.com/panr" target="_blank">panr</a></span>
+      </div>
+  </div>
+</footer>
+
+
+
+
+
+
+<script type="text/javascript" src="/bundle.min.js"></script>
+
+
+
+
+
+  
+</div>
+
+</body>
+</html>

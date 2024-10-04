@@ -1,0 +1,668 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ScummVM on BitDust</title>
+    <link>/tags/scummvm/</link>
+    <description>Recent content in ScummVM on BitDust</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 25 Aug 2020 22:32:00 -0400</lastBuildDate><atom:link href="/tags/scummvm/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Finishing up</title>
+      <link>/posts/gsoc-2020/finishing-up/</link>
+      <pubDate>Tue, 25 Aug 2020 22:32:00 -0400</pubDate>
+      
+      <guid>/posts/gsoc-2020/finishing-up/</guid>
+      <description>Last week was the last official week in the GSoC work period. I plan to submit my final evaluation after I post this. There you will be able to see some of the highlights from my time with ScummVM this summer.
+In the past week, though, I didn&amp;rsquo;t start work on any new features. I spent a while understanding the data path location mechanism that the Mac version of Journeyman Project 2: Buried in Time used, and I ultimately discovered some buried XFCNs.</description>
+      <content>&lt;p&gt;Last week was the last official week in the GSoC work period. I plan to submit
+my final evaluation after I post this. There you will be able to see some of the
+highlights from my time with ScummVM this summer.&lt;/p&gt;
+&lt;p&gt;In the past week, though, I didn&amp;rsquo;t start work on any new features. I spent a
+while understanding the data path location mechanism that the Mac version of
+&lt;em&gt;Journeyman Project 2: Buried in Time&lt;/em&gt; used, and I ultimately discovered some
+buried XFCNs. (As @djsrv helpfully explained, XFCNs are external functions from
+(HyperCard)[https://en.wikipedia.org/wiki/HyperCard] that can often be called as
+regular Lingo.) One of these just looped through all the volume names on the
+system, looking for the proper CD name. This &lt;em&gt;Journeyman Project&lt;/em&gt; is split
+across three CDs, so some more additions will be needed.&lt;/p&gt;
+&lt;p&gt;I also fixed an obscure issue decoding the hex format strings for our Macintosh
+text implementation. Now, the main screen of &lt;em&gt;Majestic&lt;/em&gt; looks almost perfect &amp;ndash;
+with proper cursors, which I also patched to load properly &amp;ndash; and consistent
+text formatting.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/posts/gsoc-2020/finishing-up/finishing-up-1.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Additionally, I investigated and fixed several bugs with my good old friends the
+widgets. Now Chop Suey also looks very accurate, and there is no more flashing
+cursor or cut-off text boxes. Text borders are now (almost) working properly
+again, which makes the Lingo Dictionary movies more pleasant to look at.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/posts/gsoc-2020/finishing-up/finishing-up-2.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;For being the rendering guy this summer I haven&amp;rsquo;t posted nearly enough pictures,
+so I put those two here for you to enjoy. I&amp;rsquo;ve enjoyed working with ScummVM, and
+I plan to start contributing again once I get comfortable in my university
+schedule.&lt;/p&gt;
+</content>
+    </item>
+    
+    <item>
+      <title>A short week</title>
+      <link>/posts/gsoc-2020/a-short-week/</link>
+      <pubDate>Tue, 18 Aug 2020 23:25:00 -0400</pubDate>
+      
+      <guid>/posts/gsoc-2020/a-short-week/</guid>
+      <description>Last week, I finished implementing the direct-copy mode for our Macintosh window manager. Now, with the Director engine, there is no intermediate blitting onto a screen surface that is then copied to the physical screen. This restored transition speed and avoided duplicate work on every frame. Here&amp;rsquo;s the opening of Spaceship Warlock with the new interface and transitions:
+For a while I was stuck on implementing border transparency without an intermediate surface, but @sev helpfully reminded me of g_system-&amp;gt;lockScreen(), which no longer has performance issues on some systems.</description>
+      <content>&lt;p&gt;Last week, I finished implementing the direct-copy mode for our Macintosh window
+manager. Now, with the Director engine, there is no intermediate blitting onto a
+&lt;code&gt;screen&lt;/code&gt; surface that is then copied to the physical screen. This restored
+transition speed and avoided duplicate work on every frame. Here&amp;rsquo;s the opening
+of Spaceship Warlock with the new interface and transitions:&lt;/p&gt;
+
+&lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;
+  &lt;iframe src=&#34;https://www.youtube.com/embed/7S03CkwXK08&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; allowfullscreen title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+
+&lt;p&gt;For a while I was stuck on implementing border transparency without an
+intermediate surface, but @sev helpfully reminded me of
+&lt;code&gt;g_system-&amp;gt;lockScreen()&lt;/code&gt;, which no longer has performance issues on some
+systems.&lt;/p&gt;
+&lt;p&gt;I also looked at several long-standing bugs this week. As @djsrv probably noted,
+in investigating one we discovered that the &lt;code&gt;goto&lt;/code&gt; Lingo should not run the
+&lt;code&gt;exitFrame&lt;/code&gt; event. In the opening scene of &lt;em&gt;Majestic&lt;/em&gt;, the two middle bitmap
+text channels previously held the mouse-over highlighting for &amp;ldquo;Restore Old Game&amp;rdquo;
+and &amp;ldquo;Exit&amp;rdquo; in the main menu. Clicking &amp;ldquo;Start New Game&amp;rdquo; went to the correct
+place, but not before the main menu&amp;rsquo;s &lt;code&gt;exitFrame&lt;/code&gt; event disabled visibility of
+those channels again. Now, though, everything looks right:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/posts/gsoc-2020/a-short-week/a-short-week-1.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Tomorrow, it will be time to figure out why the cursor implementation I made
+doesn&amp;rsquo;t work with Majestic&amp;hellip; and also why the bitmap cursor in Chop Suey still
+has a strange flashing behaviour.&lt;/p&gt;
+</content>
+    </item>
+    
+    <item>
+      <title>On the right path</title>
+      <link>/posts/gsoc-2020/on-the-right-path/</link>
+      <pubDate>Tue, 11 Aug 2020 11:59:00 -0400</pubDate>
+      
+      <guid>/posts/gsoc-2020/on-the-right-path/</guid>
+      <description>Hey there!
+Last week, I added palette support for Director 3 movies, so several more games had their colouring issues on their opening movies resolved. Then, I spent much of Tuesday and Wednesday fixing issues with our path-loading code that prevented several of @trembyle&amp;rsquo;s testing titles from running &amp;ndash; no less than 7 when you account for Windows and Mac versions. Lingo provides several ways to interact with the filesystem. Some games asked you for a drive letter and would just loop endlessly if they would not find the file they wanted.</description>
+      <content>&lt;p&gt;Hey there!&lt;/p&gt;
+&lt;p&gt;Last week, I added palette support for Director 3 movies, so several more games
+had their colouring issues on their opening movies resolved. Then, I spent much
+of Tuesday and Wednesday fixing issues with our path-loading code that prevented
+several of @trembyle&amp;rsquo;s testing titles from running &amp;ndash; no less than 7 when you account for
+Windows and Mac versions. Lingo provides several ways to interact with the
+filesystem. Some games asked you for a drive letter and would just loop
+endlessly if they would not find the file they wanted. Others were a bit smarter
+&amp;ndash; on Windows, for instance, they would look for a hardcoded file name on all
+the drive letters and crash if there was no match.&lt;/p&gt;
+&lt;p&gt;In some cases, our file finder was not trying all the possible Director movie
+extensions on Macintosh, and others had filenames improperly converted from
+Macintosh long file names to the FAT 8.3 format. I actually just now saw that
+@trembyle notated several new titles with path/file errors, so I will probably
+look at those once I finish my current set of tasks:&lt;/p&gt;
+&lt;p&gt;Before @djsrv implemented the desktop mode, the Director transition drawing code
+was taking direct control of the screen (via &lt;code&gt;copyRectToScreen&lt;/code&gt;). In the desktop
+mode, however, this would pay no respect to window layering or positioning. So I
+am working on improving screen access through the window manager. Currently the
+WM keep a copy of the screen as a surface, but I am exploring how to avoid this
+extra copying. This can cause performance issues, even in non-desktop mode,
+since the surfaces must be copied twice &amp;ndash; from the Director sprite, onto the
+&lt;code&gt;_screen&lt;/code&gt;, and from &lt;code&gt;_screen&lt;/code&gt; onto the display device. Fixing this duplication
+will help the effort to support QuickTime video from Director movies.&lt;/p&gt;
+&lt;p&gt;In the last part of the week, I got distracted by my starting in earnest my
+first from-scratch RE of another engine. This is not for GSoC, just to satisfy
+my own curiosity. It&amp;rsquo;s the engine used by the one title in the Living Books
+series (&lt;em&gt;D. W. the Picky Eater&lt;/em&gt;) that doesn&amp;rsquo;t use Mohawk. I understand the file
+format fairly well, and so the next task is extracting resources and then
+working toward the script bytecode. See my &lt;a href=&#34;https://github.com/npjg/context&#34;&gt;repo&lt;/a&gt; for more information.&lt;/p&gt;
+&lt;p&gt;Have a great week!&lt;/p&gt;
+</content>
+    </item>
+    
+    <item>
+      <title>Fresh air</title>
+      <link>/posts/gsoc-2020/fresh-air/</link>
+      <pubDate>Mon, 03 Aug 2020 23:07:00 -0400</pubDate>
+      
+      <guid>/posts/gsoc-2020/fresh-air/</guid>
+      <description>Hello!
+This will be short, as last week was rather slow. I mostly finished shoring up all the areas where Director palettes can be tested and set &amp;ndash; in the frame palette channel, with the puppetPalette command, with the movie-wide default palette, and also with the palette of cast Lingo. As I look back at my commit log, I realize that this took me many more commits than I expected. There are still some issues that some of our new test targets, including the 1991 title The Riddle of the Maze, recently revealed.</description>
+      <content>&lt;p&gt;Hello!&lt;/p&gt;
+&lt;p&gt;This will be short, as last week was rather slow. I mostly finished shoring up
+all the areas where Director palettes can be tested and set &amp;ndash; in the frame
+palette channel, with the puppetPalette command, with the movie-wide default
+palette, and also with the &lt;code&gt;palette of cast&lt;/code&gt; Lingo. As I look back at my
+commit log, I realize that this took me many more commits than I expected. There
+are still some issues that some of our new test targets, including the 1991
+title &lt;em&gt;The Riddle of the Maze&lt;/em&gt;, recently revealed. As of this morning, though,
+this game&amp;rsquo;s elegant artwork has been restored:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/posts/gsoc-2020/fresh-air/fresh-air-1.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Apparently, before Director 4, palette castmembers were forced into the same
+order that they are stored. If you reorganize them in the cast window, they will
+actually revert to a default position on save &amp;ndash; and this position seems to be
+in the order of palette creation. Also, Director 3 Macintosh format has a
+slightly different way of storing palette channel information in the frame. (I
+have still to push the patches for titles that have this variation.)&lt;/p&gt;
+&lt;p&gt;I also finally got some of the titles that @trembyle had mentioned on the
+&lt;a href=&#34;https://wiki.scummvm.org/index.php/Director/Games&#34;&gt;Director wiki&lt;/a&gt;, including the aforementioned &lt;em&gt;Maze&lt;/em&gt;. @trembyle has done some
+immense work testing many new titles for us, and today I enjoyed investigatinCEg
+some new bugs in new titles. Playing with these new games was a nice breath of
+fresh air from the targets that we had been testing since the beginning &amp;ndash; like
+&lt;em&gt;Spaceship Warlock&lt;/em&gt; and &lt;em&gt;Chop Suey&lt;/em&gt; and &lt;em&gt;The Apartment&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;My other big task last week was working on the text selection interface. When I
+think back, I believe my first experience with Director happened when I was
+pretty young; it was a typing game that also depended heavily on text selection.
+I remember this game as Director because it crashed once and I distinctly recall
+the Director projector icon. @sev had done most of the algo work in the MacGUI
+side, but I needed to write a bit more interface and do lots of testing to
+discover what was behind a selection offset offset bug.&lt;/p&gt;
+&lt;p&gt;Once I finish up the palettes and add a few new targets that I found, I will be
+working on supporting movies that have &amp;gt;8-bit colour. If you look in the
+graphics code, there are tons of &lt;code&gt;const byte *&lt;/code&gt; declarations everywhere, so those
+will be changed out for a more general implementation. There are also bitmap
+decoding issues with greater colour depths that I need to look into. This task,
+a fairly big one, will be a nice way to round out my GSoC work on our Director
+engine.&lt;/p&gt;
+</content>
+    </item>
+    
+    <item>
+      <title>Below the surface</title>
+      <link>/posts/gsoc-2020/below-the-surface/</link>
+      <pubDate>Tue, 28 Jul 2020 00:07:00 -0400</pubDate>
+      
+      <guid>/posts/gsoc-2020/below-the-surface/</guid>
+      <description>This week, I worked on implementing a few Lingo commands that required some significant backend work, but not much in the rendering code where I have spent so much of my time. I mentioned that I had worked on a custom cursor implementation, and I spent the first part of the week fixing bugs there. Now cursor bitmaps like the starfish on the island are properly displayed at the proper position, whereas after my initial work just a black box showed.</description>
+      <content>&lt;p&gt;This week, I worked on implementing a few Lingo commands that required some
+significant backend work, but not much in the rendering code where I have spent
+so much of my time. I mentioned that I had worked on a custom cursor
+implementation, and I spent the first part of the week fixing bugs there. Now
+cursor bitmaps like the starfish on the island are properly displayed at the
+proper position, whereas after my initial work just a black box showed.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/posts/gsoc-2020/below-the-surface/below-the-surface-2.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Early in the week, I fixed a subtle rendering bug that had plagued Spaceship
+Warlock for a while. You&amp;rsquo;ve seen how the Stambulian policemen in Warlock were
+bright green; well, this was about the same as the keying colour that the MacGUI
+was using for border transparency. Once I spotted this, the fix was easy &amp;ndash; and
+also prevented a redundant surface copy. (Yay for performance improvements!)
+Here you can see how the erroneously applied transparency actually gave a nice look to an
+otherwise bland wall in Stambul:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/posts/gsoc-2020/below-the-surface/below-the-surface-3.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;I also finished the implementation of custom colour palettes. For a long while
+the opening to Chop Suey looked all psychedelic. It turns out that a recent
+refactoring swapped around the order of palette loading so ScummVM was given the
+wrong palette to use. My partial fix for this revealed that our recently-added
+target Majestic used a castmember palette, which had been loaded before &amp;ndash;
+albeit improperly. So over the weekend I expanded our Director palette manager
+to support custom palettes alongside the half-dozen default Mac ones. This also
+brought along basic support for the &lt;code&gt;puppetPalette&lt;/code&gt; command, which controls the
+palette from Lingo. Now, Chop Suey and Majestic are looking quite handsome:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/posts/gsoc-2020/below-the-surface/below-the-surface-1.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;This project came later in the week, however. I first implemented sound fading,
+which more intense than I first knew. Since multiple movies can be running at
+once, my knee-jerk blocking fade loop didn&amp;rsquo;t work out. Instead, I needed to
+integrate the sound fade with the existing score stepping methods. I&amp;rsquo;m amused
+that that this was one of my largest commits for the week. (Thankfully, though,
+transitions do seem to block in the original &amp;ndash; &lt;em&gt;that&lt;/em&gt; would be a pain to
+refactor.)&lt;/p&gt;
+&lt;p&gt;Finally, I scratched my head for a while on an issue that @sev has since begun
+looking into. An interesting Director target is Macromedia&amp;rsquo;s own guided tour,
+which takes you &amp;ldquo;behind the scenes&amp;rdquo; at their studios to introduce new features
+of Director. Our renderer implicitly assumed that bitmap sprites had the same
+dimensions as the underlying castmembers, unless the dimensions had been
+modified from Lingo. Well, our smartly-dressed friend from
+the guided tour dismissed that theory:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/posts/gsoc-2020/below-the-surface/below-the-surface-4.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;What&amp;rsquo;s on the left is the original sprite (plus arms), and on right is the
+original castmember. ScummVM draws them both the same size. I would never have
+noticed, except that the sprite for his moving mouth appears all out of place
+when he isn&amp;rsquo;t the right size. Director does indeed have an option to scale
+individual sprites in the score, and we were reading this information in for
+bitmaps&amp;hellip; but when I tried to use it there were puzzling discrepancies in the
+dimensions we expected and what the file clearly said. I still haven&amp;rsquo;t figured
+out why.&lt;/p&gt;
+&lt;p&gt;It&amp;rsquo;s been a good week over all, with interesting tasks both in and outside GSoC.
+You&amp;rsquo;ve perhaps seen on my bio that I like playing music. One of my friends
+recruited me to play piano for her upcoming violin competition, so when I need a
+break from coding I spend a few hours with the interesting sonorities of the
+great American composer Samuel Barber. And, at university on the weekends, I am
+working on using machine learning to control dielectric elastomers &amp;ndash; smart
+materials that show much promise for soft robotics.&lt;/p&gt;
+</content>
+    </item>
+    
+    <item>
+      <title>Lots of chop suey</title>
+      <link>/posts/gsoc-2020/lots-of-chop-suey/</link>
+      <pubDate>Mon, 20 Jul 2020 22:54:38 -0400</pubDate>
+      
+      <guid>/posts/gsoc-2020/lots-of-chop-suey/</guid>
+      <description>Hey there!
+My big showcase for the week&amp;rsquo;s work is a few scenes from the kids&amp;rsquo; game Chop Suey, one of our primary Director 4 test cases:
+Just a few weeks ago, Chop Suey ran at an almost unplayable crawl in ScummVM. Part of this was its reliance on Matte inks, for which I implemented a simple surface caching scheme and shaved about 20% off our buildbot&amp;rsquo;s target test time for Spaceship Warlock.</description>
+      <content>&lt;p&gt;Hey there!&lt;/p&gt;
+&lt;p&gt;My big showcase for the week&amp;rsquo;s work is a few scenes from the kids&amp;rsquo; game Chop
+Suey, one of our primary Director 4 test cases:&lt;/p&gt;
+
+&lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;
+  &lt;iframe src=&#34;https://www.youtube.com/embed/kGMHHfJx8AU&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; allowfullscreen title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Just a few weeks ago, Chop Suey ran at an almost unplayable crawl in ScummVM.
+Part of this was its reliance on Matte inks, for which I implemented a simple
+surface caching scheme and shaved about 20% off our buildbot&amp;rsquo;s target test time
+for Spaceship Warlock. This also made Chop Suey run much faster, though it still
+consumed CPU.&lt;/p&gt;
+&lt;p&gt;Last week I called Chop Suey a Lingo-heavy game, and I was referring to how much
+it controls animation via puppets and the &lt;code&gt;updateStage&lt;/code&gt; command. Because, as you
+saw, its cursors are bitmaps and certainly do not fit in the standard 16x16
+Macintosh cursor box, Chop Suey introduces its own mouse update code and calls
+for the stage to be updated several dozen times each frame. Most of the
+inefficiencies were here.&lt;/p&gt;
+&lt;p&gt;I spent the early part of the week in much trial-and-error, working out the
+pieces of the renderer that were most inefficient under such repeated
+application. The idea is to do a little bit of work up front &amp;ndash; checking flags
+and so forth &amp;ndash; so the expense of redrawing a region of the screen is saved. (As
+I have realized, even when working on Chop Suey, very subtle bugs can arise from
+forgetting to check a rendering flag.) Even at usual framerates without much
+Lingo that doesn&amp;rsquo;t matter very much, but Lingo-heavy games like Chop Suey have
+shown dramatic improvement.&lt;/p&gt;
+&lt;p&gt;I also implemented another feature that is notable in Chop Suey by its absence.
+I said that Chop Suey does its own cursor handling. Well, the window manager was
+still drawing a regular cursor atop the bitmap, which looked pretty ugly. Near
+the end of the week, though, I added a flexible cursor class for the three
+cursor types Director can use: built-in cursors, cast (bitmap) cursors, and
+resource cursors. The last type is important for Majestic: Alien Encounter, but
+I haven&amp;rsquo;t seen custom cursors used much elsewhere. It was fun to implement,
+though. As a nice byproduct in Chop Suey, the default cursor is now properly
+turned off.&lt;/p&gt;
+&lt;p&gt;Oh, and I also spent most of a day trying to discover why some textboxes in
+Spaceship Warlock weren&amp;rsquo;t rendering properly, along with some other nettling
+MacGUI issues. The issue actually lay in the cast loading code, which I hadn&amp;rsquo;t
+touched much, but it&amp;rsquo;s always satisfying to squash a bug and learn more about
+the codebase in the process &amp;ndash; even if your &amp;ldquo;fix&amp;rdquo; breaks other stuff. :)&lt;/p&gt;
+</content>
+    </item>
+    
+    <item>
+      <title>Rendering my progress</title>
+      <link>/posts/gsoc-2020/rendering-my-progress/</link>
+      <pubDate>Mon, 13 Jul 2020 19:56:00 -0400</pubDate>
+      
+      <guid>/posts/gsoc-2020/rendering-my-progress/</guid>
+      <description>Hey there!
+After last week&amp;rsquo;s post, I nearly finished with the last major piece of the ink types &amp;ndash; applying foreground and background colours on the fly. We had some idea of when this colour-application process took effect, but deducing the rules and working out the patterns took a while. I have gained a new appreciation for the power of bitwise operations through this process. My next step will be extending all this logic to other colour depths, but I probably won&amp;rsquo;t get to that this week.</description>
+      <content>&lt;p&gt;Hey there!&lt;/p&gt;
+&lt;p&gt;After last week&amp;rsquo;s post, I nearly finished with the last major piece of the ink
+types &amp;ndash; applying foreground and background colours on the fly. We had some idea
+of when this colour-application process took effect, but deducing the rules and
+working out the patterns took a while. I have gained a new appreciation for the
+power of bitwise operations through this process. My next step will be extending
+all this logic to other colour depths, but I probably won&amp;rsquo;t get to that this
+week.&lt;/p&gt;
+&lt;p&gt;It&amp;rsquo;s getting late now and I can&amp;rsquo;t find the test movie I had made to demonstrate
+this work. I&amp;rsquo;ll look at it tomorrow and post a video demonstration of my work
+then.&lt;/p&gt;
+&lt;p&gt;There is still some optimization that must be done, including eliminating my
+reliance upon the window manager&amp;rsquo;s slow colour finder and implementing some sort
+of colour caching. (The inked operations are often not applied directly to the
+colour value; it must first be split into its components and then recombined in
+the palette space.)&lt;/p&gt;
+&lt;p&gt;I also performed some fine-tuning on the data structures used for rendering, to
+ensure that our pixel-based callback is quite fast. Lots more refactoring went
+into that. Finally, last week I implemented some obscure features, like the
+constraint and stretch of sprite. The latter allows a sprite to be arbitrary
+scaled to another bounding box, and implementing that feature largely finished
+my goal of having self-contained blitting routines for our engine.&lt;/p&gt;
+&lt;p&gt;Many of the tasks currently in my Trello channel are concerns with MacGUI
+elements that don&amp;rsquo;t impact most real games. These bugs will still take some
+work, but as I am working on those I also want to get the graphics in Chop Suey
+(and other Lingo-heavy titles) running smoothly and efficiently. Today I chased
+bugs and inefficiencies in the rendering pipeline. This is a hefty task, as Chop
+Suey often uses about 70-75% of my system&amp;rsquo;s CPU when it is running in ScummVM. With the
+discoveries I made today, however, taking the slack out of the renderer should
+be eminently doable.&lt;/p&gt;
+</content>
+    </item>
+    
+    <item>
+      <title>That was fast!</title>
+      <link>/posts/gsoc-2020/that-was-fast/</link>
+      <pubDate>Mon, 06 Jul 2020 19:56:00 -0400</pubDate>
+      
+      <guid>/posts/gsoc-2020/that-was-fast/</guid>
+      <description>Another week has gone by quite quickly. After taking some time off for Independence Day here in the US, I can&amp;rsquo;t believe that another Monday has passed. Last week I talked about a major update to our renderer, and I finished that pretty early last week. There was some major refactoring involved, but my work &amp;ndash; splitting out our renderer into a Stage class and moving to traditional dirty-rects handling &amp;ndash; worked well with some of the major refactoring that djsrv had been wanting to do for a while.</description>
+      <content>&lt;p&gt;Another week has gone by quite quickly. After taking some time off for
+Independence Day here in the US, I can&amp;rsquo;t believe that another Monday has passed.
+Last week I talked about a major update to our renderer, and I finished that
+pretty early last week. There was some major refactoring involved, but my work
+&amp;ndash; splitting out our renderer into a Stage class and moving to traditional
+dirty-rects handling &amp;ndash; worked well with some of the major refactoring that
+djsrv had been wanting to do for a while. Going into this week, our engine&amp;rsquo;s
+code is far more modular (thanks primarily to djsrv), and the graphics are
+looking good. All this we showed off to John Henry Thompson last Thursday.&lt;/p&gt;
+&lt;p&gt;First, I finished implementing the puppetTransition command, which allows you to
+call transitions from Lingo. As part of this, I reworked the transitions
+pipeline to support only drawing a transition on the changed area of the screen.
+This took a lot more work (and many paper sketches) more than I was expecting,
+as some of the transition algorithms had interesting behaviour when I tried to
+clip them.&lt;/p&gt;
+&lt;p&gt;I also did some more work on the ink types, including making an efficient
+interface for the ink types that use implicit mattes or masks. Over the weekend
+I worked on what was for a long time a big irritation of mine &amp;ndash; sprites with
+scripts did not highlight (or, in Director parlance, hilite) on click. When I
+tried to work on this before, I found that simply testing for a script on the
+sprite was far too broad; there were many erroneous inversions. It turns out
+that for bitmaps there was a special flag, and for shapes (as far as I could
+discern) only one ink type where this effect showed. I hadn&amp;rsquo;t looked much at the
+Director file format before, but I found where that flag was and also uncovered
+some other unknown fields in bitmap casts (primarily palette information).
+Working there led me to some nice condensing of our sprite code, which I pushed
+this morning. That&amp;rsquo;s one more step to making The Apartment realistic!&lt;/p&gt;
+&lt;p&gt;Overall, though, last week felt like mostly under-the-hood changes and small
+optimizations to individual movies. Right now I&amp;rsquo;m working on the graphics code
+for efficiently setting the foreground and background colour of puppeted bitmap
+sprites, and rendering this on-the-fly.&lt;/p&gt;
+</content>
+    </item>
+    
+    <item>
+      <title>A third of the way done!</title>
+      <link>/posts/gsoc-2020/third-way-done/</link>
+      <pubDate>Mon, 29 Jun 2020 19:10:00 -0400</pubDate>
+      
+      <guid>/posts/gsoc-2020/third-way-done/</guid>
+      <description>Hello again!
+This week wrapped up the fourth week of coding, which means that there are about 8 weeks left until GSoC finishes and it&amp;rsquo;s time for me to go back to school. This week, I spent the early part of the week fixing up our rendering pipeline. It is fun to work on, since it&amp;rsquo;s so fundamental to the engine, but many bugs are quite difficult to track down. A big part of this was more closely integrating Director&amp;rsquo;s internal state memory, now kept in the Channel class that I wrote, with the &amp;ldquo;widgets&amp;rdquo; that the window manager knows about.</description>
+      <content>&lt;p&gt;Hello again!&lt;/p&gt;
+&lt;p&gt;This week wrapped up the fourth week of coding, which means that there are about
+8 weeks left until GSoC finishes and it&amp;rsquo;s time for me to go back to school. This
+week, I spent the early part of the week fixing up our rendering pipeline. It is
+fun to work on, since it&amp;rsquo;s so fundamental to the engine, but many bugs are quite
+difficult to track down. A big part of this was more closely integrating
+Director&amp;rsquo;s internal state memory, now kept in the Channel class that I wrote,
+with the &amp;ldquo;widgets&amp;rdquo; that the window manager knows about. A tight interface with
+the window manager will become essential quite soon, when we implement MIAWs
+(movies in a window).&lt;/p&gt;
+&lt;p&gt;When I got tired of tracking down obscure artifacts and bugs near the middle of
+the week, I revamped the interface that we use to draw Director transitions.
+There are about 50 different transition types, which sev had implemented before,
+but rather than having to keep a copy of the old frame and then draw the new
+frame back over it &amp;ndash; as we had to do before &amp;ndash; I put in a more natural approach
+of rendering the next frame over the current one, in accordance with the
+transition. This cut out some unnecessary surface blitting that was happening
+every frame. Working with the transitions took way longer than I expected, and
+I&amp;rsquo;m still not quite sure why.&lt;/p&gt;
+&lt;p&gt;I also spent some time reviewing our Trello board and picking out easy tasks for
+a break or marking complete those reports of broken movies, etc. that some side
+effect had fixed along the way. A nice 5-minute fix was enabling our text
+renderer to use different colours in each chunk (font run). Now, Warlock is
+looking even more realistic, and just that little bit of white text helps so
+much.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/posts/gsoc-2020/third-way-done/third-way-done-1.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;I hear that later this week sev, djsrv, and I will do a catch-up meeting with
+John Henry Thompson, the inventor of Lingo. In this meeting I plan to show off
+some of the work I have done with Director&amp;rsquo;s ink types. That was the other major
+project I worked on last week. The inks are all the different ways that Director
+can draw and composit sprites on the screen. They range from a simple copy of
+the whole bounding rectangle area to mattes to an inversion and composition with
+what&amp;rsquo;s underneath. Many of them have poorly documented behaviour, at least in
+edge cases, and when transforming colours the depth must always be kept in mind.
+Director itself had different render loops depending upon the colour depth. I
+don&amp;rsquo;t think we will quite need that, but the bitwise operations I put in will
+require much more testing and fine-tuning across the spectrum. I&amp;rsquo;ll be working
+on this more in the next few days. Here&amp;rsquo;s a little demo of the ink types in
+action. There are still some bugs in here.&lt;/p&gt;
+
+&lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;
+  &lt;iframe src=&#34;https://www.youtube.com/embed/xqIcTcYKWd0&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; allowfullscreen title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+
+&lt;p&gt;I&amp;rsquo;d better get back to work now, because I am preparing another update to the
+renderer that should deal with many of the issues that have lurked in the
+background in the last few weeks. Stay tuned for some news on that!&lt;/p&gt;
+</content>
+    </item>
+    
+    <item>
+      <title>Making progress</title>
+      <link>/posts/gsoc-2020/making-progress/</link>
+      <pubDate>Mon, 22 Jun 2020 16:03:00 -0400</pubDate>
+      
+      <guid>/posts/gsoc-2020/making-progress/</guid>
+      <description>Hey guys!
+I started off last week attempting to get the infamous zoomBox working with the new rendering pipeline I wrote for our Director engine. A zoomBox effect is the classic window movement animation in classic Mac OS: When you open or close a window, you see many spectral rectangles in between the window&amp;rsquo;s origin and destination. Even though I haven&amp;rsquo;t seen any games actually use it, this function was the first motivation I was given reworking the rendering pipeline.</description>
+      <content>&lt;p&gt;Hey guys!&lt;/p&gt;
+&lt;p&gt;I started off last week attempting to get the infamous &lt;code&gt;zoomBox&lt;/code&gt; working with the
+new rendering pipeline I wrote for our Director engine. A zoomBox effect is the
+classic window movement animation in classic Mac OS: When you open or close a
+window, you see many spectral rectangles in between the window&amp;rsquo;s origin and
+destination. Even though I haven&amp;rsquo;t seen any games actually use it, this function
+was the first motivation I was given reworking the rendering pipeline. Before,
+we could not look ahead into the next frame to get the dimensions of a sprite.&lt;/p&gt;
+&lt;p&gt;Moreover, before, we had to cache a copy of the screen so it could be restored
+after the animation was finished. I used the same trick that it seemed Mac OS
+used with many interface elements, though. As the animation was drawn, the
+pixels of the rectangle were inverted, and then on a second pass they were
+inverted back. Just like matrices, invertible animations are quite nice.&lt;/p&gt;
+&lt;p&gt;I also modified much of my code from the previous weeks to get a major part of
+our benchmark kit, Macromedia&amp;rsquo;s own The Apartment, working properly. Normally,
+when a sprite is puppeted, its position is not updated from the score. So
+animated puppeted sprites are impossible, which made my job a bit easier. There is
+another case, however, that required a major rework of the rendering code I had
+already written. I didn&amp;rsquo;t realize that with a sprite simply declared moveable,
+rather than a full puppet, it can be animated. Thus, we could no longer store
+the current point in each sprite as it flew by over the playback head &amp;ndash; that
+would give us very strange jitters. Instead, location information needed to be
+consistent across frames. So, another level of abstraction was needed, a
+&lt;code&gt;Channel&lt;/code&gt; class that would keep track of this intraframe information.&lt;/p&gt;
+&lt;p&gt;It feels strange to summarize into a single sentence a task that took me several
+hours to complete. But, I suppose this is the very nature of software
+engineering. Over the past weeks, I have learned very much about being patient
+with myself and taking breaks when I need to. I&amp;rsquo;m going to try to be a bit
+better about working for a long time on the weekends, even though I find it very
+enjoyable.&lt;/p&gt;
+&lt;p&gt;On Wednesday, I think it was, djsrv fixed a Lingo issue and I fixed several
+rendering\widget issues that allowed me to get more than a quarter of the way
+into Warlock &amp;ndash; and even then, it was my choice to stop and not a misplaced null
+pointer&amp;rsquo;s. :) This is an exciting progress milestone for us. Ah, the beautiful
+Belshazzar!&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/posts/gsoc-2020/making-progress/making-progress-2.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;On Friday, I didn&amp;rsquo;t commit much because I got distracted by an engine I had
+mentioned briefly before, the Media Station engine. Many of the Disney Animated
+Storybook CD-ROMs were developed with this engine, as well as one of the few
+Living Books titles that didn&amp;rsquo;t use Mohawk. Strangerke warned me a few weeks ago
+that the executable was very complicated, but I found some success using
+moralrecordings&amp;rsquo; &lt;a href=&#34;https://github.com/moralrecordings/mrcrowbar&#34;&gt;Mr. Crowbar&lt;/a&gt; to peer inside the assets. They seemed like easy
+RIFF, but nearly all the chunks seem to be named some variation of &amp;ldquo;igod&amp;rdquo; and
+there&amp;rsquo;s some extra structure hidden inside the chunks. Bitmap and waveform data
+is clearly visible, though, so there&amp;rsquo;s probably not far to go to understand the
+format. After GSoC is over, I would hope stay on and keep working with this
+engine &amp;ndash; plus Director, of course.&lt;/p&gt;
+&lt;p&gt;Anyway, I&amp;rsquo;d better get back to Director. I&amp;rsquo;m now working on getting all of the
+inks (blitting modes) playing nicely together. Graphics programming has proven
+pretty neat, even if it often goes slowly.&lt;/p&gt;
+</content>
+    </item>
+    
+    <item>
+      <title>A busy week</title>
+      <link>/posts/gsoc-2020/busy-week/</link>
+      <pubDate>Mon, 15 Jun 2020 06:58:00 -0400</pubDate>
+      
+      <guid>/posts/gsoc-2020/busy-week/</guid>
+      <description>Last week, I finished up the tasks that had dragged me down, and then I moved on to sundry other topics. Now our Director engine renders The Apartment, a demo movie that MacroMind and later Macromedia developed for the early Directors, in greater fidelity. One of the issues that took a while to figure out was that, in the Director 3 version of The Apartment, GUI buttons had a special type that were not stored in the usual place.</description>
+      <content>&lt;p&gt;Last week, I finished up the tasks that had dragged me down, and then I moved on
+to sundry other topics. Now our Director engine renders The Apartment, a demo
+movie that MacroMind and later Macromedia developed for the early Directors, in
+greater fidelity. One of the issues that took a while to figure out was that, in
+the Director 3 version of The Apartment, GUI buttons had a special type that
+were not stored in the usual place. To our engine, they just looked like regular
+texts, but they were not. I also realized how tedious it is to fiddle with a few
+magic numbers until the GUI elements came out looking right. I still need to get QuickDraw
+shapes fully transported over to widget-based rendering, which I plan to do
+later this week.&lt;/p&gt;
+&lt;p&gt;After my PR was merged, sev granted me write access to the repository, so I
+could commit fixes on-the-fly. This was very helpful because, &lt;a href=&#34;https://github.com/scummvm/scummvm/commits?author=npjg&#34;&gt;as you can see&lt;/a&gt;, I
+have fixed many little bugs in my code since then. Over the latter half of last
+week, I grew well acquainted with the technical methods in the Mac
+text-rendering class that sev wrote, and I did some major refactoring to merge
+the two editable- and non-editable variants. Then, with this, I began
+implementing some Lingo entities that permit some Director-based customization
+of text fields. Some of this, such as changing fonts and line widths and such as
+a movie plays, I have not yet pushed.&lt;/p&gt;
+&lt;p&gt;An issue that I spent several hours investigating last week involved text
+background colours in Spaceship Warlock. Ultimately, with sev&amp;rsquo;s help, it turned
+out that our loading code was not reading the palette information for text cast
+members correctly. Thus, the hack had been to give all texts the background
+colour of the whole Director stage. This worked well &lt;em&gt;sometimes&lt;/em&gt; &amp;ndash; but
+sometimes individual movies in Warlock had a white stage covered by the black
+rectangles, and sometimes they had a black stage. So, I confronted strange
+inconsistencies like this:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/posts/gsoc-2020/busy-week/a-busy-week-1.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Once we got to the root of the issue, texts rendered correctly, no matter the
+underlying stage colour:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/posts/gsoc-2020/busy-week/a-busy-week-2.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;(I was confronted by those cops so many times one day, I had a dream about them.)&lt;/p&gt;
+&lt;p&gt;Tracking down strange rendering bugs like these has been the majority of my work
+over the past few days, and I will get back to it again today in tracking down
+some long-standing issues in The Apartment. Debugging is often frustrating,
+especially when I judge myself for going too slowly, but it is quite pleasant to
+see my fix for an issue pushed &amp;ndash; and often the solution was far away from where
+I thought it would be. Well, I&amp;rsquo;d better get to it for this week.&lt;/p&gt;
+</content>
+    </item>
+    
+    <item>
+      <title>In the widget weeds</title>
+      <link>/posts/gsoc-2020/widget-weeds/widget-weeds/</link>
+      <pubDate>Mon, 08 Jun 2020 07:52:00 -0400</pubDate>
+      
+      <guid>/posts/gsoc-2020/widget-weeds/widget-weeds/</guid>
+      <description>Last time, I promised I would give an update on QuickDraw and the Macintosh GUI emulator. This second major part of reworking the rendering pipeline, which i thought I could finish in the first week of coding, has taken more time and gone deeper than I expected. When I am coding I am well aware of wasting time in shaving the yak. I mentioned in our Discord the other day that I might have experienced mission creep.</description>
+      <content>&lt;p&gt;Last time, I promised I would give an update on QuickDraw and the Macintosh GUI
+emulator. This second major part of reworking the rendering pipeline, which i
+thought I could finish in the first week of coding, has taken more time and gone
+deeper than I expected. When I am coding I am well aware of wasting time in
+&lt;a href=&#34;https://en.wiktionary.org/wiki/yak%5Fshaving&#34;&gt;shaving the yak&lt;/a&gt;. I mentioned in our Discord the other day that I might have
+experienced mission creep. Let me explain.&lt;/p&gt;
+&lt;p&gt;MY initial goal was to move over Director&amp;rsquo;s text rendering to the &lt;a href=&#34;https://github.com/scummvm/scummvm/blob/master/graphics/macgui/maceditabletext.cpp&#34;&gt;enhanced Mac
+text class&lt;/a&gt; that sev wrote for us earlier this year. I spent the early part of
+that week implementing the different kinds of text properties that Director
+permits putting on text &amp;ndash; straightforward effects like shadows, framing, and
+proper text alignment. (I now realize what complex work goes into graphics
+management for even a simple text editor.) Then, I created a new class (widget)
+specifically for buttons and did the similar work for the classic Mac&amp;rsquo;s three
+button styles. This took me to about Wednesday last week, and this part of my
+work went fairly quickly. I even got several movies mostly working, including
+the &lt;code&gt;stageColor&lt;/code&gt; movie (a simple one that flashed the emulator background color
+very quickly &amp;ndash; I won&amp;rsquo;t show it because I myself am photosensitive). This showed
+off saveral pieces of the work I had done: Drawing text with transparency and
+extra features, as well as reading button states properly.&lt;/p&gt;
+&lt;p&gt;I then realized that in order for the window manager to process widget events in
+the proper order, it needed to have some concept of priority &amp;ndash; a mirror of
+channels in Director. So then, I thought, we have only four major visual cast
+types in our Director engine: text, buttons, shapes, and bitmaps. Why not have
+all those be known to the window manager as widgets? This would accomplish
+another of the refactoring tasks I had been given, reducing the bloat of the
+Stage class by moving drawing methods away from there.&lt;/p&gt;
+&lt;p&gt;Then, I got rather bogged down later in the week in understanding the minutiae
+of the window manager, and I realized that much of the outward-facing code
+in our Director events manager could be handled better in the MacGUI manager
+instead; this was added to my list of items to finish. (You see what I mean
+about shaving yaks.) There were a few other version-specific irritations that I
+also tried to figure out; this took me into the weekend.&lt;/p&gt;
+&lt;p&gt;I soon had a lot of deeply connected tasks that seemed rather overwhelming as
+the first week ended; I realized that I had expanded the range of my next PR far
+beyond where I initially started. Until the weekend, I thought I was making good
+time. After I did not do much over the weekend to catch up with mechatronics
+research lab at where I work at university, I realized that trying to change
+everything at once is an excellent way to get behind. I do not want this to
+happen, so I talked to sev yesterday to help get me back on track.&lt;/p&gt;
+&lt;p&gt;I will post some screenshots later this week, once my improvements are complete
+enough to merge at least some of them. I believe our prime test move, The
+Apartment, will soon yield some good results in previously broken movies. I have
+known for a while my tendency toward over-engineering and trying to &amp;ldquo;go solo,&amp;rdquo;
+so confronting such mission creep in the very first week of coding was quite
+helpful for me.&lt;/p&gt;
+&lt;p&gt;Don&amp;rsquo;t worry, you&amp;rsquo;ll hear from me again soon!&lt;/p&gt;
+</content>
+    </item>
+    
+    <item>
+      <title>Settling the score</title>
+      <link>/posts/gsoc-2020/settling-the-score/</link>
+      <pubDate>Mon, 01 Jun 2020 21:10:00 -0400</pubDate>
+      
+      <guid>/posts/gsoc-2020/settling-the-score/</guid>
+      <description>Google Summer of Code 2020 officially started today, although throughout May I worked regularly on the Macromedia Director engine&amp;rsquo;s rendering pipeline. In the middle of May I replaced the long-standing frame-based renderer &amp;ndash; which redrew the entire screen every frame &amp;ndash; with a channel-based approach. This first part of the project brought me in touch with most of the other ScummVM Director devs, which was a nice touch for GSoC&amp;rsquo;s Community Bonding Period.</description>
+      <content>&lt;p&gt;Google Summer of Code 2020 officially started today, although throughout May I
+worked regularly on the Macromedia Director engine&amp;rsquo;s rendering pipeline. In the
+middle of May I replaced the long-standing frame-based renderer &amp;ndash; which redrew
+the entire screen every frame &amp;ndash; with a channel-based approach. This first part
+of the project brought me in touch with most of the other ScummVM Director devs,
+which was a nice touch for GSoC&amp;rsquo;s Community Bonding Period.&lt;/p&gt;
+&lt;p&gt;Modern operating systems use a desktop metaphor, with folders and notepads and
+option drawers. Director uses a cinematic metaphor, which works like this: Each
+movie has some cast members (shapes, bitmaps, text, etc.) which can be
+instantiated as sprites to appear on the stage (user viewing area). Each sprite
+inhabits a channel in the score. Rather confusingly, in fact, the terms &lt;em&gt;sprite&lt;/em&gt;
+and &lt;em&gt;channel&lt;/em&gt; are almost used interchangeably. One channel can display many
+different cast members throughout a movie. As you can see, this jargon (I dare
+not say lingo) departs from the usual understanding of &lt;em&gt;sprite&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;Just as its musical connotation implies, the
+score compactly describes the activity of each sprite and provides ready
+access to Lingo scripts and other customizations.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/posts/gsoc-2020/settling-the-score/settling-the-score-1.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;As you might imagine from this screenshot of a Director 4 (1994) score, scores can be
+viewed as large matrices indexed by frames on the vertical and channels on the
+horizontal. Each entry (cell) of this matrix thus describes one item on
+stage at one point in time. On each frame, Director draws the sprites in
+ascending channel order.&lt;/p&gt;
+&lt;p&gt;At first, I naively thought that like Photoshop I could just toggle &amp;ldquo;layers&amp;rdquo;
+and be on my way. I quickly discovered, however, that in Director this
+convenience was exactly the functionality that we lacked. The score needed keep
+track of exactly what sprites were on stage at any given moment. It would no
+longer be enough to blindly draw whatever the current frame said its sprites
+were. Our engine needed to think more horizontally, rather than vertically.&lt;/p&gt;
+&lt;p&gt;After creating numerous test movies to understand Director&amp;rsquo;s rendering rules, I
+devised a simple mask-based approach. I took stock of all the dirty areas of the
+screen and just iterated over the channels to redraw the parts of sprites that
+intersected there. Nothing could be simpler, but it took me quite a while to
+understand all the eccentricities of the code and complete the refactoring
+required to get the engine alive again.&lt;/p&gt;
+&lt;p&gt;My approach gives fairly complete consistency with the original. Many difficult
+commands, like &lt;code&gt;zoomBox&lt;/code&gt;, can now work properly. Moreover, my work enabled
+puppeted sprites &amp;ndash; sprites controlled by Lingo, and not by the instructions in
+the score &amp;ndash; to work properly. If a sprite is puppeted, its channel in the score
+is simply not updated with sprites from new frames. The same sprite stays on
+stage until its puppet is disabled. This was not possible when every frame
+brought a new set of sprites to draw. But it was trivial when the
+score kept track of channels and sprites and chose when to update and redraw them.&lt;/p&gt;
+&lt;p&gt;My changes did not enhance much visually &amp;ndash; in fact, there was a regression that
+drew hideous white boxes instead of transparent hotspots. However,
+this morning I got to the bottom of those issues, and now Captain Hammer looks
+as fearsome as ever.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/posts/gsoc-2020/settling-the-score/settling-the-score-2.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Stay tuned for my adventures with QuickDraw and our Macintosh GUI emulator!&lt;/p&gt;
+</content>
+    </item>
+    
+    <item>
+      <title>Macromedia mysteries</title>
+      <link>/posts/gsoc-2020/macromedia-mysteries/</link>
+      <pubDate>Sun, 10 May 2020 21:10:00 -0400</pubDate>
+      
+      <guid>/posts/gsoc-2020/macromedia-mysteries/</guid>
+      <description>This summer, I will be helping bring the Macromedia Director engine to maturity as my project for Google Summer of Code 2020. Tonight I found myself quite deep in a major rewrite of the core rendering pipeline, and when I got tired of that I decided to finally learn how to use Hugo. That&amp;rsquo;s why you are reading this now.</description>
+      <content>&lt;p&gt;This summer, I will be helping bring the Macromedia Director engine to maturity
+as my project for Google Summer of Code 2020. Tonight I found myself quite deep
+in a major rewrite of the core rendering pipeline, and when I got tired of that
+I decided to finally learn how to use Hugo. That&amp;rsquo;s why you are reading this now.&lt;/p&gt;
+</content>
+    </item>
+    
+  </channel>
+</rss>

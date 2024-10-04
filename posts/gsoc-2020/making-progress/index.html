@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <title>Making progress :: BitDust</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Hey guys!
+I started off last week attempting to get the infamous zoomBox working with the new rendering pipeline I wrote for our Director engine. A zoomBox effect is the classic window movement animation in classic Mac OS: When you open or close a window, you see many spectral rectangles in between the window&amp;rsquo;s origin and destination. Even though I haven&amp;rsquo;t seen any games actually use it, this function was the first motivation I was given reworking the rendering pipeline." />
+<meta name="keywords" content="" />
+
+  <meta name="robots" content="noodp" />
+
+<link rel="canonical" href="/posts/gsoc-2020/making-progress/" />
+
+
+
+
+
+  
+  <link rel="stylesheet" href="/css/buttons.min.2bc533403a27dfe0e93105a92502b42ce4587e2e4a87d9f7d349e51e16e09478.css">
+
+  
+  <link rel="stylesheet" href="/css/code.min.00125962708925857e7b66dbc58391d55be1191a3d0ce2034de8c9cd2c481c36.css">
+
+  
+  <link rel="stylesheet" href="/css/fonts.min.90c955c31dd7c0e05aae3d4f583d4d8a2af799d69c961337eaf2a825063a55dd.css">
+
+  
+  <link rel="stylesheet" href="/css/footer.min.2e3eb191baee58dd05a9f0104ac1fab0827bca7c64dafe0b2579f934c33a1d69.css">
+
+  
+  <link rel="stylesheet" href="/css/gist.min.a751e8b0abe1ba8bc53ced52a38b19d8950fe78ca29454ea8c2595cf26aad5c0.css">
+
+  
+  <link rel="stylesheet" href="/css/header.min.b6fb4423cf82a9f9d7abc9cd010223fa3d70a6526a3f28f8e17d814c06e18f9e.css">
+
+  
+  <link rel="stylesheet" href="/css/main.min.1d8be2dd1b5de9fdaed058c8c59fcf4485f36619574abfb47ed0cfda4812c16d.css">
+
+  
+  <link rel="stylesheet" href="/css/menu.min.83637a90d903026bc280d3f82f96ceb06c5fc72b7c1a8d686afb5bbf818a29f7.css">
+
+  
+  <link rel="stylesheet" href="/css/pagination.min.82f6400eae7c7c6dc3c866733c2ec0579e4089608fea69400ff85b3880aa0d3c.css">
+
+  
+  <link rel="stylesheet" href="/css/post.min.fc74ca360273c1d828da3c02b8174eba435607b369d98418ccc6f2243cd4e75d.css">
+
+  
+  <link rel="stylesheet" href="/css/prism.min.9023bbc24533d09e97a51a0a42a5a7bfe4c591ae167c5551fb1d2191d11977c0.css">
+
+  
+  <link rel="stylesheet" href="/css/syntax.min.cc789ed9377260d7949ea4c18781fc58959a89287210fe4edbff44ebfc1511b6.css">
+
+  
+  <link rel="stylesheet" href="/css/terminal.min.5f8d3abeb8d98606857840dd0698f3c9fd8ba2e4f84ede3e24ee66f68d74ccba.css">
+
+  
+  <link rel="stylesheet" href="/css/terms.min.b81791663c3790e738e571cdbf802312390d30e4b1d8dc9d814a5b5454d0ac11.css">
+
+
+<link rel="stylesheet" href="/terminal.css">
+
+
+
+
+<link rel="shortcut icon" href="/favicon.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+
+<meta name="twitter:card" content="summary" />
+
+  
+    <meta name="twitter:site" content="" />
+  
+    <meta name="twitter:creator" content="Nathanael Gentry" />
+
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Making progress">
+<meta property="og:description" content="Hey guys!
+I started off last week attempting to get the infamous zoomBox working with the new rendering pipeline I wrote for our Director engine. A zoomBox effect is the classic window movement animation in classic Mac OS: When you open or close a window, you see many spectral rectangles in between the window&amp;rsquo;s origin and destination. Even though I haven&amp;rsquo;t seen any games actually use it, this function was the first motivation I was given reworking the rendering pipeline." />
+<meta property="og:url" content="/posts/gsoc-2020/making-progress/" />
+<meta property="og:site_name" content="BitDust" />
+
+  <meta property="og:image" content="/og-image.png">
+
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+
+
+  <meta property="article:published_time" content="2020-06-22 16:03:00 -0400 EDT" />
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+<body>
+
+
+<div class="container full">
+
+  <header class="header">
+  <div class="header__inner">
+    <div class="header__logo">
+      <a href="/">
+  <div class="logo">
+    BitDust
+  </div>
+</a>
+
+    </div>
+    
+      <ul class="menu menu--mobile">
+  <li class="menu__trigger">Menu&nbsp;▾</li>
+  <li>
+    <ul class="menu__dropdown">
+      
+        
+          <li><a href="/about">About</a></li>
+        
+      
+        
+          <li><a href="https://www.youtube.com/@nathanaelgentrymusic">Music</a></li>
+        
+      
+        
+          <li><a href="/posts">Posts</a></li>
+        
+      
+        
+          <li><a href="https://www.youtube.com/@retrobitdust">YouTube</a></li>
+        
+      
+      
+    </ul>
+  </li>
+</ul>
+
+    
+    
+  </div>
+  
+    <nav class="navigation-menu">
+  <ul class="navigation-menu__inner menu--desktop">
+    
+      
+        
+          <li><a href="/about" >About</a></li>
+        
+      
+        
+          <li><a href="https://www.youtube.com/@nathanaelgentrymusic" >Music</a></li>
+        
+      
+        
+          <li><a href="/posts" >Posts</a></li>
+        
+      
+        
+          <li><a href="https://www.youtube.com/@retrobitdust" >YouTube</a></li>
+        
+      
+      
+    
+  </ul>
+</nav>
+
+  
+</header>
+
+
+  <div class="content">
+    
+<article class="post">
+  <h1 class="post-title">
+    <a href="/posts/gsoc-2020/making-progress/">Making progress</a>
+  </h1>
+  <div class="post-meta"><time class="post-date">2020-06-22[Updated::2020-08-25]</time><span class="post-author">Nathanael Gentry</span><span class="post-reading-time">3 min read (618 words)</span></div>
+
+  
+    <span class="post-tags">
+      
+      #<a href="/tags/macromedia-director/">Macromedia Director</a>&nbsp;
+      
+      #<a href="/tags/google-summer-of-code-2020/">Google Summer of Code 2020</a>&nbsp;
+      
+      #<a href="/tags/scummvm/">ScummVM</a>&nbsp;
+      
+    </span>
+  
+  
+
+
+  
+
+  <div class="post-content"><div>
+        <p>Hey guys!</p>
+<p>I started off last week attempting to get the infamous <code>zoomBox</code> working with the
+new rendering pipeline I wrote for our Director engine. A zoomBox effect is the
+classic window movement animation in classic Mac OS: When you open or close a
+window, you see many spectral rectangles in between the window&rsquo;s origin and
+destination. Even though I haven&rsquo;t seen any games actually use it, this function
+was the first motivation I was given reworking the rendering pipeline. Before,
+we could not look ahead into the next frame to get the dimensions of a sprite.</p>
+<p>Moreover, before, we had to cache a copy of the screen so it could be restored
+after the animation was finished. I used the same trick that it seemed Mac OS
+used with many interface elements, though. As the animation was drawn, the
+pixels of the rectangle were inverted, and then on a second pass they were
+inverted back. Just like matrices, invertible animations are quite nice.</p>
+<p>I also modified much of my code from the previous weeks to get a major part of
+our benchmark kit, Macromedia&rsquo;s own The Apartment, working properly. Normally,
+when a sprite is puppeted, its position is not updated from the score. So
+animated puppeted sprites are impossible, which made my job a bit easier. There is
+another case, however, that required a major rework of the rendering code I had
+already written. I didn&rsquo;t realize that with a sprite simply declared moveable,
+rather than a full puppet, it can be animated. Thus, we could no longer store
+the current point in each sprite as it flew by over the playback head &ndash; that
+would give us very strange jitters. Instead, location information needed to be
+consistent across frames. So, another level of abstraction was needed, a
+<code>Channel</code> class that would keep track of this intraframe information.</p>
+<p>It feels strange to summarize into a single sentence a task that took me several
+hours to complete. But, I suppose this is the very nature of software
+engineering. Over the past weeks, I have learned very much about being patient
+with myself and taking breaks when I need to. I&rsquo;m going to try to be a bit
+better about working for a long time on the weekends, even though I find it very
+enjoyable.</p>
+<p>On Wednesday, I think it was, djsrv fixed a Lingo issue and I fixed several
+rendering\widget issues that allowed me to get more than a quarter of the way
+into Warlock &ndash; and even then, it was my choice to stop and not a misplaced null
+pointer&rsquo;s. :) This is an exciting progress milestone for us. Ah, the beautiful
+Belshazzar!</p>
+<p><img src="/posts/gsoc-2020/making-progress/making-progress-2.png"></p>
+<p>On Friday, I didn&rsquo;t commit much because I got distracted by an engine I had
+mentioned briefly before, the Media Station engine. Many of the Disney Animated
+Storybook CD-ROMs were developed with this engine, as well as one of the few
+Living Books titles that didn&rsquo;t use Mohawk. Strangerke warned me a few weeks ago
+that the executable was very complicated, but I found some success using
+moralrecordings&rsquo; <a href="https://github.com/moralrecordings/mrcrowbar">Mr. Crowbar</a> to peer inside the assets. They seemed like easy
+RIFF, but nearly all the chunks seem to be named some variation of &ldquo;igod&rdquo; and
+there&rsquo;s some extra structure hidden inside the chunks. Bitmap and waveform data
+is clearly visible, though, so there&rsquo;s probably not far to go to understand the
+format. After GSoC is over, I would hope stay on and keep working with this
+engine &ndash; plus Director, of course.</p>
+<p>Anyway, I&rsquo;d better get back to Director. I&rsquo;m now working on getting all of the
+inks (blitting modes) playing nicely together. Graphics programming has proven
+pretty neat, even if it often goes slowly.</p>
+
+      </div></div>
+
+  
+    
+<div class="pagination">
+  <div class="pagination__title">
+    <span class="pagination__title-h">Read other posts</span>
+    <hr />
+  </div>
+  <div class="pagination__buttons">
+    
+      <a href="/posts/gsoc-2020/third-way-done/" class="button inline prev">
+        A third of the way done!
+      </a>
+    
+    
+      ::
+    
+    
+      <a href="/posts/gsoc-2020/busy-week/" class="button inline next">
+        A busy week
+      </a>
+    
+  </div>
+</div>
+
+
+  
+
+  
+    
+
+<div id="disqus_thread"></div>
+<script>
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "bitdust-1" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+  
+</article>
+
+  </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <div class="copyright">
+        <span>© 2024 Powered by <a href="https://gohugo.io">Hugo</a></span>
+    
+      <span>:: <a href="https://github.com/panr/hugo-theme-terminal" target="_blank">Theme</a> made by <a href="https://github.com/panr" target="_blank">panr</a></span>
+      </div>
+  </div>
+</footer>
+
+
+
+
+
+
+<script type="text/javascript" src="/bundle.min.js"></script>
+
+
+
+
+
+  
+</div>
+
+</body>
+</html>

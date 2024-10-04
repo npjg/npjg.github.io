@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on BitDust</title>
+    <link>/tags/</link>
+    <description>Recent content in Tags on BitDust</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 25 Aug 2020 22:32:00 -0400</lastBuildDate><atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Google Summer of Code 2020</title>
+      <link>/tags/google-summer-of-code-2020/</link>
+      <pubDate>Tue, 25 Aug 2020 22:32:00 -0400</pubDate>
+      
+      <guid>/tags/google-summer-of-code-2020/</guid>
+      <description></description>
+      <content></content>
+    </item>
+    
+    <item>
+      <title>Macromedia Director</title>
+      <link>/tags/macromedia-director/</link>
+      <pubDate>Tue, 25 Aug 2020 22:32:00 -0400</pubDate>
+      
+      <guid>/tags/macromedia-director/</guid>
+      <description></description>
+      <content></content>
+    </item>
+    
+    <item>
+      <title>ScummVM</title>
+      <link>/tags/scummvm/</link>
+      <pubDate>Tue, 25 Aug 2020 22:32:00 -0400</pubDate>
+      
+      <guid>/tags/scummvm/</guid>
+      <description></description>
+      <content></content>
+    </item>
+    
+  </channel>
+</rss>
