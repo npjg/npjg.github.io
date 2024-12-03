@@ -6,7 +6,61 @@
     <description>Recent content on BitDust</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 30 Nov 2022 00:00:00 +0000</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 11 Oct 2024 07:52:00 -0400</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>No Click of Death Here!</title>
+      <link>/posts/no-click-of-death-here/</link>
+      <pubDate>Fri, 11 Oct 2024 07:52:00 -0400</pubDate>
+      
+      <guid>/posts/no-click-of-death-here/</guid>
+      <description>I recently had the interesting task of getting some interesting data off a 100 MB Zip disk for my Media Station project. Yes, that Zip. The Click of Death kind.
+Someone gave me lovely Tangent tower for free the other day - that&amp;rsquo;s another topic - and there was a Zip drive in it. It was manufactured in 2000. I just hoped there weren&amp;rsquo;t many hours on it. I didn&amp;rsquo;t have a spare disk to check if the drive was good - I probably should have gotten one to test with.</description>
+      <content>&lt;p&gt;I recently had the interesting task of getting some interesting data off a 100
+MB Zip
+disk for my &lt;a href=&#34;https://npjg.github.io&#34;&gt;Media Station&lt;/a&gt; project. Yes, &lt;em&gt;that&lt;/em&gt; Zip. The &lt;a href=&#34;https://www.grc.com/tip/codfaq4.htm&#34;&gt;Click of Death&lt;/a&gt;
+kind.&lt;/p&gt;
+&lt;p&gt;Someone gave me lovely Tangent tower for free the other day - that&amp;rsquo;s another
+topic - and there was a Zip drive in it. It was manufactured in 2000. I just
+hoped there weren&amp;rsquo;t many hours on it. I didn&amp;rsquo;t have a spare disk to check if the
+drive was good - I probably should have gotten one to test with.&lt;/p&gt;
+&lt;p&gt;After carefully inspecting the disk to try to ensure the surface wasn&amp;rsquo;t torn, I
+put the disk into the drive and started up Windows 98. The disk seemed to load
+okay, but I got the dreaded &amp;ldquo;This disk needs to be formatted&amp;rdquo; error. However, I had
+good reason to suspect this was a Mac disk. So, the age old question, how to
+image a Mac disk on Windows 98?&lt;/p&gt;
+&lt;p&gt;If I&amp;rsquo;d had an ATAPI-to-USB adapter, connecting the Zip drive to my modern system
+would have been easy. But I only have a plain IDE adapter. So, I tried some
+other things instead:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;WinImage 6.0&lt;/em&gt;. Crashed on clicking &amp;ldquo;Read Disk&amp;rdquo;. I suspect this function was
+only designed for reading floppies and didn&amp;rsquo;t know what to do with a 100 MB
+disk 🙃&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;WinImage 8.0&lt;/em&gt;. The drive made a funny &amp;ldquo;scrubbing&amp;rdquo; sound that sure sounded
+like head bashing to me. It didn&amp;rsquo;t &lt;em&gt;sound&lt;/em&gt; like examples of the Click of
+Death that I listened to online, but I was still really worried that the disk and
+or/drive were toast.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Norton Ghost 2003&lt;/em&gt;. The Zip drive didn&amp;rsquo;t even show up when booting from the Ghost
+CD-ROM :(&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I&amp;rsquo;d spent two hours on this and was really mad. So I pulled out a CD-R and did
+what I probably should have done in the first place - burned an ancient Linux
+distro from 2005. That seemed like a good fit for my 500 MHz, 384 MB RAM system.
+Thankfully, it was recent enough to enable booting from CDs in the first place.&lt;/p&gt;
+&lt;p&gt;This old distro didn&amp;rsquo;t have &lt;code&gt;ddrescue&lt;/code&gt;, but thankfully good ol&amp;rsquo; &lt;code&gt;dd&lt;/code&gt; did the trick.
+I was dealing with an ancient version of dd that didn’t have &lt;code&gt;status=progress&lt;/code&gt;. So
+my trusty AI friends recommended using the USR1 signal, which I didn’t know
+about.&lt;/p&gt;
+&lt;p&gt;The imaging completed fairly quickly with no apparent errors, so I copied the
+image to the the CompactFlash disk in the tower, then to my modern machine. A
+quick inspection in the hex editor revealed this was in fact an HFS disk!&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/posts/no-click-of-death-here/yay-hfs.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;So it just needed to be mounted in SheepShaver. Unfortunately, the contents were
+pretty boring - no engine source code. But the process was interesting!&lt;/p&gt;
+&lt;p&gt;What have your experiences been with ZIP disks? Ever experienced data loss due
+to the dreaded Click of Death?&lt;/p&gt;
+</content>
+    </item>
+    
     <item>
       <title>About</title>
       <link>/about/</link>

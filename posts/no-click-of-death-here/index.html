@@ -2,17 +2,17 @@
 <html lang="en">
 <head>
   
-    <title>Finishing up :: BitDust</title>
+    <title>No Click of Death Here! :: BitDust</title>
   
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Last week was the last official week in the GSoC work period. I plan to submit my final evaluation after I post this. There you will be able to see some of the highlights from my time with ScummVM this summer.
-In the past week, though, I didn&amp;rsquo;t start work on any new features. I spent a while understanding the data path location mechanism that the Mac version of Journeyman Project 2: Buried in Time used, and I ultimately discovered some buried XFCNs." />
+<meta name="description" content="I recently had the interesting task of getting some interesting data off a 100 MB Zip disk for my Media Station project. Yes, that Zip. The Click of Death kind.
+Someone gave me lovely Tangent tower for free the other day - that&amp;rsquo;s another topic - and there was a Zip drive in it. It was manufactured in 2000. I just hoped there weren&amp;rsquo;t many hours on it. I didn&amp;rsquo;t have a spare disk to check if the drive was good - I probably should have gotten one to test with." />
 <meta name="keywords" content="" />
 
   <meta name="robots" content="noodp" />
 
-<link rel="canonical" href="/posts/gsoc-2020/finishing-up/" />
+<link rel="canonical" href="/posts/no-click-of-death-here/" />
 
 
 
@@ -81,10 +81,10 @@ In the past week, though, I didn&amp;rsquo;t start work on any new features. I s
 
 <meta property="og:locale" content="en" />
 <meta property="og:type" content="article" />
-<meta property="og:title" content="Finishing up">
-<meta property="og:description" content="Last week was the last official week in the GSoC work period. I plan to submit my final evaluation after I post this. There you will be able to see some of the highlights from my time with ScummVM this summer.
-In the past week, though, I didn&amp;rsquo;t start work on any new features. I spent a while understanding the data path location mechanism that the Mac version of Journeyman Project 2: Buried in Time used, and I ultimately discovered some buried XFCNs." />
-<meta property="og:url" content="/posts/gsoc-2020/finishing-up/" />
+<meta property="og:title" content="No Click of Death Here!">
+<meta property="og:description" content="I recently had the interesting task of getting some interesting data off a 100 MB Zip disk for my Media Station project. Yes, that Zip. The Click of Death kind.
+Someone gave me lovely Tangent tower for free the other day - that&amp;rsquo;s another topic - and there was a Zip drive in it. It was manufactured in 2000. I just hoped there weren&amp;rsquo;t many hours on it. I didn&amp;rsquo;t have a spare disk to check if the drive was good - I probably should have gotten one to test with." />
+<meta property="og:url" content="/posts/no-click-of-death-here/" />
 <meta property="og:site_name" content="BitDust" />
 
   <meta property="og:image" content="/og-image.png">
@@ -93,7 +93,7 @@ In the past week, though, I didn&amp;rsquo;t start work on any new features. I s
 <meta property="og:image:height" content="627">
 
 
-  <meta property="article:published_time" content="2020-08-25 22:32:00 -0400 EDT" />
+  <meta property="article:published_time" content="2024-10-11 07:52:00 -0400 EDT" />
 
 
 
@@ -186,18 +186,16 @@ In the past week, though, I didn&amp;rsquo;t start work on any new features. I s
     
 <article class="post">
   <h1 class="post-title">
-    <a href="/posts/gsoc-2020/finishing-up/">Finishing up</a>
+    <a href="/posts/no-click-of-death-here/">No Click of Death Here!</a>
   </h1>
-  <div class="post-meta"><time class="post-date">2020-08-25[Updated::2020-08-25]</time><span class="post-author">Nathanael Gentry</span><span class="post-reading-time">2 min read (270 words)</span></div>
+  <div class="post-meta"><time class="post-date">2024-10-11[Updated::2024-10-11]</time><span class="post-author">Nathanael Gentry</span><span class="post-reading-time">3 min read (476 words)</span></div>
 
   
     <span class="post-tags">
       
-      #<a href="/tags/macromedia-director/">Macromedia Director</a>&nbsp;
+      #<a href="/tags/media-station/">Media Station</a>&nbsp;
       
-      #<a href="/tags/google-summer-of-code-2020/">Google Summer of Code 2020</a>&nbsp;
-      
-      #<a href="/tags/scummvm/">ScummVM</a>&nbsp;
+      #<a href="/tags/archival/">Archival</a>&nbsp;
       
     </span>
   
@@ -207,31 +205,49 @@ In the past week, though, I didn&amp;rsquo;t start work on any new features. I s
   
 
   <div class="post-content"><div>
-        <p>Last week was the last official week in the GSoC work period. I plan to submit
-my final evaluation after I post this. There you will be able to see some of the
-highlights from my time with ScummVM this summer.</p>
-<p>In the past week, though, I didn&rsquo;t start work on any new features. I spent a
-while understanding the data path location mechanism that the Mac version of
-<em>Journeyman Project 2: Buried in Time</em> used, and I ultimately discovered some
-buried XFCNs. (As @djsrv helpfully explained, XFCNs are external functions from
-(HyperCard)[https://en.wikipedia.org/wiki/HyperCard] that can often be called as
-regular Lingo.) One of these just looped through all the volume names on the
-system, looking for the proper CD name. This <em>Journeyman Project</em> is split
-across three CDs, so some more additions will be needed.</p>
-<p>I also fixed an obscure issue decoding the hex format strings for our Macintosh
-text implementation. Now, the main screen of <em>Majestic</em> looks almost perfect &ndash;
-with proper cursors, which I also patched to load properly &ndash; and consistent
-text formatting.</p>
-<p><img src="/posts/gsoc-2020/finishing-up/finishing-up-1.png"></p>
-<p>Additionally, I investigated and fixed several bugs with my good old friends the
-widgets. Now Chop Suey also looks very accurate, and there is no more flashing
-cursor or cut-off text boxes. Text borders are now (almost) working properly
-again, which makes the Lingo Dictionary movies more pleasant to look at.</p>
-<p><img src="/posts/gsoc-2020/finishing-up/finishing-up-2.png"></p>
-<p>For being the rendering guy this summer I haven&rsquo;t posted nearly enough pictures,
-so I put those two here for you to enjoy. I&rsquo;ve enjoyed working with ScummVM, and
-I plan to start contributing again once I get comfortable in my university
-schedule.</p>
+        <p>I recently had the interesting task of getting some interesting data off a 100
+MB Zip
+disk for my <a href="https://npjg.github.io">Media Station</a> project. Yes, <em>that</em> Zip. The <a href="https://www.grc.com/tip/codfaq4.htm">Click of Death</a>
+kind.</p>
+<p>Someone gave me lovely Tangent tower for free the other day - that&rsquo;s another
+topic - and there was a Zip drive in it. It was manufactured in 2000. I just
+hoped there weren&rsquo;t many hours on it. I didn&rsquo;t have a spare disk to check if the
+drive was good - I probably should have gotten one to test with.</p>
+<p>After carefully inspecting the disk to try to ensure the surface wasn&rsquo;t torn, I
+put the disk into the drive and started up Windows 98. The disk seemed to load
+okay, but I got the dreaded &ldquo;This disk needs to be formatted&rdquo; error. However, I had
+good reason to suspect this was a Mac disk. So, the age old question, how to
+image a Mac disk on Windows 98?</p>
+<p>If I&rsquo;d had an ATAPI-to-USB adapter, connecting the Zip drive to my modern system
+would have been easy. But I only have a plain IDE adapter. So, I tried some
+other things instead:</p>
+<ul>
+<li><em>WinImage 6.0</em>. Crashed on clicking &ldquo;Read Disk&rdquo;. I suspect this function was
+only designed for reading floppies and didn&rsquo;t know what to do with a 100 MB
+disk 🙃</li>
+<li><em>WinImage 8.0</em>. The drive made a funny &ldquo;scrubbing&rdquo; sound that sure sounded
+like head bashing to me. It didn&rsquo;t <em>sound</em> like examples of the Click of
+Death that I listened to online, but I was still really worried that the disk and
+or/drive were toast.</li>
+<li><em>Norton Ghost 2003</em>. The Zip drive didn&rsquo;t even show up when booting from the Ghost
+CD-ROM :(</li>
+</ul>
+<p>I&rsquo;d spent two hours on this and was really mad. So I pulled out a CD-R and did
+what I probably should have done in the first place - burned an ancient Linux
+distro from 2005. That seemed like a good fit for my 500 MHz, 384 MB RAM system.
+Thankfully, it was recent enough to enable booting from CDs in the first place.</p>
+<p>This old distro didn&rsquo;t have <code>ddrescue</code>, but thankfully good ol&rsquo; <code>dd</code> did the trick.
+I was dealing with an ancient version of dd that didn’t have <code>status=progress</code>. So
+my trusty AI friends recommended using the USR1 signal, which I didn’t know
+about.</p>
+<p>The imaging completed fairly quickly with no apparent errors, so I copied the
+image to the the CompactFlash disk in the tower, then to my modern machine. A
+quick inspection in the hex editor revealed this was in fact an HFS disk!</p>
+<p><img src="/posts/no-click-of-death-here/yay-hfs.png"></p>
+<p>So it just needed to be mounted in SheepShaver. Unfortunately, the contents were
+pretty boring - no engine source code. But the process was interesting!</p>
+<p>What have your experiences been with ZIP disks? Ever experienced data loss due
+to the dreaded Click of Death?</p>
 
       </div></div>
 
@@ -244,16 +260,10 @@ schedule.</p>
   </div>
   <div class="pagination__buttons">
     
-      <a href="/posts/no-click-of-death-here/" class="button inline prev">
-        No Click of Death Here!
-      </a>
     
     
-      ::
-    
-    
-      <a href="/posts/gsoc-2020/a-short-week/" class="button inline next">
-        A short week
+      <a href="/posts/gsoc-2020/finishing-up/" class="button inline next">
+        Finishing up
       </a>
     
   </div>
